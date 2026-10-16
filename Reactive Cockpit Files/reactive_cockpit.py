@@ -376,6 +376,11 @@ DISCO_PALETTES = (
 )
 DISCO_HOTKEY = "CTRL+SHIFT+D"
 DISCO_MARKER_FILE = APP_DIR / "runtime" / "disco_mode.active"
+# Written by the isolated Story visual adapter while a persistent story
+# environment visual layer is active (heartbeat-refreshed, ignored when stale).
+STORY_VISUAL_LAYER_FILE = APP_DIR / "runtime" / "story_visual_layer.json"
+STORY_VISUAL_LAYER_MAX_AGE_SECONDS = 6.0
+STORY_SLOT_PRIORITY = {"critical": 7, "deep_danger": 6, "combat": 5, "stealth": 4, "docking": 3, "scoop": 2, "supercruise": 1, "base": 0}
 DISCO_COLOR_KEYS = {
     "ambient": ("x190", "y190", "z190"),
     "primary": ("x69", "y69", "z69"),
@@ -627,6 +632,27 @@ def atomic_copy(src: Path, dst: Path):
 def disco_mode_active(marker_path: Optional[Path] = None) -> bool:
     """Shared, transient signal used by the isolated Story visual adapter."""
     return (marker_path or DISCO_MARKER_FILE).is_file()
+
+
+def story_visual_layer_slot(path: Optional[Path] = None, now: Optional[float] = None) -> Optional[str]:
+    """Return the slot held by an active Story visual layer, or None if absent/stale."""
+    try:
+        data = json.loads((path or STORY_VISUAL_LAYER_FILE).read_text(encoding="utf-8"))
+        slot = str(data.get("slot", "")).casefold()
+        age = (time.time() if now is None else now) - float(data.get("updated_at", 0.0))
+    except (OSError, ValueError, TypeError, AttributeError):
+        return None
+    if slot not in STORY_SLOT_PRIORITY or age > STORY_VISUAL_LAYER_MAX_AGE_SECONDS:
+        return None
+    return slot
+
+
+def story_layer_outranks(state_name: str, layer_slot: Optional[str]) -> bool:
+    """True when an active Story visual layer has higher priority than this core state."""
+    if not layer_slot:
+        return False
+    core_priority = STORY_SLOT_PRIORITY.get(str(state_name).casefold())
+    return core_priority is not None and STORY_SLOT_PRIORITY[layer_slot] > core_priority
 
 
 def set_disco_marker(active: bool, marker_path: Optional[Path] = None):
@@ -3131,10 +3157,18 @@ class Runtime:
             return
 
         try:
-            apply_cached_theme(theme_name, self.edhm_ini)
+            # A higher-priority Story environment visual layer owns the lights.
+            # Record the core state (so the adapter restores it later) but never
+            # write a lower-priority theme underneath it, which caused a flash.
+            layer_slot = story_visual_layer_slot()
+            held = story_layer_outranks(state_name, layer_slot)
+            if not held:
+                apply_cached_theme(theme_name, self.edhm_ini)
             self.applied_key = key
             self.disco_restore_pending = False
             self.last_missing_cache_warning = None
+            if held:
+                reason = f"{reason} (held by story visual layer: {layer_slot})"
 
             extras = []
 
@@ -3479,6 +3513,11 @@ def selftest():
     # configuration or contaminate a clean distribution build.
     global _CONFIG_WRITES_ENABLED
     _CONFIG_WRITES_ENABLED = False
+
+    # Story visual layer floor: higher-priority story slot holds the lights.
+    assert story_layer_outranks("BASE","stealth") and story_layer_outranks("SUPERCRUISE","stealth")
+    assert not story_layer_outranks("COMBAT","stealth") and not story_layer_outranks("BASE",None)
+    assert not story_layer_outranks("SRV_BASE","critical")
     cfg=json.loads(json.dumps(DEFAULT_CONFIG))
 
     hotkey = DiscoHotkey()

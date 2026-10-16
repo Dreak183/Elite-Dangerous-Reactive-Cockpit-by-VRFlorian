@@ -1140,9 +1140,30 @@ def match_shipyard_ship(state: ShipState, shipyard: dict) -> Optional[dict]:
 # Journal reading
 # ---------------------------------------------------------------------------
 
+_JOURNAL_ISO_RE = re.compile(r"^Journal\.(\d{4})-(\d{2})-(\d{2})T(\d{2})(\d{2})(\d{2})\.(\d+)\.log$", re.IGNORECASE)
+_JOURNAL_LEGACY_RE = re.compile(r"^Journal\.(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\.(\d+)\.log$", re.IGNORECASE)
+
+
+def _journal_sort_key(path: Path) -> tuple[int, str, int, int, str]:
+    """Order by timestamp encoded in the filename; fall back to mtime for unknown names."""
+    m = _JOURNAL_ISO_RE.match(path.name)
+    if m:
+        y, mo, d, h, mi, sec, part = m.groups()
+        return (1, f"{y}{mo}{d}{h}{mi}{sec}", int(part), 0, path.name.lower())
+    m = _JOURNAL_LEGACY_RE.match(path.name)
+    if m:
+        y, mo, d, h, mi, sec, part = m.groups()
+        return (1, f"20{y}{mo}{d}{h}{mi}{sec}", int(part), 0, path.name.lower())
+    try:
+        mtime = path.stat().st_mtime_ns
+    except OSError:
+        mtime = 0
+    return (0, "", 0, mtime, path.name.lower())
+
+
 def journal_files(journal_dir: Path) -> list[Path]:
     files = list(journal_dir.glob("Journal*.log"))
-    return sorted(files, key=lambda p: p.stat().st_mtime)
+    return sorted(files, key=_journal_sort_key)
 
 
 def read_lines(path: Path) -> list[str]:
@@ -1264,7 +1285,15 @@ class JournalTail:
             with self.path.open("r", encoding="utf-8", errors="replace") as f:
                 f.seek(self.offset)
 
-                for line in f:
+                while True:
+                    line_start = f.tell()
+                    line = f.readline()
+                    if not line:
+                        break
+                    if not line.endswith("\n"):
+                        # Partial line (game mid-flush): retry on the next poll.
+                        f.seek(line_start)
+                        break
                     try:
                         out.append(json.loads(line))
                     except json.JSONDecodeError:

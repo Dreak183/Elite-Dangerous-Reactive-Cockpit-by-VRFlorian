@@ -254,9 +254,10 @@ $player.Close()
         self.set_volume(0.0, duration)
         self.stop_after_ramp = True
 
-    def _advance_volume_ramp(self) -> None:
+    def _advance_volume_ramp(self) -> bool:
+        """Advance the fade; return True if the ramp finished and stopped the player."""
         if self.volume_ramp is None:
-            return
+            return False
         started, duration, initial, target = self.volume_ramp
         ratio = max(0.0, min(1.0, (time.monotonic() - started) / duration))
         self.current_volume = initial + (target - initial) * ratio
@@ -268,6 +269,8 @@ $player.Close()
             self.volume_ramp = None
             if self.stop_after_ramp:
                 self.stop()
+                return True
+        return False
 
     def stop(self) -> None:
         self.simulated_playing = False
@@ -291,7 +294,8 @@ $player.Close()
             self.winmm.mciSendStringW(f"close {self.alias}", None, 0, None)
 
     def is_playing(self) -> bool:
-        self._advance_volume_ramp()
+        if self._advance_volume_ramp():
+            return False
         if os.name != "nt":
             return self.simulated_playing
         if self.process is not None:

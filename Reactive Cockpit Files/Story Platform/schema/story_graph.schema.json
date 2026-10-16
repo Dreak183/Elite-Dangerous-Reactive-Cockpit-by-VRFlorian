@@ -82,7 +82,7 @@
               "required": ["id", "type"],
               "properties": {
                 "id": {"type": "string", "minLength": 1},
-                "type": {"enum": ["audio", "visual"]},
+                "type": {"enum": ["audio", "visual", "wind"]},
                 "asset": {"type": "string", "minLength": 1},
                 "cue": {"type": "string", "minLength": 1},
                 "volume": {"type": "number", "minimum": 0, "maximum": 1},
@@ -117,11 +117,12 @@
           },
           "layer_adjustments": {
             "type": "array",
-            "description": "Durable named-layer mix rules active for this environment lifecycle.",
+            "description": "Durable named-layer mix or wind-pause rules active for this environment lifecycle.",
             "items": {
               "type": "object",
-              "required": ["target_layer", "volume"],
+              "required": ["target_layer"],
               "properties": {
+                "action": {"enum": ["set_volume", "pause_wind"]},
                 "target_layer": {"type": "string", "pattern": "^environment\\.[^.]+\\.[^.]+$"},
                 "volume": {"type": "number", "minimum": 0, "maximum": 1},
                 "transition_seconds": {"type": "number", "minimum": 0},

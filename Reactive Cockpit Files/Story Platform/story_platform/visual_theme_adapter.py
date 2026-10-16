@@ -49,6 +49,28 @@ class VisualThemeAdapter:
         self.unsafe_until = time.monotonic() + 5.0
         self.disco_paused = False
         self.running = True
+        self.layer_file = self.install / "runtime" / "story_visual_layer.json"
+        self.published_slot: str | None = None
+        self.published_at = 0.0
+
+    def _publish_layer(self, force_clear: bool = False) -> None:
+        """Publish the active persistent story slot so the core never flashes under it."""
+        slot = None if force_clear else self._persistent_slot()
+        now = time.monotonic()
+        if slot == self.published_slot and (slot is None or now - self.published_at < 2.0):
+            return
+        try:
+            if slot is None:
+                self.layer_file.unlink(missing_ok=True)
+            else:
+                self.layer_file.parent.mkdir(parents=True, exist_ok=True)
+                tmp = self.layer_file.with_name(self.layer_file.name + f".{os.getpid()}.tmp")
+                tmp.write_text(json.dumps({"slot": slot, "updated_at": time.time()}), encoding="utf-8")
+                os.replace(tmp, self.layer_file)
+            self.published_slot = slot
+            self.published_at = now
+        except OSError:
+            pass
 
     def _log(self, outcome: str, **fields: Any) -> None:
         append_jsonl(self.audit, {"at": utc_now(), "outcome": outcome, **fields})
@@ -270,6 +292,7 @@ class VisualThemeAdapter:
                     self.disco_paused = True
                     print("[STORY VISUAL] Disco Mode owns lighting; story visual writes paused.", flush=True)
                     self._log("disco_paused")
+                    self._publish_layer(force_clear=True)
                 self._advance_suppressed_sequence()
                 time.sleep(.08)
                 continue
@@ -282,7 +305,9 @@ class VisualThemeAdapter:
                 self._log("disco_resumed")
             self._observe_core_state()
             self._advance_visuals()
+            self._publish_layer()
             time.sleep(.08)
+        self._publish_layer(force_clear=True)
         return 0
 
 

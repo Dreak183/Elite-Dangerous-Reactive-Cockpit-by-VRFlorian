@@ -1,0 +1,5 @@
+[project]
+name = "ED: Reactive Cockpit by VRFlorian"
+version = "2.2.11"
+requires-python = ">=3.15"
+dependencies = []

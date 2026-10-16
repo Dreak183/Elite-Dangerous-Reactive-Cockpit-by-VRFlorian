@@ -1,0 +1,12 @@
+{
+  "theme": "VRFlo Reactive Cockpit - Super-cruise",
+  "role": "supercruise",
+  "captured_at": "2026-08-21T23:20:14",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

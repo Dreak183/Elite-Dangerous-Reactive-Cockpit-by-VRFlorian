@@ -1,0 +1,12 @@
+{
+  "theme": "VRFlo Reactive Cockpit - Docking mode",
+  "role": "docking",
+  "captured_at": "2026-08-21T23:37:11",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

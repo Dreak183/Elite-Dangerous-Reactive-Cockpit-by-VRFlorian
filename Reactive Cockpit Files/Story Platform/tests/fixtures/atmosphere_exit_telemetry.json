@@ -1,0 +1,90 @@
+[
+  {
+    "name": "status.changed",
+    "at": "2026-10-02T18:22:05Z",
+    "status": {
+      "timestamp": "2026-10-02T18:22:05Z",
+      "event": "Status",
+      "Flags": 1630142472,
+      "Flags2": 0,
+      "Latitude": 25.898981,
+      "Longitude": -85.007965,
+      "Heading": 81,
+      "Altitude": 27207,
+      "BodyName": "Col 359 Sector DZ-U b5-2 B 3 a",
+      "PlanetRadius": 3242386.0
+    }
+  },
+  {
+    "name": "journal.SupercruiseEntry",
+    "at": "2026-10-02T18:22:07Z",
+    "journal": {
+      "timestamp": "2026-10-02T18:22:07Z",
+      "event": "SupercruiseEntry",
+      "Taxi": false,
+      "Multicrew": false,
+      "StarSystem": "Col 359 Sector DZ-U b5-2",
+      "SystemAddress": 5066048808457
+    }
+  },
+  {
+    "name": "status.changed",
+    "at": "2026-10-02T18:22:08Z",
+    "status": {
+      "timestamp": "2026-10-02T18:22:08Z",
+      "event": "Status",
+      "Flags": 556269592,
+      "Flags2": 0,
+      "Latitude": 25.900545,
+      "Longitude": -84.996986,
+      "Heading": 81,
+      "Altitude": 28006,
+      "BodyName": "Col 359 Sector DZ-U b5-2 B 3 a",
+      "PlanetRadius": 3242386.0
+    }
+  },
+  {
+    "name": "status.changed",
+    "at": "2026-10-02T18:22:47Z",
+    "status": {
+      "timestamp": "2026-10-02T18:22:47Z",
+      "event": "Status",
+      "Flags": 556269592,
+      "Flags2": 0,
+      "Latitude": 27.85391,
+      "Longitude": -76.788315,
+      "Heading": 77,
+      "Altitude": 648464,
+      "BodyName": "Col 359 Sector DZ-U b5-2 B 3 a",
+      "PlanetRadius": 3242386.0
+    }
+  },
+  {
+    "name": "journal.LeaveBody",
+    "at": "2026-10-02T18:22:47Z",
+    "journal": {
+      "timestamp": "2026-10-02T18:22:47Z",
+      "event": "LeaveBody",
+      "StarSystem": "Col 359 Sector DZ-U b5-2",
+      "SystemAddress": 5066048808457,
+      "Body": "Col 359 Sector DZ-U b5-2 B 3 a",
+      "BodyID": 40
+    }
+  },
+  {
+    "name": "status.changed",
+    "at": "2026-10-02T18:22:48Z",
+    "status": {
+      "timestamp": "2026-10-02T18:22:48Z",
+      "event": "Status",
+      "Flags": 556269592,
+      "Flags2": 0,
+      "Latitude": 28.049623,
+      "Longitude": -75.837166,
+      "Heading": 77,
+      "Altitude": 738482,
+      "BodyName": "Col 359 Sector DZ-U b5-2 B 3 a",
+      "PlanetRadius": 3242386.0
+    }
+  }
+]

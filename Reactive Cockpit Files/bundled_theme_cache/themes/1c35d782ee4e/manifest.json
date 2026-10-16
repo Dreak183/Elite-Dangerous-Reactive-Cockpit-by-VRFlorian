@@ -1,0 +1,12 @@
+{
+  "theme": "Classic Elite Reactive Cockpit Base",
+  "role": "base",
+  "captured_at": "2026-08-22T16:16:09",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

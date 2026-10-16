@@ -1,0 +1,12 @@
+{
+  "theme": "VRFlo Reactive Cockpit - IMMINENT DESTRUCTION",
+  "role": "critical",
+  "captured_at": "2026-08-16T13:04:56",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

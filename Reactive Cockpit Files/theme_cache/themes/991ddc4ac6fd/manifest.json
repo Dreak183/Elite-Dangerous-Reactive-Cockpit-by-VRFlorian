@@ -1,0 +1,12 @@
+{
+  "theme": "Nebula Hopper Anaconda Reactive Cockpit - Imminent destruction",
+  "role": "package",
+  "captured_at": "2026-08-18T14:54:06",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

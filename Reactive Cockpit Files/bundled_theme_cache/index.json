@@ -1,0 +1,712 @@
+{
+  "themes": {
+    "VRFlo Reactive Cockpit - Base": {
+      "folder": "6c81fef00d60",
+      "role": "base",
+      "captured_at": "2026-08-22T16:17:01",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Combat": {
+      "folder": "06eae48c1399",
+      "role": "combat",
+      "captured_at": "2026-08-19T12:22:21",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Deep danger": {
+      "folder": "b400c3a9ca38",
+      "role": "deep_danger",
+      "captured_at": "2026-08-19T12:54:08",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - IMMINENT DESTRUCTION": {
+      "folder": "d9a5337b5d3c",
+      "role": "critical",
+      "captured_at": "2026-08-16T13:04:56",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Stealth": {
+      "folder": "d41c3f558783",
+      "role": "stealth",
+      "captured_at": "2026-08-16T13:05:01",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Docking mode": {
+      "folder": "e817f707afa9",
+      "role": "docking",
+      "captured_at": "2026-08-21T23:37:11",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Scoop": {
+      "folder": "cdcbbdd5ad3d",
+      "role": "scoop",
+      "captured_at": "2026-08-16T13:05:10",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "VRFlo Reactive Cockpit - Super-cruise": {
+      "folder": "ca786671ea49",
+      "role": "supercruise",
+      "captured_at": "2026-08-21T23:20:14",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 - Reactive Cockpit Base": {
+      "folder": "1b3b41aa91b4",
+      "role": "base",
+      "captured_at": "2026-08-22T16:15:49",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 Reactive Cockpit - Combat mode": {
+      "folder": "8c6b643755b8",
+      "role": "combat",
+      "captured_at": "2026-08-17T12:44:47",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 reactive cockpit - Deep Danger mode": {
+      "folder": "6642c372d380",
+      "role": "package",
+      "captured_at": "2026-08-16T17:51:58",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 Reactive Cockpit - Imminent destruction": {
+      "folder": "95456f39420c",
+      "role": "critical",
+      "captured_at": "2026-08-17T12:58:46",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 Reactive Cockpit - Stealth": {
+      "folder": "4505ff46c02c",
+      "role": "stealth",
+      "captured_at": "2026-08-17T13:23:52",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 - Reactive Cockpit Docking": {
+      "folder": "b37c823f84e4",
+      "role": "docking",
+      "captured_at": "2026-08-17T14:43:55",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 Reactive Cockpit - Scoop": {
+      "folder": "7dd3361c9cba",
+      "role": "scoop",
+      "captured_at": "2026-08-16T19:46:04",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Type 11 - Reactive Cockpit super-cruise": {
+      "folder": "17441c5a042b",
+      "role": "supercruise",
+      "captured_at": "2026-08-17T16:07:57",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Base": {
+      "folder": "277bc59e979a",
+      "role": "base",
+      "captured_at": "2026-08-22T16:16:54",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Combat": {
+      "folder": "21fdbc74aff2",
+      "role": "package",
+      "captured_at": "2026-08-18T10:35:29",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Deep danger": {
+      "folder": "595176a4d9c4",
+      "role": "package",
+      "captured_at": "2026-08-18T10:35:34",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Imminent Destruction": {
+      "folder": "aab8b2ea86d6",
+      "role": "package",
+      "captured_at": "2026-08-18T10:35:46",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Stealth": {
+      "folder": "a4ba11c8c5b8",
+      "role": "package",
+      "captured_at": "2026-08-18T10:35:50",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Docking": {
+      "folder": "a8279e318245",
+      "role": "package",
+      "captured_at": "2026-08-18T10:35:56",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Scoop": {
+      "folder": "743c616d6bb0",
+      "role": "package",
+      "captured_at": "2026-08-18T10:36:01",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Python MKII - Reactive Cockpit Super cruise": {
+      "folder": "71cd603cdd9f",
+      "role": "package",
+      "captured_at": "2026-08-18T10:36:06",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit base": {
+      "folder": "2ae079c3d21a",
+      "role": "base",
+      "captured_at": "2026-08-22T16:16:44",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Combat": {
+      "folder": "74c11e6ddc09",
+      "role": "package",
+      "captured_at": "2026-08-18T11:46:41",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian Reactive Cockpit Deep danger": {
+      "folder": "a8690900686a",
+      "role": "package",
+      "captured_at": "2026-08-18T11:46:51",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Imminent destruction": {
+      "folder": "323d1e3dd586",
+      "role": "package",
+      "captured_at": "2026-08-18T11:47:00",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Stealth": {
+      "folder": "25031a0a6042",
+      "role": "package",
+      "captured_at": "2026-08-18T11:47:06",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Docking": {
+      "folder": "6d342a52c4c0",
+      "role": "package",
+      "captured_at": "2026-08-18T11:47:12",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Scoop": {
+      "folder": "a76c078e8faa",
+      "role": "package",
+      "captured_at": "2026-08-18T11:47:20",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Caspian - Reactive Cockpit Super Cruise": {
+      "folder": "9c6cb2dd87d2",
+      "role": "package",
+      "captured_at": "2026-08-18T11:47:27",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda - Reactive Cockpit Base": {
+      "folder": "966752b38e20",
+      "role": "base",
+      "captured_at": "2026-08-22T16:16:24",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda Reactive Cockpit - Combat mode": {
+      "folder": "19fc4f45ee2a",
+      "role": "package",
+      "captured_at": "2026-08-18T14:53:50",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda reactive cockpit - Deep Danger mode": {
+      "folder": "5a8b8e5648da",
+      "role": "package",
+      "captured_at": "2026-08-18T14:54:01",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda Reactive Cockpit - Imminent destruction": {
+      "folder": "991ddc4ac6fd",
+      "role": "package",
+      "captured_at": "2026-08-18T14:54:06",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda Reactive Cockpit - Stealth": {
+      "folder": "3190ae7ad100",
+      "role": "package",
+      "captured_at": "2026-08-18T14:54:13",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda - Reactive Cockpit Docking": {
+      "folder": "a6be5016d4ce",
+      "role": "package",
+      "captured_at": "2026-08-18T15:02:08",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda Reactive Cockpit - Scoop": {
+      "folder": "920a145c5d26",
+      "role": "package",
+      "captured_at": "2026-08-18T15:02:20",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Nebula Hopper Anaconda - Reactive Cockpit super-cruise": {
+      "folder": "1478cdf2246e",
+      "role": "package",
+      "captured_at": "2026-08-18T15:02:27",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (heart eater) Reactive Cockpit - Base": {
+      "folder": "98d28abff790",
+      "role": "base",
+      "captured_at": "2026-08-22T16:17:15",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Combat mode": {
+      "folder": "55ed7639877f",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:05",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Deep damage mode": {
+      "folder": "545df103ea3a",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:15",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Imminent Destruction": {
+      "folder": "09819e0b7ec0",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:21",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Stealth mode": {
+      "folder": "50e594c9cfe5",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:26",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Docking mode": {
+      "folder": "a9de1d542a76",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:36",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Scoop mode": {
+      "folder": "8c5faf1deba0",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:43",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Kestrel (Heart eater) Reactive Cockpit - Super Cruise mode": {
+      "folder": "c7f3fbcda246",
+      "role": "package",
+      "captured_at": "2026-08-19T16:08:47",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Ship Launched Fighter - Reactive Cockpit Base": {
+      "folder": "bcfcb4cf17d6",
+      "role": "aux_fighter_base",
+      "captured_at": "2026-08-22T16:18:15",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Ship Launched Fighter - Reactive Cockpit Combat": {
+      "folder": "59a37d2001c2",
+      "role": "aux_fighter_combat",
+      "captured_at": "2026-08-22T16:18:22",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "SRV Reactive Cockpit Base": {
+      "folder": "efd21795d857",
+      "role": "aux_srv_base",
+      "captured_at": "2026-08-22T16:18:28",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Elite Reactive Cockpit Base": {
+      "folder": "1c35d782ee4e",
+      "role": "base",
+      "captured_at": "2026-08-22T16:16:09",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Combat mode": {
+      "folder": "605caf068d16",
+      "role": "combat",
+      "captured_at": "2026-08-22T16:17:27",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Deep Danger mode": {
+      "folder": "0b3a8e105fbf",
+      "role": "deep_danger",
+      "captured_at": "2026-08-22T16:17:31",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Imminent Destruction": {
+      "folder": "299e4cf3e965",
+      "role": "critical",
+      "captured_at": "2026-08-22T16:17:37",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Stealth mode": {
+      "folder": "5266e78bbb7a",
+      "role": "stealth",
+      "captured_at": "2026-08-22T16:17:44",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Docking mode": {
+      "folder": "b0eca3e01666",
+      "role": "docking",
+      "captured_at": "2026-08-22T16:17:49",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Scoop mode": {
+      "folder": "d08037690be8",
+      "role": "scoop",
+      "captured_at": "2026-08-22T16:17:54",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    },
+    "Classic Reactive Cockpit - Super cruise mode": {
+      "folder": "1204e75d4376",
+      "role": "supercruise",
+      "captured_at": "2026-08-22T16:17:58",
+      "files": [
+        "Advanced.ini",
+        "Startup-Profile.ini",
+        "SuitHud.ini",
+        "XML-Profile.ini",
+        "ThemeSettings.json"
+      ]
+    }
+  }
+}

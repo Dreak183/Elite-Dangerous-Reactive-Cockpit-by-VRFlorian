@@ -1,0 +1,1 @@
+Copy the Story Mission 1 audio files into this folder. Filenames are defined exactly in story_config.json under audio_files.

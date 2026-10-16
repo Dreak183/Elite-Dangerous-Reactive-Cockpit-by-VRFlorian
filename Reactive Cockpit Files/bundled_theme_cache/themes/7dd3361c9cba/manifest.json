@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 Reactive Cockpit - Scoop",
+  "role": "scoop",
+  "captured_at": "2026-08-16T19:46:04",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

@@ -1,0 +1,4169 @@
+{
+  "schema": "platform.story-graph.v1",
+  "id": "guardian_signal_mission_01",
+  "version": "1.1.2",
+  "title": "Guardian Signal — Mission One",
+  "description": "Standalone Mission One rebuilt for Story Platform 0.11.7 from generic graph, environment, presentation and navigation primitives.",
+  "start": "start",
+  "recovery_when": {
+    "signal": "journal.Died"
+  },
+  "variables": {
+    "mission1_scans_armed": false,
+    "mission1_iapetus_complete": false,
+    "mission1_enceladus_complete": false,
+    "mission1_guardian_beacon_armed": false,
+    "mission1_structure_ambience_active": false,
+    "mission1_complete": false
+  },
+  "nodes": {
+    "start": {
+      "kind": "start",
+      "title": "Mission One Start",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Mission One is armed. Travel to Sol when ready."
+        }
+      ]
+    },
+    "await_sol": {
+      "kind": "wait",
+      "title": "Await Sol",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Sol."
+        }
+      ]
+    },
+    "cp01_sol": {
+      "kind": "checkpoint",
+      "title": "Cp01 Sol",
+      "checkpoint_id": "CP01_SOL_ENTRY"
+    },
+    "sol_arrival_delay": {
+      "kind": "wait",
+      "title": "Sol Arrival Delay"
+    },
+    "sol_incoming": {
+      "kind": "beat",
+      "title": "Sol Incoming",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_incoming",
+            "asset": "00_incoming_call_loop.mp3",
+            "volume": 0.186,
+            "loop": true
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_temporal_whisper"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Incoming transmission — press Answer (CTRL+C)."
+        }
+      ]
+    },
+    "sol_order": {
+      "kind": "beat",
+      "title": "Sol Order",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "mission1_incoming"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "03_sol_entry_order_lincoln.mp3",
+            "volume": 0.306,
+            "completion_signal": "presentation.mission1.sol_order_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Dock at Abraham Lincoln Station."
+        }
+      ]
+    },
+    "await_lincoln": {
+      "kind": "wait",
+      "title": "Await Lincoln"
+    },
+    "lincoln_delay": {
+      "kind": "wait",
+      "title": "Lincoln Delay"
+    },
+    "lincoln_bar": {
+      "kind": "beat",
+      "title": "Lincoln Bar",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "05_lincoln_docked_go_to_bar.mp3",
+            "volume": 0.36,
+            "completion_signal": "presentation.mission1.lincoln_bar_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Go to Pioneer Supplies and stock up on energy cells and health packs. Then go to the bar and wait for your meeting."
+        }
+      ]
+    },
+    "await_supply": {
+      "kind": "wait",
+      "title": "Await Supply"
+    },
+    "recognition_delay": {
+      "kind": "wait",
+      "title": "Recognition Delay"
+    },
+    "bartender_recognition": {
+      "kind": "beat",
+      "title": "Bartender Recognition",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "06_bartender_recognises_you_ctrl_p.mp3",
+            "volume": 0.347,
+            "completion_signal": "presentation.mission1.recognition_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_guardian_attention"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Once you've recieved the earpiece, Press Accept (CTRL+A)."
+        }
+      ]
+    },
+    "await_clearance_accept": {
+      "kind": "wait",
+      "title": "Await Clearance Accept"
+    },
+    "clearance_question": {
+      "kind": "choice",
+      "title": "Clearance Question",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "07_package_clearance_question.mp3",
+            "volume": 0.801
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Confirm clearance?",
+          "choices": [
+            "Accept — CTRL+A",
+            "Decline — CTRL+N"
+          ]
+        }
+      ]
+    },
+    "clearance_second": {
+      "kind": "choice",
+      "title": "Clearance Second",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "08_clearance_second_chance.mp3",
+            "volume": 0.711
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Final opportunity to accept clearance.",
+          "choices": [
+            "Accept — CTRL+A",
+            "Decline — CTRL+N"
+          ]
+        }
+      ]
+    },
+    "mission_aborted": {
+      "kind": "end",
+      "title": "Mission Aborted",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "09_mission_aborted.mp3",
+            "volume": 0.589
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Mission aborted."
+        }
+      ]
+    },
+    "admiral_intro": {
+      "kind": "beat",
+      "title": "Admiral Intro",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "10_admiral_holden_intro_and_context.mp3",
+            "volume": 0.363,
+            "completion_signal": "presentation.mission1.admiral_intro_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_temporal_spike"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "press Accept (CTRL+A) if you understand."
+        }
+      ]
+    },
+    "await_admiral_ack": {
+      "kind": "wait",
+      "title": "Await Admiral Ack"
+    },
+    "scanner_orders": {
+      "kind": "beat",
+      "title": "Scanner Orders",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "11_admiral_scanner_install_and_orders.mp3",
+            "volume": 0.454,
+            "completion_signal": "presentation.mission1.scanner_orders_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Scanner installation and field orders received."
+        }
+      ]
+    },
+    "cp02_scans": {
+      "kind": "checkpoint",
+      "title": "Cp02 Scans",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_scans_armed",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "CLASSIFIED FIELD ORDERS\n\nREAD CAREFULLY! READ CAREFULLY! READ CAREFULLY! READ CAREFULLY! \n\n------------------------------------------------------------------------\n\nTwo unclassified energetic disturbances have been located within the SOLAR system. \n\nDetailed scanner readings are required to triangulate the source. \n\nDue to temporal distortions, digital location tagging is impossible. \n\nLocate and travel to the exact coordinates provided below: \n\n\n1 // IAPETUS // MOUNTAIN AREA\nLatitude: 4.214506\nLongitude: 97.075668\n\n\n2 // ENCELADUS // ICE-LAKE AREA WITH GEYSERS\nLatitude: -28.398161\nLongitude: -132.245178\n\n\nA temporal scanner has been installed on your ship. Activate it by pressing Control + S Once you are withing 1000km of an energetic disturbance.\nThe scanner will start to ping. The closer you get to the location, the faster the pings will become. \n\nYou must get within 250 METERS of the disturbance and close to the surface to start the detailed scan process. This will start automatically as soon as you come within range.\n\nRemain withing 250 METERS of the disturbance until the scan is complete. \n\nDo not transmit any telemetry data through normal channels! Once you've completed both scans, you will be contacted with\nfurther instructions! \n\nBe sure to bring a ship with an SRV + ship launched fighter capacity and plenty of point defence turrets. And bring a shotgun! (They always come in handy eventually!)\n\nGood Luck commander!\n\n------------------------------------------------------------------------"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Complete the Iapetus and Enceladus anomaly scans in either order. Toggle scanner with CTRL+S."
+        }
+      ],
+      "checkpoint_id": "CP02_FIELD_SCANS"
+    },
+    "scan_iapetus": {
+      "kind": "wait",
+      "title": "Scan Iapetus",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Iapetus - There is 1 scan area remaining at: 4.214506, 97.075668."
+        }
+      ]
+    },
+    "iapetus_complete": {
+      "kind": "beat",
+      "title": "Iapetus Complete",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_iapetus_complete",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "14_anomaly_scan_complete.mp3",
+            "volume": 0.7,
+            "completion_signal": "presentation.mission1.iapetus_scan_complete_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Iapetus scan complete. Hold position for the analysis result."
+        }
+      ]
+    },
+    "iapetus_warning": {
+      "kind": "beat",
+      "title": "Iapetus Warning",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "scan_warning_iapetus",
+            "asset": "15_temporal_distortion_warning_loop.mp3",
+            "volume": 0.7,
+            "loop": true
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "combat",
+            "sequence_ref": "mission1_temporal_warning"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Temporal distortion detected. Leave the 500-metre danger area."
+        }
+      ]
+    },
+    "iapetus_scan_done": {
+      "kind": "beat",
+      "title": "Iapetus Scan Done",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "scan_warning_iapetus"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Iapetus survey safely stored."
+        }
+      ]
+    },
+    "scan_enceladus": {
+      "kind": "wait",
+      "title": "Scan Enceladus",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Enceladus. There is 1 scan area remaining at: -28.398161, -132.245178."
+        }
+      ]
+    },
+    "enceladus_complete": {
+      "kind": "beat",
+      "title": "Enceladus Complete",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_enceladus_complete",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "14_anomaly_scan_complete.mp3",
+            "volume": 0.7,
+            "completion_signal": "presentation.mission1.enceladus_scan_complete_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Enceladus scan complete. Hold position for the analysis result."
+        }
+      ]
+    },
+    "enceladus_warning": {
+      "kind": "beat",
+      "title": "Enceladus Warning",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "scan_warning_enceladus",
+            "asset": "15_temporal_distortion_warning_loop.mp3",
+            "volume": 0.7,
+            "loop": true
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "combat",
+            "sequence_ref": "mission1_temporal_warning"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Temporal distortion detected. Leave the 500-metre danger area."
+        }
+      ]
+    },
+    "enceladus_scan_done": {
+      "kind": "beat",
+      "title": "Enceladus Scan Done",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "scan_warning_enceladus"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Enceladus survey safely stored."
+        }
+      ]
+    },
+    "scan_join": {
+      "kind": "join",
+      "title": "Scan Join",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_scans_armed",
+          "value": false
+        },
+        {
+          "type": "next_step",
+          "text": "Both anomaly surveys are safely stored."
+        }
+      ],
+      "join_from": [
+        "iapetus_scan_done",
+        "enceladus_scan_done"
+      ]
+    },
+    "all_scans_delay": {
+      "kind": "wait",
+      "title": "All Scans Delay"
+    },
+    "scans_complete": {
+      "kind": "beat",
+      "title": "Scans Complete",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "16_all_scans_complete_beacon_instruction.mp3",
+            "volume": 0.543,
+            "completion_signal": "presentation.mission1.scans_complete_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "All scans complete."
+        }
+      ]
+    },
+    "cp03_europa": {
+      "kind": "checkpoint",
+      "title": "Cp03 Europa",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "UNDERCOVER HANDOFF\nSol / Europa\nSelect: Unregistered Comms Beacon\nDrop at the selected destination and hold position."
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Travel to Europa and drop-in on and select the Unregistered Comms Beacon there."
+        }
+      ],
+      "checkpoint_id": "CP03_EUROPA_HANDOFF"
+    },
+    "europa_selected": {
+      "kind": "beat",
+      "title": "Europa Selected",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Unregistered Comms Beacon selected. Await message."
+        }
+      ]
+    },
+    "europa_handoff_delay": {
+      "kind": "wait",
+      "title": "Europa Handoff Delay"
+    },
+    "europa_handoff": {
+      "kind": "beat",
+      "title": "Europa Handoff",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "17_beacon_data_received_next_system.mp3",
+            "volume": 0.516,
+            "completion_signal": "presentation.mission1.europa_handoff_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Receiving the undercover data handoff."
+        }
+      ]
+    },
+    "cp04_beacon": {
+      "kind": "checkpoint",
+      "title": "Cp04 Beacon",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_guardian_beacon_armed",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "GUARDIAN BEACON\nSystem: Synuefe IT-F d12-5\nSelect: Guardian Beacon"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Travel to: Synuefe IT-F d12-5 and investigate. It is the likely source of the signals you've discovered in the Sol system."
+        }
+      ],
+      "checkpoint_id": "CP04_GUARDIAN_BEACON"
+    },
+    "beacon_system_delay": {
+      "kind": "wait",
+      "title": "Beacon System Delay"
+    },
+    "beacon_incoming": {
+      "kind": "beat",
+      "title": "Beacon Incoming",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_incoming",
+            "asset": "00_incoming_call_loop.mp3",
+            "volume": 0.7,
+            "loop": true
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_guardian_attention"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Incoming transmission — press Answer (CTRL+C)."
+        }
+      ]
+    },
+    "beacon_system_orders": {
+      "kind": "beat",
+      "title": "Beacon System Orders",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "mission1_incoming"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "30_beacon_system_temporal_nav.mp3",
+            "volume": 0.8,
+            "completion_signal": "presentation.mission1.beacon_orders_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Select the Guardian Beacon."
+        }
+      ]
+    },
+    "await_beacon_selection": {
+      "kind": "wait",
+      "title": "Await Beacon Selection"
+    },
+    "beacon_selected": {
+      "kind": "beat",
+      "title": "Beacon Selected",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "31_guardian_beacon_selected.mp3",
+            "volume": 0.8,
+            "completion_signal": "presentation.mission1.beacon_selected_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Guardian Beacon selected. Drop into its local instance."
+        }
+      ]
+    },
+    "await_beacon_drop": {
+      "kind": "wait",
+      "title": "Await Beacon Drop"
+    },
+    "beacon_drop_delay": {
+      "kind": "wait",
+      "title": "Beacon Drop Delay",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "combat",
+            "sequence_ref": "mission1_combat_instruction"
+          }
+        }
+      ]
+    },
+    "beacon_drop_orders": {
+      "kind": "beat",
+      "title": "Beacon Drop Orders",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "32_beacon_drop_temporal_switch_fighter.mp3",
+            "volume": 0.8,
+            "completion_signal": "presentation.mission1.beacon_drop_orders_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Launch yourself into a ship-launched fighter. Tell your main ship to remain in place."
+        }
+      ]
+    },
+    "await_fighter": {
+      "kind": "wait",
+      "title": "Await Fighter"
+    },
+    "fighter_start_delay": {
+      "kind": "wait",
+      "title": "Fighter Start Delay"
+    },
+    "fighter_start": {
+      "kind": "beat",
+      "title": "Fighter Start",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "33_fighter_pylons_instructions.mp3",
+            "volume": 0.7
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "combat",
+            "sequence_ref": "mission1_combat_pressure"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Fly the fighter to each of the Beacons 3 charge up points and charge them up fully with your lasers before the timer runs out."
+        }
+      ]
+    },
+    "fighter_one_minute": {
+      "kind": "wait",
+      "title": "Fighter One Minute"
+    },
+    "fighter_one_cue": {
+      "kind": "beat",
+      "title": "Fighter One Cue",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "34_fighter_1min_keep_going.mp3",
+            "volume": 0.7
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Keep going through the pylon sequence."
+        }
+      ]
+    },
+    "fighter_second_interval": {
+      "kind": "wait",
+      "title": "Fighter Second Interval"
+    },
+    "fighter_two_cue": {
+      "kind": "beat",
+      "title": "Fighter Two Cue",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "35_fighter_2min_switch_main_ship.mp3",
+            "volume": 0.7
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Return to the main ship. park your fighter for a moment"
+        }
+      ]
+    },
+    "await_main_ship": {
+      "kind": "wait",
+      "title": "Await Main Ship"
+    },
+    "beacon_capture_delay": {
+      "kind": "wait",
+      "title": "Beacon Capture Delay"
+    },
+    "beacon_scanned": {
+      "kind": "beat",
+      "title": "Beacon Scanned",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "36_beacon_scanned_switch_fighter_nudge_key.mp3",
+            "volume": 0.8
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "success",
+            "sequence_ref": "mission1_data_absorption"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Switch back to the fighter and knock the Ancient Key free."
+        }
+      ]
+    },
+    "await_ancient_key": {
+      "kind": "wait",
+      "title": "Await Ancient Key"
+    },
+    "ancient_key_delay": {
+      "kind": "wait",
+      "title": "Ancient Key Delay"
+    },
+    "ancient_key": {
+      "kind": "beat",
+      "title": "Ancient Key",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "37_ancient_key_acquired_triangulated_ctrl_p.mp3",
+            "volume": 0.7,
+            "completion_signal": "presentation.mission1.ancient_key_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "success",
+            "sequence_ref": "mission1_guardian_vector"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Ancient Key acquired."
+        }
+      ]
+    },
+    "cp05_structure_route": {
+      "kind": "checkpoint",
+      "title": "Cp05 Structure Route",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "We think we may have finally found the true source of the mysterious temporal energy spikes. \n\nSystem: Synuefe EN-H d11-28\n\nJump there and Investigate.\n\n"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Travel to the Guardian Structure system."
+        }
+      ],
+      "checkpoint_id": "CP05_ANCIENT_KEY"
+    },
+    "cp06_structure": {
+      "kind": "checkpoint",
+      "title": "Cp06 Structure",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_guardian_beacon_armed",
+          "value": false
+        },
+        {
+          "type": "set",
+          "variable": "mission1_structure_ambience_active",
+          "value": true
+        }
+      ],
+      "checkpoint_id": "CP06_GUARDIAN_STRUCTURE"
+    },
+    "structure_system_delay": {
+      "kind": "wait",
+      "title": "Structure System Delay"
+    },
+    "structure_system": {
+      "kind": "beat",
+      "title": "Structure System",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "38_structure_system_arrival_check_nav.mp3",
+            "volume": 0.7,
+            "completion_signal": "presentation.mission1.structure_system_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Select the Guardian Structure."
+        }
+      ]
+    },
+    "await_structure_selection": {
+      "kind": "wait",
+      "title": "Await Structure Selection"
+    },
+    "structure_selected": {
+      "kind": "beat",
+      "title": "Structure Selected",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "39_structure_selected_approach_caution.mp3",
+            "volume": 0.7
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_stealth_warning"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Approach and land as close as you can to the Guardian Structure."
+        }
+      ]
+    },
+    "await_structure_landing": {
+      "kind": "wait",
+      "title": "Await Structure Landing"
+    },
+    "structure_landed": {
+      "kind": "beat",
+      "title": "Structure Landed",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "40_structure_landed_suit_weapons.mp3",
+            "volume": 0.7,
+            "completion_signal": "presentation.mission1.structure_landed_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Prepare suit and weapons."
+        }
+      ]
+    },
+    "await_disembark": {
+      "kind": "wait",
+      "title": "Await Disembark"
+    },
+    "on_foot_intro_delay": {
+      "kind": "wait",
+      "title": "On Foot Intro Delay"
+    },
+    "on_foot_intro": {
+      "kind": "beat",
+      "title": "On Foot Intro",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "41_on_foot_pylon_intro.mp3",
+            "volume": 1.0
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Locate the main altar of the temple and activate it's two energy pillars."
+        }
+      ]
+    },
+    "await_altar_foot": {
+      "kind": "wait",
+      "title": "Await Altar Foot"
+    },
+    "altar_foot_delay": {
+      "kind": "wait",
+      "title": "Altar Foot Delay"
+    },
+    "altar_foot": {
+      "kind": "beat",
+      "title": "Altar Foot",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "42_altar_found_activate_first_two.mp3",
+            "volume": 1.0
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "pulse",
+            "sequence_ref": "mission1_pylon_progress"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Great Job! Now follow the path back down the hill, and follow it straight through to the opposite side where you should find 2 more pillars to activate."
+        }
+      ]
+    },
+    "await_rotunda": {
+      "kind": "wait",
+      "title": "Await Rotunda"
+    },
+    "rotunda_delay": {
+      "kind": "wait",
+      "title": "Rotunda Delay"
+    },
+    "rotunda": {
+      "kind": "beat",
+      "title": "Rotunda",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "43_rotunda_found_next_pillars.mp3",
+            "volume": 1.0
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "pulse",
+            "sequence_ref": "mission1_pylon_progress"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Run back to the central square. There should be a gateway on the right side that leads to a huge hill complex. On top of it you should find another pillar!"
+        }
+      ]
+    },
+    "await_hill": {
+      "kind": "wait",
+      "title": "Await Hill"
+    },
+    "hill_delay": {
+      "kind": "wait",
+      "title": "Hill Delay"
+    },
+    "hill": {
+      "kind": "beat",
+      "title": "Hill",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "44_hill_pylon_final_one.mp3",
+            "volume": 0.998
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "pulse",
+            "sequence_ref": "mission1_pylon_progress"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Run back to the central square again and keep running straight to the oppossite side. There will be a long path into a gate and up another hill. There you should find the final pilar."
+        }
+      ]
+    },
+    "await_back": {
+      "kind": "wait",
+      "title": "Await Back"
+    },
+    "back_delay": {
+      "kind": "wait",
+      "title": "Back Delay"
+    },
+    "back_platform": {
+      "kind": "beat",
+      "title": "Back Platform",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "45_back_platform_final_warning_return_srv.mp3",
+            "volume": 1.0
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "deep_danger",
+            "sequence_ref": "mission1_awakening"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Return to the ship and then deploy in your SRV."
+        }
+      ]
+    },
+    "await_return_ship": {
+      "kind": "wait",
+      "title": "Await Return Ship"
+    },
+    "await_srv": {
+      "kind": "wait",
+      "title": "Await Srv"
+    },
+    "srv_return": {
+      "kind": "beat",
+      "title": "Srv Return",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "46_srv_return_transfer_key.mp3",
+            "volume": 0.6
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Make sure to transfer the Ancient Key from your ship cargo hold, into your SRV before you drive off! Defeat the guardian sentinals and make your way back to the central altar of the site."
+        }
+      ]
+    },
+    "await_altar_srv": {
+      "kind": "wait",
+      "title": "Await Altar Srv"
+    },
+    "altar_srv": {
+      "kind": "beat",
+      "title": "Altar Srv",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "47_altar_srv_jettison_scan.mp3",
+            "volume": 0.6
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Park you SRV exactly on the X in front of the main altar. Jettison the Ancient key, to reset the system. Then scan the guardian data core."
+        }
+      ]
+    },
+    "await_blueprint_scan": {
+      "kind": "wait",
+      "title": "Await Blueprint Scan"
+    },
+    "guardian_talk": {
+      "kind": "beat",
+      "title": "Guardian Talk",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_structure_ambience_active",
+          "value": false
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "23_guardian_talk.mp3",
+            "volume": 0.916,
+            "completion_signal": "presentation.mission1.guardian_talk_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "deep_danger",
+            "sequence_ref": "mission1_guardian_awakening_long"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "...."
+        }
+      ]
+    },
+    "guardian_silence": {
+      "kind": "beat",
+      "title": "Guardian Silence",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "24_guardian_silence_stinger.mp3",
+            "volume": 1.0,
+            "completion_signal": "presentation.mission1.guardian_silence_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "success",
+            "sequence_ref": "mission1_data_absorption"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Return to the main ship."
+        }
+      ]
+    },
+    "cp07_final_contact": {
+      "kind": "checkpoint",
+      "title": "Cp07 Final Contact",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Return to the main ship."
+        }
+      ],
+      "checkpoint_id": "CP07_GUARDIAN_CONTACT"
+    },
+    "await_final_ship": {
+      "kind": "wait",
+      "title": "Await Final Ship"
+    },
+    "final_incoming": {
+      "kind": "beat",
+      "title": "Final Incoming",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_incoming",
+            "asset": "25_final_incoming_comms_loop.mp3",
+            "volume": 0.6,
+            "loop": true
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "incoming",
+            "sequence_ref": "mission1_guardian_attention"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Final transmission — press Answer (CTRL+C)."
+        }
+      ]
+    },
+    "final_debrief": {
+      "kind": "beat",
+      "title": "Final Debrief",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "mission1_incoming"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "48_final_debrief.mp3",
+            "volume": 0.6,
+            "completion_signal": "presentation.mission1.final_debrief_finished"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Final debrief received."
+        }
+      ]
+    },
+    "mission_complete_delay": {
+      "kind": "wait",
+      "title": "Mission Complete Delay",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take off like a boss!"
+        }
+      ]
+    },
+    "mission_complete": {
+      "kind": "beat",
+      "title": "Mission Complete",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "mission1_dialogue",
+            "asset": "49_mission_complete_triumph.mp3",
+            "volume": 0.35,
+            "completion_signal": "presentation.mission1.mission_complete_finished"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "visual",
+          "payload": {
+            "cue": "success",
+            "sequence_ref": "mission1_guardian_vector"
+          }
+        },
+        {
+          "type": "next_step",
+          "text": "Mission One complete."
+        }
+      ]
+    },
+    "cp08_complete": {
+      "kind": "checkpoint",
+      "title": "Cp08 Complete",
+      "on_enter": [
+        {
+          "type": "set",
+          "variable": "mission1_complete",
+          "value": true
+        }
+      ],
+      "checkpoint_id": "CP08_COMPLETE"
+    },
+    "end": {
+      "kind": "end",
+      "title": "End",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Mission One complete."
+        }
+      ]
+    },
+    "took_off_from_ending": {
+      "kind": "beat"
+    }
+  },
+  "edges": [
+    {
+      "id": "start_to_await_sol",
+      "from": "start",
+      "to": "await_sol",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_sol_to_cp01_sol",
+      "from": "await_sol",
+      "to": "cp01_sol",
+      "when": {
+        "path": "world.location.system",
+        "op": "ieq",
+        "value": "Sol"
+      }
+    },
+    {
+      "id": "cp01_sol_to_sol_arrival_delay",
+      "from": "cp01_sol",
+      "to": "sol_arrival_delay",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "sol_arrival_delay_to_sol_incoming",
+      "from": "sol_arrival_delay",
+      "to": "sol_incoming",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "sol_incoming_to_sol_order",
+      "from": "sol_incoming",
+      "to": "sol_order",
+      "when": {
+        "signal": "control.answer"
+      }
+    },
+    {
+      "id": "sol_order_to_await_lincoln",
+      "from": "sol_order",
+      "to": "await_lincoln",
+      "when": {
+        "signal": "presentation.mission1.sol_order_finished"
+      }
+    },
+    {
+      "id": "await_lincoln_to_lincoln_delay",
+      "from": "await_lincoln",
+      "to": "lincoln_delay",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "signal": "journal.Docked"
+              },
+              {
+                "any": [
+                  {
+                    "path": "signal.data.StationName",
+                    "op": "ieq",
+                    "value": "Abraham Lincoln"
+                  },
+                  {
+                    "path": "signal.data.MarketID",
+                    "op": "eq",
+                    "value": 128016896
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "path": "world.flags.docked",
+                "op": "eq",
+                "value": true
+              },
+              {
+                "any": [
+                  {
+                    "path": "world.location.station",
+                    "op": "ieq",
+                    "value": "Abraham Lincoln"
+                  },
+                  {
+                    "path": "world.location.market_id",
+                    "op": "eq",
+                    "value": 128016896
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "lincoln_delay_to_lincoln_bar",
+      "from": "lincoln_delay",
+      "to": "lincoln_bar",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "lincoln_bar_to_await_supply",
+      "from": "lincoln_bar",
+      "to": "await_supply",
+      "when": {
+        "signal": "presentation.mission1.lincoln_bar_finished"
+      }
+    },
+    {
+      "id": "await_supply_to_recognition_delay",
+      "from": "await_supply",
+      "to": "recognition_delay",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.BuyMicroResources"
+          },
+          {
+            "path": "signal.data.MarketID",
+            "op": "eq",
+            "value": 128016896
+          },
+          {
+            "path": "signal.data.Category",
+            "op": "ieq",
+            "value": "Consumable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recognition_delay_to_bartender_recognition",
+      "from": "recognition_delay",
+      "to": "bartender_recognition",
+      "when": {
+        "elapsed_seconds": 60
+      }
+    },
+    {
+      "id": "bartender_recognition_to_await_clearance_accept",
+      "from": "bartender_recognition",
+      "to": "await_clearance_accept",
+      "when": {
+        "signal": "presentation.mission1.recognition_finished"
+      }
+    },
+    {
+      "id": "await_clearance_accept_to_clearance_question",
+      "from": "await_clearance_accept",
+      "to": "clearance_question",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "clearance_question_to_admiral_intro",
+      "from": "clearance_question",
+      "to": "admiral_intro",
+      "when": {
+        "signal": "control.accept"
+      },
+      "priority": 10
+    },
+    {
+      "id": "clearance_question_to_clearance_second",
+      "from": "clearance_question",
+      "to": "clearance_second",
+      "when": {
+        "signal": "control.decline"
+      }
+    },
+    {
+      "id": "clearance_second_to_admiral_intro",
+      "from": "clearance_second",
+      "to": "admiral_intro",
+      "when": {
+        "signal": "control.accept"
+      },
+      "priority": 10
+    },
+    {
+      "id": "clearance_second_to_mission_aborted",
+      "from": "clearance_second",
+      "to": "mission_aborted",
+      "when": {
+        "signal": "control.decline"
+      }
+    },
+    {
+      "id": "admiral_intro_to_await_admiral_ack",
+      "from": "admiral_intro",
+      "to": "await_admiral_ack",
+      "when": {
+        "signal": "presentation.mission1.admiral_intro_finished"
+      }
+    },
+    {
+      "id": "await_admiral_ack_to_scanner_orders",
+      "from": "await_admiral_ack",
+      "to": "scanner_orders",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "scanner_orders_to_cp02_scans",
+      "from": "scanner_orders",
+      "to": "cp02_scans",
+      "when": {
+        "signal": "presentation.mission1.scanner_orders_finished"
+      }
+    },
+    {
+      "id": "cp02_scans_to_scan_iapetus_scan_enceladus",
+      "from": "cp02_scans",
+      "to": [
+        "scan_iapetus",
+        "scan_enceladus"
+      ],
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "scan_iapetus_to_iapetus_complete",
+      "from": "scan_iapetus",
+      "to": "iapetus_complete",
+      "when": {
+        "signal": "environment.mission1_iapetus_acquisition.scan_acquisition.finished"
+      }
+    },
+    {
+      "id": "iapetus_complete_to_iapetus_scan_done",
+      "from": "iapetus_complete",
+      "to": "iapetus_scan_done",
+      "when": {
+        "all": [
+          {
+            "signal": "presentation.mission1.iapetus_scan_complete_finished"
+          },
+          {
+            "not": {
+              "all": [
+                {
+                  "all": [
+                    {
+                      "path": "world.location.system",
+                      "op": "ieq",
+                      "value": "Sol"
+                    },
+                    {
+                      "path": "world.location.body",
+                      "op": "ieq",
+                      "value": "Iapetus"
+                    }
+                  ]
+                },
+                {
+                  "geofence": {
+                    "latitude": 4.214506,
+                    "longitude": 97.075668,
+                    "radius_m": 500,
+                    "body_radius_m": 734500
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "priority": 10
+    },
+    {
+      "id": "iapetus_complete_to_iapetus_warning",
+      "from": "iapetus_complete",
+      "to": "iapetus_warning",
+      "when": {
+        "all": [
+          {
+            "signal": "presentation.mission1.iapetus_scan_complete_finished"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Sol"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Iapetus"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": 4.214506,
+                  "longitude": 97.075668,
+                  "radius_m": 500,
+                  "body_radius_m": 734500
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "iapetus_warning_to_iapetus_scan_done",
+      "from": "iapetus_warning",
+      "to": "iapetus_scan_done",
+      "when": {
+        "not": {
+          "all": [
+            {
+              "all": [
+                {
+                  "path": "world.location.system",
+                  "op": "ieq",
+                  "value": "Sol"
+                },
+                {
+                  "path": "world.location.body",
+                  "op": "ieq",
+                  "value": "Iapetus"
+                }
+              ]
+            },
+            {
+              "geofence": {
+                "latitude": 4.214506,
+                "longitude": 97.075668,
+                "radius_m": 500,
+                "body_radius_m": 734500
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "iapetus_scan_done_to_scan_join",
+      "from": "iapetus_scan_done",
+      "to": "scan_join",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "scan_enceladus_to_enceladus_complete",
+      "from": "scan_enceladus",
+      "to": "enceladus_complete",
+      "when": {
+        "signal": "environment.mission1_enceladus_acquisition.scan_acquisition.finished"
+      }
+    },
+    {
+      "id": "enceladus_complete_to_enceladus_scan_done",
+      "from": "enceladus_complete",
+      "to": "enceladus_scan_done",
+      "when": {
+        "all": [
+          {
+            "signal": "presentation.mission1.enceladus_scan_complete_finished"
+          },
+          {
+            "not": {
+              "all": [
+                {
+                  "all": [
+                    {
+                      "path": "world.location.system",
+                      "op": "ieq",
+                      "value": "Sol"
+                    },
+                    {
+                      "path": "world.location.body",
+                      "op": "ieq",
+                      "value": "Enceladus"
+                    }
+                  ]
+                },
+                {
+                  "geofence": {
+                    "latitude": -28.398161,
+                    "longitude": -132.245178,
+                    "radius_m": 500,
+                    "body_radius_m": 252100
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "priority": 10
+    },
+    {
+      "id": "enceladus_complete_to_enceladus_warning",
+      "from": "enceladus_complete",
+      "to": "enceladus_warning",
+      "when": {
+        "all": [
+          {
+            "signal": "presentation.mission1.enceladus_scan_complete_finished"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Sol"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Enceladus"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": -28.398161,
+                  "longitude": -132.245178,
+                  "radius_m": 500,
+                  "body_radius_m": 252100
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "enceladus_warning_to_enceladus_scan_done",
+      "from": "enceladus_warning",
+      "to": "enceladus_scan_done",
+      "when": {
+        "not": {
+          "all": [
+            {
+              "all": [
+                {
+                  "path": "world.location.system",
+                  "op": "ieq",
+                  "value": "Sol"
+                },
+                {
+                  "path": "world.location.body",
+                  "op": "ieq",
+                  "value": "Enceladus"
+                }
+              ]
+            },
+            {
+              "geofence": {
+                "latitude": -28.398161,
+                "longitude": -132.245178,
+                "radius_m": 500,
+                "body_radius_m": 252100
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "enceladus_scan_done_to_scan_join",
+      "from": "enceladus_scan_done",
+      "to": "scan_join",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "scan_join_to_all_scans_delay",
+      "from": "scan_join",
+      "to": "all_scans_delay",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "all_scans_delay_to_scans_complete",
+      "from": "all_scans_delay",
+      "to": "scans_complete",
+      "when": {
+        "elapsed_seconds": 5
+      }
+    },
+    {
+      "id": "scans_complete_to_cp03_europa",
+      "from": "scans_complete",
+      "to": "cp03_europa",
+      "when": {
+        "signal": "presentation.mission1.scans_complete_finished"
+      }
+    },
+    {
+      "id": "cp03_europa_to_europa_selected",
+      "from": "cp03_europa",
+      "to": "europa_selected",
+      "when": {
+        "any": [
+          {
+            "path": "world.status.Destination.Name",
+            "op": "ieq",
+            "value": "Unregistered Comms Beacon"
+          },
+          {
+            "path": "world.status.Destination.Name_Localised",
+            "op": "ieq",
+            "value": "Unregistered Comms Beacon"
+          }
+        ]
+      }
+    },
+    {
+      "id": "europa_selected_to_europa_handoff_delay",
+      "from": "europa_selected",
+      "to": "europa_handoff_delay",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.SupercruiseDestinationDrop"
+          },
+          {
+            "any": [
+              {
+                "path": "signal.data.Type",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              },
+              {
+                "path": "signal.data.Type_Localised",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              },
+              {
+                "any": [
+                  {
+                    "path": "world.status.Destination.Name",
+                    "op": "ieq",
+                    "value": "Unregistered Comms Beacon"
+                  },
+                  {
+                    "path": "world.status.Destination.Name_Localised",
+                    "op": "ieq",
+                    "value": "Unregistered Comms Beacon"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "europa_handoff_delay_to_europa_handoff",
+      "from": "europa_handoff_delay",
+      "to": "europa_handoff",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "europa_handoff_to_cp04_beacon",
+      "from": "europa_handoff",
+      "to": "cp04_beacon",
+      "when": {
+        "signal": "presentation.mission1.europa_handoff_finished"
+      }
+    },
+    {
+      "id": "cp04_beacon_to_beacon_system_delay",
+      "from": "cp04_beacon",
+      "to": "beacon_system_delay",
+      "when": {
+        "path": "world.location.system",
+        "op": "ieq",
+        "value": "Synuefe IT-F d12-5"
+      }
+    },
+    {
+      "id": "beacon_system_delay_to_beacon_incoming",
+      "from": "beacon_system_delay",
+      "to": "beacon_incoming",
+      "when": {
+        "elapsed_seconds": 3
+      }
+    },
+    {
+      "id": "beacon_incoming_to_beacon_system_orders",
+      "from": "beacon_incoming",
+      "to": "beacon_system_orders",
+      "when": {
+        "signal": "control.answer"
+      }
+    },
+    {
+      "id": "beacon_system_orders_to_await_beacon_selection",
+      "from": "beacon_system_orders",
+      "to": "await_beacon_selection",
+      "when": {
+        "signal": "presentation.mission1.beacon_orders_finished"
+      }
+    },
+    {
+      "id": "await_beacon_selection_to_beacon_selected",
+      "from": "await_beacon_selection",
+      "to": "beacon_selected",
+      "when": {
+        "any": [
+          {
+            "path": "world.status.Destination.Name",
+            "op": "ieq",
+            "value": "Guardian Beacon"
+          },
+          {
+            "path": "world.status.Destination.Name_Localised",
+            "op": "ieq",
+            "value": "Guardian Beacon"
+          }
+        ]
+      }
+    },
+    {
+      "id": "beacon_selected_to_await_beacon_drop",
+      "from": "beacon_selected",
+      "to": "await_beacon_drop",
+      "when": {
+        "signal": "presentation.mission1.beacon_selected_finished"
+      }
+    },
+    {
+      "id": "await_beacon_drop_to_beacon_drop_delay",
+      "from": "await_beacon_drop",
+      "to": "beacon_drop_delay",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.SupercruiseDestinationDrop"
+          },
+          {
+            "any": [
+              {
+                "path": "signal.data.Type",
+                "op": "ieq",
+                "value": "Guardian Beacon"
+              },
+              {
+                "path": "signal.data.Type_Localised",
+                "op": "ieq",
+                "value": "Guardian Beacon"
+              },
+              {
+                "any": [
+                  {
+                    "path": "world.status.Destination.Name",
+                    "op": "ieq",
+                    "value": "Guardian Beacon"
+                  },
+                  {
+                    "path": "world.status.Destination.Name_Localised",
+                    "op": "ieq",
+                    "value": "Guardian Beacon"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "beacon_drop_delay_to_beacon_drop_orders",
+      "from": "beacon_drop_delay",
+      "to": "beacon_drop_orders",
+      "when": {
+        "elapsed_seconds": 10
+      }
+    },
+    {
+      "id": "beacon_drop_orders_to_await_fighter",
+      "from": "beacon_drop_orders",
+      "to": "await_fighter",
+      "when": {
+        "signal": "presentation.mission1.beacon_drop_orders_finished"
+      }
+    },
+    {
+      "id": "await_fighter_to_fighter_start_delay",
+      "from": "await_fighter",
+      "to": "fighter_start_delay",
+      "when": {
+        "any": [
+          {
+            "signal": "journal.LaunchFighter"
+          },
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "fighter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fighter_start_delay_to_fighter_start",
+      "from": "fighter_start_delay",
+      "to": "fighter_start",
+      "when": {
+        "elapsed_seconds": 3
+      }
+    },
+    {
+      "id": "fighter_start_to_fighter_one_minute",
+      "from": "fighter_start",
+      "to": "fighter_one_minute",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "fighter_one_minute_to_fighter_one_cue",
+      "from": "fighter_one_minute",
+      "to": "fighter_one_cue",
+      "when": {
+        "elapsed_seconds": 60
+      }
+    },
+    {
+      "id": "fighter_one_cue_to_fighter_second_interval",
+      "from": "fighter_one_cue",
+      "to": "fighter_second_interval",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "fighter_second_interval_to_fighter_two_cue",
+      "from": "fighter_second_interval",
+      "to": "fighter_two_cue",
+      "when": {
+        "elapsed_seconds": 55
+      }
+    },
+    {
+      "id": "fighter_two_cue_to_await_main_ship",
+      "from": "fighter_two_cue",
+      "to": "await_main_ship",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_main_ship_to_beacon_capture_delay",
+      "from": "await_main_ship",
+      "to": "beacon_capture_delay",
+      "when": {
+        "any": [
+          {
+            "signal": "journal.DockFighter"
+          },
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "ship"
+          }
+        ]
+      }
+    },
+    {
+      "id": "beacon_capture_delay_to_beacon_scanned",
+      "from": "beacon_capture_delay",
+      "to": "beacon_scanned",
+      "when": {
+        "elapsed_seconds": 45
+      }
+    },
+    {
+      "id": "beacon_scanned_to_await_ancient_key",
+      "from": "beacon_scanned",
+      "to": "await_ancient_key",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_ancient_key_to_ancient_key_delay",
+      "from": "await_ancient_key",
+      "to": "ancient_key_delay",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.CollectCargo"
+          },
+          {
+            "path": "signal.data.Type",
+            "op": "ieq",
+            "value": "AncientKey"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ancient_key_delay_to_ancient_key",
+      "from": "ancient_key_delay",
+      "to": "ancient_key",
+      "when": {
+        "elapsed_seconds": 8
+      }
+    },
+    {
+      "id": "ancient_key_to_cp05_structure_route",
+      "from": "ancient_key",
+      "to": "cp05_structure_route",
+      "when": {
+        "signal": "presentation.mission1.ancient_key_finished"
+      }
+    },
+    {
+      "id": "cp05_structure_route_to_cp06_structure",
+      "from": "cp05_structure_route",
+      "to": "cp06_structure",
+      "when": {
+        "path": "world.location.system",
+        "op": "ieq",
+        "value": "Synuefe EN-H d11-28"
+      }
+    },
+    {
+      "id": "cp06_structure_to_structure_system_delay",
+      "from": "cp06_structure",
+      "to": "structure_system_delay",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "structure_system_delay_to_structure_system",
+      "from": "structure_system_delay",
+      "to": "structure_system",
+      "when": {
+        "elapsed_seconds": 5
+      }
+    },
+    {
+      "id": "structure_system_to_await_structure_selection",
+      "from": "structure_system",
+      "to": "await_structure_selection",
+      "when": {
+        "signal": "presentation.mission1.structure_system_finished"
+      }
+    },
+    {
+      "id": "await_structure_selection_to_structure_selected",
+      "from": "await_structure_selection",
+      "to": "structure_selected",
+      "when": {
+        "any": [
+          {
+            "path": "world.status.Destination.Name",
+            "op": "ieq",
+            "value": "Guardian Structure"
+          },
+          {
+            "path": "world.status.Destination.Name_Localised",
+            "op": "ieq",
+            "value": "Guardian Structure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "structure_selected_to_await_structure_landing",
+      "from": "structure_selected",
+      "to": "await_structure_landing",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_structure_landing_to_structure_landed",
+      "from": "await_structure_landing",
+      "to": "structure_landed",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "signal": "journal.Touchdown"
+              },
+              {
+                "all": [
+                  {
+                    "all": [
+                      {
+                        "path": "world.location.system",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28"
+                      },
+                      {
+                        "path": "world.location.body",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28 8 b"
+                      }
+                    ]
+                  },
+                  {
+                    "geofence": {
+                      "latitude": 42.932701,
+                      "longitude": 179.964767,
+                      "radius_m": 20000,
+                      "body_radius_m": 1513098
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "path": "world.flags.landed",
+                "op": "eq",
+                "value": true
+              },
+              {
+                "all": [
+                  {
+                    "all": [
+                      {
+                        "path": "world.location.system",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28"
+                      },
+                      {
+                        "path": "world.location.body",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28 8 b"
+                      }
+                    ]
+                  },
+                  {
+                    "geofence": {
+                      "latitude": 42.932701,
+                      "longitude": 179.964767,
+                      "radius_m": 20000,
+                      "body_radius_m": 1513098
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "structure_landed_to_await_disembark",
+      "from": "structure_landed",
+      "to": "await_disembark",
+      "when": {
+        "signal": "presentation.mission1.structure_landed_finished"
+      }
+    },
+    {
+      "id": "await_disembark_to_on_foot_intro_delay",
+      "from": "await_disembark",
+      "to": "on_foot_intro_delay",
+      "when": {
+        "path": "world.vehicle",
+        "op": "eq",
+        "value": "on_foot"
+      }
+    },
+    {
+      "id": "on_foot_intro_delay_to_on_foot_intro",
+      "from": "on_foot_intro_delay",
+      "to": "on_foot_intro",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "on_foot_intro_to_await_altar_foot",
+      "from": "on_foot_intro",
+      "to": "await_altar_foot",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_altar_foot_to_altar_foot_delay",
+      "from": "await_altar_foot",
+      "to": "altar_foot_delay",
+      "when": {
+        "all": [
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "on_foot"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28 8 b"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": 42.943085,
+                  "longitude": 179.946335,
+                  "radius_m": 35,
+                  "body_radius_m": 1513098
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "altar_foot_delay_to_altar_foot",
+      "from": "altar_foot_delay",
+      "to": "altar_foot",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "altar_foot_to_await_rotunda",
+      "from": "altar_foot",
+      "to": "await_rotunda",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_rotunda_to_rotunda_delay",
+      "from": "await_rotunda",
+      "to": "rotunda_delay",
+      "when": {
+        "all": [
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "on_foot"
+          },
+          {
+            "any": [
+              {
+                "all": [
+                  {
+                    "all": [
+                      {
+                        "path": "world.location.system",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28"
+                      },
+                      {
+                        "path": "world.location.body",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28 8 b"
+                      }
+                    ]
+                  },
+                  {
+                    "geofence": {
+                      "latitude": 42.949482,
+                      "longitude": 179.961395,
+                      "radius_m": 35,
+                      "body_radius_m": 1513098
+                    }
+                  }
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "all": [
+                      {
+                        "path": "world.location.system",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28"
+                      },
+                      {
+                        "path": "world.location.body",
+                        "op": "ieq",
+                        "value": "Synuefe EN-H d11-28 8 b"
+                      }
+                    ]
+                  },
+                  {
+                    "geofence": {
+                      "latitude": 42.947655,
+                      "longitude": 179.962509,
+                      "radius_m": 35,
+                      "body_radius_m": 1513098
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "rotunda_delay_to_rotunda",
+      "from": "rotunda_delay",
+      "to": "rotunda",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "rotunda_to_await_hill",
+      "from": "rotunda",
+      "to": "await_hill",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_hill_to_hill_delay",
+      "from": "await_hill",
+      "to": "hill_delay",
+      "when": {
+        "all": [
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "on_foot"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28 8 b"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": 42.953869,
+                  "longitude": 179.93869,
+                  "radius_m": 35,
+                  "body_radius_m": 1513098
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "hill_delay_to_hill",
+      "from": "hill_delay",
+      "to": "hill",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "hill_to_await_back",
+      "from": "hill",
+      "to": "await_back",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_back_to_back_delay",
+      "from": "await_back",
+      "to": "back_delay",
+      "when": {
+        "all": [
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "on_foot"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28 8 b"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": 42.932701,
+                  "longitude": 179.964767,
+                  "radius_m": 35,
+                  "body_radius_m": 1513098
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "back_delay_to_back_platform",
+      "from": "back_delay",
+      "to": "back_platform",
+      "when": {
+        "elapsed_seconds": 15
+      }
+    },
+    {
+      "id": "back_platform_to_await_return_ship",
+      "from": "back_platform",
+      "to": "await_return_ship",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_return_ship_to_await_srv",
+      "from": "await_return_ship",
+      "to": "await_srv",
+      "when": {
+        "path": "world.vehicle",
+        "op": "eq",
+        "value": "ship"
+      }
+    },
+    {
+      "id": "await_srv_to_srv_return",
+      "from": "await_srv",
+      "to": "srv_return",
+      "when": {
+        "path": "world.vehicle",
+        "op": "eq",
+        "value": "srv"
+      }
+    },
+    {
+      "id": "srv_return_to_await_altar_srv",
+      "from": "srv_return",
+      "to": "await_altar_srv",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_altar_srv_to_altar_srv",
+      "from": "await_altar_srv",
+      "to": "altar_srv",
+      "when": {
+        "all": [
+          {
+            "path": "world.vehicle",
+            "op": "eq",
+            "value": "srv"
+          },
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "path": "world.location.system",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28"
+                  },
+                  {
+                    "path": "world.location.body",
+                    "op": "ieq",
+                    "value": "Synuefe EN-H d11-28 8 b"
+                  }
+                ]
+              },
+              {
+                "geofence": {
+                  "latitude": 42.943085,
+                  "longitude": 179.946335,
+                  "radius_m": 35,
+                  "body_radius_m": 1513098
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "altar_srv_to_await_blueprint_scan",
+      "from": "altar_srv",
+      "to": "await_blueprint_scan",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_blueprint_scan_to_guardian_talk",
+      "from": "await_blueprint_scan",
+      "to": "guardian_talk",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "signal": "journal.DataScanned"
+              },
+              {
+                "any": [
+                  {
+                    "path": "signal.data.Type",
+                    "op": "icontains",
+                    "value": "guardian"
+                  },
+                  {
+                    "path": "signal.data.Type",
+                    "op": "icontains",
+                    "value": "ancient"
+                  },
+                  {
+                    "path": "signal.data.Type",
+                    "op": "icontains",
+                    "value": "blueprint"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "signal": "journal.MaterialCollected"
+              },
+              {
+                "any": [
+                  {
+                    "path": "signal.data.Name",
+                    "op": "icontains",
+                    "value": "guardian"
+                  },
+                  {
+                    "path": "signal.data.Name",
+                    "op": "icontains",
+                    "value": "blueprint"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "guardian_talk_to_guardian_silence",
+      "from": "guardian_talk",
+      "to": "guardian_silence",
+      "when": {
+        "signal": "presentation.mission1.guardian_talk_finished"
+      }
+    },
+    {
+      "id": "guardian_silence_to_cp07_final_contact",
+      "from": "guardian_silence",
+      "to": "cp07_final_contact",
+      "when": {
+        "signal": "presentation.mission1.guardian_silence_finished"
+      }
+    },
+    {
+      "id": "cp07_final_contact_to_await_final_ship",
+      "from": "cp07_final_contact",
+      "to": "await_final_ship",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "await_final_ship_to_final_incoming",
+      "from": "await_final_ship",
+      "to": "final_incoming",
+      "when": {
+        "path": "world.vehicle",
+        "op": "eq",
+        "value": "ship"
+      }
+    },
+    {
+      "id": "final_incoming_to_final_debrief",
+      "from": "final_incoming",
+      "to": "final_debrief",
+      "when": {
+        "signal": "control.answer"
+      }
+    },
+    {
+      "id": "final_debrief_to_mission_complete_delay",
+      "from": "final_debrief",
+      "to": "mission_complete_delay",
+      "when": {
+        "signal": "presentation.mission1.final_debrief_finished"
+      }
+    },
+    {
+      "id": "mission_complete_delay_to_mission_complete",
+      "from": "took_off_from_ending",
+      "to": "mission_complete",
+      "when": {
+        "elapsed_seconds": 20
+      }
+    },
+    {
+      "id": "mission_complete_to_cp08_complete",
+      "from": "mission_complete",
+      "to": "cp08_complete",
+      "when": {
+        "signal": "presentation.mission1.mission_complete_finished"
+      }
+    },
+    {
+      "id": "cp08_complete_to_end",
+      "from": "cp08_complete",
+      "to": "end",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "mission_complete_delay_to_took_off_from_ending",
+      "from": "mission_complete_delay",
+      "to": "took_off_from_ending",
+      "when": {
+        "signal": "journal.Liftoff"
+      }
+    }
+  ],
+  "environments": [
+    {
+      "id": "mission1_iapetus_scanner_field",
+      "title": "Mission 1 scanner — Iapetus",
+      "enabled": true,
+      "enabled_when": {
+        "all": [
+          {
+            "variable": "mission1_scans_armed",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission1_iapetus_complete",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 1,
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "ship",
+        "srv",
+        "on_foot"
+      ],
+      "location": {
+        "system": "Sol",
+        "body": "Iapetus",
+        "latitude": 4.214506,
+        "longitude": 97.075668,
+        "entry_radius_m": 1000000,
+        "exit_radius_m": 1000100,
+        "core_radius_m": 500,
+        "body_radius_m": 734500
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 1.0,
+          "loop": false,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.45,
+            "exponent": 1.0,
+            "momentum_step_percent": 4.0,
+            "momentum_limit_percent": 10.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "minimum": 0.15,
+            "start_percent": 0,
+            "exponent": 1.25
+          }
+        }
+      ]
+    },
+    {
+      "id": "mission1_iapetus_acquisition",
+      "title": "Mission 1 acquisition — Iapetus",
+      "enabled": true,
+      "enabled_when": {
+        "all": [
+          {
+            "variable": "mission1_scans_armed",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission1_iapetus_complete",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 0,
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "ship",
+        "srv",
+        "on_foot"
+      ],
+      "location": {
+        "system": "Sol",
+        "body": "Iapetus",
+        "latitude": 4.214506,
+        "longitude": 97.075668,
+        "entry_radius_m": 150,
+        "exit_radius_m": 225,
+        "core_radius_m": 1,
+        "body_radius_m": 734500
+      },
+      "on_enter_adjustments": [
+        {
+          "target_layer": "environment.mission1_iapetus_scanner_field.scanner_ping",
+          "volume": 0.0,
+          "transition_seconds": 0.0,
+          "priority": 100
+        }
+      ],
+      "layers": [
+        {
+          "id": "scan_acquisition",
+          "type": "audio",
+          "asset": "13_scan_acquisition.mp3",
+          "volume": 0.8,
+          "loop": false,
+          "volume_transition_seconds": 0
+        }
+      ]
+    },
+    {
+      "id": "mission1_enceladus_scanner_field",
+      "title": "Mission 1 scanner — Enceladus",
+      "enabled": true,
+      "enabled_when": {
+        "all": [
+          {
+            "variable": "mission1_scans_armed",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission1_enceladus_complete",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 1,
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "ship",
+        "srv",
+        "on_foot"
+      ],
+      "location": {
+        "system": "Sol",
+        "body": "Enceladus",
+        "latitude": -28.398161,
+        "longitude": -132.245178,
+        "entry_radius_m": 1000000,
+        "exit_radius_m": 1000100,
+        "core_radius_m": 500,
+        "body_radius_m": 252100
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 1.0,
+          "loop": false,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.45,
+            "exponent": 1.0,
+            "momentum_step_percent": 4.0,
+            "momentum_limit_percent": 10.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "minimum": 0.15,
+            "start_percent": 0,
+            "exponent": 1.25
+          }
+        }
+      ]
+    },
+    {
+      "id": "mission1_enceladus_acquisition",
+      "title": "Mission 1 acquisition — Enceladus",
+      "enabled": true,
+      "enabled_when": {
+        "all": [
+          {
+            "variable": "mission1_scans_armed",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission1_enceladus_complete",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 0,
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "ship",
+        "srv",
+        "on_foot"
+      ],
+      "location": {
+        "system": "Sol",
+        "body": "Enceladus",
+        "latitude": -28.398161,
+        "longitude": -132.245178,
+        "entry_radius_m": 150,
+        "exit_radius_m": 225,
+        "core_radius_m": 1,
+        "body_radius_m": 252100
+      },
+      "on_enter_adjustments": [
+        {
+          "target_layer": "environment.mission1_enceladus_scanner_field.scanner_ping",
+          "volume": 0.0,
+          "transition_seconds": 0.0,
+          "priority": 100
+        }
+      ],
+      "layers": [
+        {
+          "id": "scan_acquisition",
+          "type": "audio",
+          "asset": "13_scan_acquisition.mp3",
+          "volume": 0.8,
+          "loop": false,
+          "volume_transition_seconds": 0
+        }
+      ]
+    },
+    {
+      "id": "iapetus_anomaly",
+      "title": "Iapetus mountain anomaly",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission1_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 1,
+      "exit_when": {
+        "any": [
+          {
+            "signal": "journal.StartJump"
+          },
+          {
+            "signal": "journal.SupercruiseEntry"
+          },
+          {
+            "signal": "journal.FSDJump"
+          },
+          {
+            "signal": "journal.CarrierJump"
+          }
+        ]
+      },
+      "location": {
+        "system": "Sol",
+        "body": "Iapetus",
+        "latitude": 4.214506,
+        "longitude": 97.075668,
+        "entry_radius_m": 15000,
+        "exit_radius_m": 15100,
+        "core_radius_m": 250,
+        "body_radius_m": 734500
+      },
+      "layers": [
+        {
+          "id": "mountain_base",
+          "type": "audio",
+          "asset": "ambient_iapetus_mountain_base.mp3",
+          "volume": 0.25,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0.08,
+            "start_percent": 0,
+            "exponent": 2
+          }
+        },
+        {
+          "id": "distortion",
+          "type": "audio",
+          "asset": "ambient_iapetus_mountain_distortion.mp3",
+          "volume": 0.25,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0.08,
+            "start_percent": 98.3051,
+            "exponent": 2,
+            "silent_before_start": true
+          }
+        },
+        {
+          "id": "combat_visual",
+          "type": "visual",
+          "cue": "combat",
+          "intensity": 1,
+          "depth_response": {
+            "curve": "linear",
+            "minimum": 0,
+            "start_percent": 98.3051,
+            "exponent": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "enceladus_anomaly",
+      "title": "Enceladus ice-lake anomaly",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission1_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 1,
+      "exit_when": {
+        "any": [
+          {
+            "signal": "journal.StartJump"
+          },
+          {
+            "signal": "journal.SupercruiseEntry"
+          },
+          {
+            "signal": "journal.FSDJump"
+          },
+          {
+            "signal": "journal.CarrierJump"
+          }
+        ]
+      },
+      "location": {
+        "system": "Sol",
+        "body": "Enceladus",
+        "latitude": -28.398161,
+        "longitude": -132.245178,
+        "entry_radius_m": 15000,
+        "exit_radius_m": 15100,
+        "core_radius_m": 250,
+        "body_radius_m": 252100
+      },
+      "layers": [
+        {
+          "id": "ice_base",
+          "type": "audio",
+          "asset": "ambient_enceladus_base.mp3",
+          "volume": 0.25,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0.08,
+            "start_percent": 0,
+            "exponent": 2
+          }
+        },
+        {
+          "id": "distortion",
+          "type": "audio",
+          "asset": "ambient_enceladus_distortion.mp3",
+          "volume": 0.25,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0.08,
+            "start_percent": 98.3051,
+            "exponent": 2,
+            "silent_before_start": true
+          }
+        },
+        {
+          "id": "combat_visual",
+          "type": "visual",
+          "cue": "combat",
+          "intensity": 1,
+          "depth_response": {
+            "curve": "linear",
+            "minimum": 0,
+            "start_percent": 98.3051,
+            "exponent": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "guardian_beacon_instance",
+      "title": "Guardian Beacon local instance",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission1_guardian_beacon_armed",
+        "op": "eq",
+        "value": true
+      },
+      "location": {
+        "system": "Synuefe IT-F d12-5"
+      },
+      "entry_when": {
+        "all": [
+          {
+            "signal": "journal.SupercruiseDestinationDrop"
+          },
+          {
+            "any": [
+              {
+                "path": "signal.data.Type",
+                "op": "ieq",
+                "value": "Guardian Beacon"
+              },
+              {
+                "path": "signal.data.Type_Localised",
+                "op": "ieq",
+                "value": "Guardian Beacon"
+              },
+              {
+                "any": [
+                  {
+                    "path": "world.status.Destination.Name",
+                    "op": "ieq",
+                    "value": "Guardian Beacon"
+                  },
+                  {
+                    "path": "world.status.Destination.Name_Localised",
+                    "op": "ieq",
+                    "value": "Guardian Beacon"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "exit_when": {
+        "any": [
+          {
+            "signal": "journal.SupercruiseEntry"
+          },
+          {
+            "signal": "journal.FSDJump"
+          },
+          {
+            "signal": "journal.CarrierJump"
+          }
+        ]
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 0,
+      "layers": [
+        {
+          "id": "guardian_base",
+          "type": "audio",
+          "asset": "28_thundering_guardian_base.mp3",
+          "volume": 0.7,
+          "loop": true
+        },
+        {
+          "id": "guardian_distortion",
+          "type": "audio",
+          "asset": "29_guardian_distortion_layer.mp3",
+          "volume": 0.35,
+          "loop": true,
+          "start_delay_seconds": 1.5
+        },
+        {
+          "id": "combat",
+          "type": "visual",
+          "cue": "combat",
+          "intensity": 1
+        },
+        {
+          "id": "deep_danger",
+          "type": "visual",
+          "cue": "deep_danger",
+          "intensity": 1,
+          "start_delay_seconds": 15
+        }
+      ]
+    },
+    {
+      "id": "guardian_structure_site",
+      "title": "Guardian Structure ambience",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission1_structure_ambience_active",
+        "op": "eq",
+        "value": true
+      },
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2,
+      "location": {
+        "system": "Synuefe EN-H d11-28",
+        "body": "Synuefe EN-H d11-28 8 b",
+        "latitude": 42.932701,
+        "longitude": 179.964767,
+        "entry_radius_m": 20000,
+        "exit_radius_m": 20200,
+        "core_radius_m": 100,
+        "body_radius_m": 1513098
+      },
+      "layers": [
+        {
+          "id": "guardian_base",
+          "type": "audio",
+          "asset": "28_thundering_guardian_base.mp3",
+          "volume": 0.28,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0,
+            "start_percent": 0,
+            "exponent": 2
+          }
+        },
+        {
+          "id": "structure_distortion",
+          "type": "audio",
+          "asset": "29_guardian_distortion_layer2.mp3",
+          "volume": 0.4,
+          "loop": true,
+          "depth_response": {
+            "curve": "exponential",
+            "minimum": 0,
+            "start_percent": 85,
+            "exponent": 2
+          }
+        },
+        {
+          "id": "deep_danger",
+          "type": "visual",
+          "cue": "deep_danger",
+          "intensity": 1,
+          "depth_response": {
+            "curve": "linear",
+            "minimum": 0,
+            "start_percent": 95,
+            "exponent": 1
+          }
+        }
+      ]
+    }
+  ],
+  "navigators": [],
+  "visual_sequences": {
+    "mission1_temporal_whisper": [
+      {
+        "slot": "stealth",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.35
+      },
+      {
+        "slot": "supercruise",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.65
+      }
+    ],
+    "mission1_guardian_attention": [
+      {
+        "slot": "scoop",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.3
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.7
+      }
+    ],
+    "mission1_temporal_spike": [
+      {
+        "slot": "supercruise",
+        "duration": 0.35
+      },
+      {
+        "slot": "deep_danger",
+        "duration": 0.45
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.35
+      },
+      {
+        "slot": "critical",
+        "duration": 0.35
+      },
+      {
+        "slot": "deep_danger",
+        "duration": 0.4
+      },
+      {
+        "slot": "base",
+        "duration": 0.8
+      }
+    ],
+    "mission1_combat_instruction": [
+      {
+        "slot": "combat",
+        "duration": 0.65
+      },
+      {
+        "slot": "base",
+        "duration": 0.3
+      },
+      {
+        "slot": "combat",
+        "duration": 0.55
+      },
+      {
+        "slot": "docking",
+        "duration": 0.4
+      },
+      {
+        "slot": "combat",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.8
+      }
+    ],
+    "mission1_combat_pressure": [
+      {
+        "slot": "combat",
+        "duration": 0.5
+      },
+      {
+        "slot": "deep_danger",
+        "duration": 0.5
+      },
+      {
+        "slot": "combat",
+        "duration": 0.5
+      },
+      {
+        "slot": "base",
+        "duration": 0.85
+      }
+    ],
+    "mission1_temporal_warning": [
+      {
+        "slot": "stealth",
+        "duration": 0.45
+      },
+      {
+        "slot": "critical",
+        "duration": 0.4
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.45
+      },
+      {
+        "slot": "deep_danger",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.85
+      }
+    ],
+    "mission1_data_absorption": [
+      {
+        "slot": "scoop",
+        "duration": 0.6
+      },
+      {
+        "slot": "supercruise",
+        "duration": 0.45
+      },
+      {
+        "slot": "scoop",
+        "duration": 0.6
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.45
+      },
+      {
+        "slot": "base",
+        "duration": 0.9
+      }
+    ],
+    "mission1_guardian_vector": [
+      {
+        "slot": "scoop",
+        "duration": 0.45
+      },
+      {
+        "slot": "supercruise",
+        "duration": 0.55
+      },
+      {
+        "slot": "docking",
+        "duration": 0.4
+      },
+      {
+        "slot": "supercruise",
+        "duration": 0.55
+      },
+      {
+        "slot": "base",
+        "duration": 0.9
+      }
+    ],
+    "mission1_stealth_warning": [
+      {
+        "slot": "stealth",
+        "duration": 0.85
+      },
+      {
+        "slot": "base",
+        "duration": 0.3
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.65
+      },
+      {
+        "slot": "base",
+        "duration": 0.9
+      }
+    ],
+    "mission1_pylon_progress": [
+      {
+        "slot": "scoop",
+        "duration": 0.4
+      },
+      {
+        "slot": "combat",
+        "duration": 0.4
+      },
+      {
+        "slot": "base",
+        "duration": 0.3
+      },
+      {
+        "slot": "scoop",
+        "duration": 0.4
+      },
+      {
+        "slot": "base",
+        "duration": 0.8
+      }
+    ],
+    "mission1_awakening": [
+      {
+        "slot": "deep_danger",
+        "duration": 0.5
+      },
+      {
+        "slot": "combat",
+        "duration": 0.4
+      },
+      {
+        "slot": "critical",
+        "duration": 0.5
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.4
+      },
+      {
+        "slot": "scoop",
+        "duration": 0.4
+      },
+      {
+        "slot": "base",
+        "duration": 1.0
+      }
+    ],
+    "mission1_guardian_awakening_long": [
+      {
+        "slot": "stealth",
+        "duration": 0.55
+      },
+      {
+        "slot": "supercruise",
+        "duration": 0.55
+      },
+      {
+        "slot": "scoop",
+        "duration": 0.55
+      },
+      {
+        "slot": "deep_danger",
+        "duration": 0.55
+      },
+      {
+        "slot": "combat",
+        "duration": 0.55
+      },
+      {
+        "slot": "docking",
+        "duration": 0.55
+      },
+      {
+        "slot": "critical",
+        "duration": 0.55
+      },
+      {
+        "slot": "scoop",
+        "duration": 0.55
+      },
+      {
+        "slot": "stealth",
+        "duration": 0.55
+      },
+      {
+        "slot": "base",
+        "duration": 1.0
+      }
+    ]
+  },
+  "editor": {
+    "version": 1,
+    "layout": {
+      "nodes": {
+        "start": {
+          "x": 150,
+          "y": 120
+        },
+        "await_sol": {
+          "x": 380,
+          "y": 120
+        },
+        "cp01_sol": {
+          "x": 610,
+          "y": 120
+        },
+        "sol_arrival_delay": {
+          "x": 840,
+          "y": 120
+        },
+        "sol_incoming": {
+          "x": 1070,
+          "y": 120
+        },
+        "sol_order": {
+          "x": 1300,
+          "y": 120
+        },
+        "await_lincoln": {
+          "x": 149.0,
+          "y": 265.0
+        },
+        "lincoln_delay": {
+          "x": 380.0,
+          "y": 264.0
+        },
+        "lincoln_bar": {
+          "x": 610,
+          "y": 265
+        },
+        "await_supply": {
+          "x": 840,
+          "y": 265
+        },
+        "recognition_delay": {
+          "x": 1070,
+          "y": 265
+        },
+        "bartender_recognition": {
+          "x": 1300,
+          "y": 265
+        },
+        "await_clearance_accept": {
+          "x": 149.0,
+          "y": 410.0
+        },
+        "clearance_question": {
+          "x": 379.0,
+          "y": 409.0
+        },
+        "clearance_second": {
+          "x": 610.0,
+          "y": 409.0
+        },
+        "mission_aborted": {
+          "x": 840,
+          "y": 410
+        },
+        "admiral_intro": {
+          "x": 1070,
+          "y": 410
+        },
+        "await_admiral_ack": {
+          "x": 1300,
+          "y": 410
+        },
+        "scanner_orders": {
+          "x": 149.0,
+          "y": 554.0
+        },
+        "cp02_scans": {
+          "x": 381.0,
+          "y": 554.0
+        },
+        "scan_iapetus": {
+          "x": 609.0,
+          "y": 555.0
+        },
+        "iapetus_complete": {
+          "x": 840,
+          "y": 555
+        },
+        "iapetus_warning": {
+          "x": 1070,
+          "y": 555
+        },
+        "iapetus_scan_done": {
+          "x": 1300,
+          "y": 555
+        },
+        "scan_enceladus": {
+          "x": 150,
+          "y": 700
+        },
+        "enceladus_complete": {
+          "x": 380,
+          "y": 700
+        },
+        "enceladus_warning": {
+          "x": 610,
+          "y": 700
+        },
+        "enceladus_scan_done": {
+          "x": 840,
+          "y": 700
+        },
+        "scan_join": {
+          "x": 1070,
+          "y": 700
+        },
+        "all_scans_delay": {
+          "x": 1300,
+          "y": 700
+        },
+        "scans_complete": {
+          "x": 150,
+          "y": 845
+        },
+        "cp03_europa": {
+          "x": 381.0,
+          "y": 845.0
+        },
+        "europa_selected": {
+          "x": 610,
+          "y": 845
+        },
+        "europa_handoff_delay": {
+          "x": 840,
+          "y": 845
+        },
+        "europa_handoff": {
+          "x": 1070.0,
+          "y": 844.0
+        },
+        "cp04_beacon": {
+          "x": 1300,
+          "y": 845
+        },
+        "beacon_system_delay": {
+          "x": 150,
+          "y": 990
+        },
+        "beacon_incoming": {
+          "x": 380,
+          "y": 990
+        },
+        "beacon_system_orders": {
+          "x": 610,
+          "y": 990
+        },
+        "await_beacon_selection": {
+          "x": 840,
+          "y": 990
+        },
+        "beacon_selected": {
+          "x": 1070,
+          "y": 990
+        },
+        "await_beacon_drop": {
+          "x": 1300,
+          "y": 990
+        },
+        "beacon_drop_delay": {
+          "x": 150,
+          "y": 1135
+        },
+        "beacon_drop_orders": {
+          "x": 380,
+          "y": 1135
+        },
+        "await_fighter": {
+          "x": 610,
+          "y": 1135
+        },
+        "fighter_start_delay": {
+          "x": 840,
+          "y": 1135
+        },
+        "fighter_start": {
+          "x": 1070,
+          "y": 1135
+        },
+        "fighter_one_minute": {
+          "x": 1300,
+          "y": 1135
+        },
+        "fighter_one_cue": {
+          "x": 150,
+          "y": 1280
+        },
+        "fighter_second_interval": {
+          "x": 380,
+          "y": 1280
+        },
+        "fighter_two_cue": {
+          "x": 610,
+          "y": 1280
+        },
+        "await_main_ship": {
+          "x": 840,
+          "y": 1280
+        },
+        "beacon_capture_delay": {
+          "x": 1070,
+          "y": 1280
+        },
+        "beacon_scanned": {
+          "x": 1300,
+          "y": 1280
+        },
+        "await_ancient_key": {
+          "x": 150,
+          "y": 1425
+        },
+        "ancient_key_delay": {
+          "x": 380,
+          "y": 1425
+        },
+        "ancient_key": {
+          "x": 610,
+          "y": 1425
+        },
+        "cp05_structure_route": {
+          "x": 840,
+          "y": 1425
+        },
+        "cp06_structure": {
+          "x": 1070,
+          "y": 1425
+        },
+        "structure_system_delay": {
+          "x": 1300,
+          "y": 1425
+        },
+        "structure_system": {
+          "x": 150,
+          "y": 1570
+        },
+        "await_structure_selection": {
+          "x": 380,
+          "y": 1570
+        },
+        "structure_selected": {
+          "x": 610,
+          "y": 1570
+        },
+        "await_structure_landing": {
+          "x": 840,
+          "y": 1570
+        },
+        "structure_landed": {
+          "x": 1070,
+          "y": 1570
+        },
+        "await_disembark": {
+          "x": 1300,
+          "y": 1570
+        },
+        "on_foot_intro_delay": {
+          "x": 150,
+          "y": 1715
+        },
+        "on_foot_intro": {
+          "x": 379.0,
+          "y": 1715.0
+        },
+        "await_altar_foot": {
+          "x": 610,
+          "y": 1715
+        },
+        "altar_foot_delay": {
+          "x": 841.0,
+          "y": 1714.0
+        },
+        "altar_foot": {
+          "x": 1070.0,
+          "y": 1713.0
+        },
+        "await_rotunda": {
+          "x": 1300,
+          "y": 1715
+        },
+        "rotunda_delay": {
+          "x": 150,
+          "y": 1860
+        },
+        "rotunda": {
+          "x": 377.0,
+          "y": 1860.0
+        },
+        "await_hill": {
+          "x": 610,
+          "y": 1860
+        },
+        "hill_delay": {
+          "x": 840,
+          "y": 1860
+        },
+        "hill": {
+          "x": 1070,
+          "y": 1860
+        },
+        "await_back": {
+          "x": 1300,
+          "y": 1860
+        },
+        "back_delay": {
+          "x": 150,
+          "y": 2005
+        },
+        "back_platform": {
+          "x": 370.0,
+          "y": 2004.0
+        },
+        "await_return_ship": {
+          "x": 610,
+          "y": 2005
+        },
+        "await_srv": {
+          "x": 840,
+          "y": 2005
+        },
+        "srv_return": {
+          "x": 1062.0,
+          "y": 2003.0
+        },
+        "await_altar_srv": {
+          "x": 1300,
+          "y": 2005
+        },
+        "altar_srv": {
+          "x": 150,
+          "y": 2150
+        },
+        "await_blueprint_scan": {
+          "x": 380,
+          "y": 2150
+        },
+        "guardian_talk": {
+          "x": 610,
+          "y": 2150
+        },
+        "guardian_silence": {
+          "x": 840,
+          "y": 2150
+        },
+        "cp07_final_contact": {
+          "x": 1070,
+          "y": 2150
+        },
+        "await_final_ship": {
+          "x": 1300,
+          "y": 2150
+        },
+        "final_incoming": {
+          "x": 150,
+          "y": 2295
+        },
+        "final_debrief": {
+          "x": 380,
+          "y": 2295
+        },
+        "mission_complete_delay": {
+          "x": 611.0,
+          "y": 2295.0
+        },
+        "mission_complete": {
+          "x": 1104.0,
+          "y": 2281.0
+        },
+        "cp08_complete": {
+          "x": 1355.0,
+          "y": 2280.0
+        },
+        "end": {
+          "x": 1614.0,
+          "y": 2272.0
+        },
+        "took_off_from_ending": {
+          "x": 861.0,
+          "y": 2292.0
+        }
+      }
+    }
+  },
+  "solar_sites": [],
+  "solar_clocks": [],
+  "time_gates": [],
+  "time_events": [],
+  "scan_sets": []
+}

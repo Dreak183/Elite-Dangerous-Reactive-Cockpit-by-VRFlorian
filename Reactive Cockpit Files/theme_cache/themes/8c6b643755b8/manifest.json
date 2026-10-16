@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 Reactive Cockpit - Combat mode",
+  "role": "combat",
+  "captured_at": "2026-08-17T12:44:47",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

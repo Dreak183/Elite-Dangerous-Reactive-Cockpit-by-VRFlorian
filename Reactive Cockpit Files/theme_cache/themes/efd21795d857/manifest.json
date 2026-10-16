@@ -1,0 +1,12 @@
+{
+  "theme": "SRV Reactive Cockpit Base",
+  "role": "aux_srv_base",
+  "captured_at": "2026-08-22T16:18:28",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

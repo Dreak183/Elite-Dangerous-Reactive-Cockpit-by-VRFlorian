@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 - Reactive Cockpit Docking",
+  "role": "docking",
+  "captured_at": "2026-08-17T14:43:55",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

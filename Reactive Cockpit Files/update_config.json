@@ -1,0 +1,7 @@
+{
+  "schema": "reactive-cockpit.update-config.v1",
+  "product": "VRFlorian Reactive Cockpit",
+  "channel": "open-test",
+  "current_version": "2.2.11",
+  "manifest_url": "https://raw.githubusercontent.com/florianRooz/VRFlorian-Reactive-Cockpit-Story-Mode-on/main/updates/manifest.json"
+}

@@ -1,0 +1,1795 @@
+{
+  "schema": "platform.story-graph.v1",
+  "id": "yggdrasil",
+  "version": "1.0.0",
+  "title": "Yggdrasil — Living World",
+  "description": "The ordinary environment-first world graph used whenever Story Mode is on and no mission is active.",
+  "start": "start",
+  "variables": {},
+  "nodes": {
+    "start": {
+      "kind": "start",
+      "title": "Enter Yggdrasil"
+    },
+    "living_world": {
+      "kind": "wait",
+      "title": "Living world active",
+      "on_enter": [
+        {
+          "type": "log",
+          "message": "Yggdrasil is active. World environments are listening."
+        }
+      ]
+    }
+  },
+  "edges": [
+    {
+      "id": "enter_living_world",
+      "from": "start",
+      "to": "living_world",
+      "when": {
+        "always": true
+      }
+    }
+  ],
+  "environments": [
+    {
+      "id": "mount_hagrass_wind",
+      "title": "Mount hagrass",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "mountain_wind_hagrass",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.2326,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": 63.860378,
+        "longitude": -175.466492,
+        "entry_radius_m": 2500.0,
+        "exit_radius_m": 2550.0,
+        "core_radius_m": 750.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "hagrass_stela",
+      "title": "Hagrass stela",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "hagraa_stela",
+          "type": "audio",
+          "asset": "singer A.mp3",
+          "volume": 0.3172,
+          "loop": true,
+          "volume_transition_seconds": 5.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": 64.101479,
+        "longitude": -175.484238,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 110.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "dall_deknur_stella",
+      "title": "Dall Deknur stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "dall_deknur_stella",
+          "type": "audio",
+          "asset": "singer DE.mp3",
+          "volume": 0.2523,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "TZ Arietis",
+        "body": "TZ Arietis 5 f",
+        "latitude": -1.383249,
+        "longitude": -60.551636,
+        "entry_radius_m": 55.0,
+        "exit_radius_m": 56.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 4025190.25
+      }
+    },
+    {
+      "id": "dall_deknur_first_peak_wind",
+      "title": "Dall Deknur first peak wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0453,
+          "loop": true,
+          "volume_transition_seconds": 5.0
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "TZ Arietis",
+        "body": "TZ Arietis 5 f",
+        "latitude": -1.391019,
+        "longitude": -60.531082,
+        "entry_radius_m": 350.0,
+        "exit_radius_m": 500.0,
+        "core_radius_m": 50.0,
+        "body_radius_m": 4025190.25
+      }
+    },
+    {
+      "id": "dall_kednur_big_ground_object",
+      "title": "Dall Kednur big ground object",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer CD.mp3",
+          "volume": 0.1662,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "TZ Arietis",
+        "body": "TZ Arietis 5 f",
+        "latitude": -1.395864,
+        "longitude": -60.525932,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 105.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 4025190.25
+      }
+    },
+    {
+      "id": "dall_kednur_top",
+      "title": "Dall Kednur top",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "mountain_top_wind",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.3625,
+          "loop": true,
+          "volume_transition_seconds": 10.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "TZ Arietis",
+        "body": "TZ Arietis 5 f",
+        "latitude": -1.43781,
+        "longitude": -60.498886,
+        "entry_radius_m": 1500.0,
+        "exit_radius_m": 1550.0,
+        "core_radius_m": 300.0,
+        "body_radius_m": 4025190.25
+      }
+    },
+    {
+      "id": "lookout_peak",
+      "title": "Lookout peak",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.2069,
+          "loop": true,
+          "volume_transition_seconds": 8.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "TZ Arietis",
+        "body": "TZ Arietis 5 f",
+        "latitude": -1.484664,
+        "longitude": -60.569168,
+        "entry_radius_m": 1000.0,
+        "exit_radius_m": 1005.0,
+        "core_radius_m": 200.0,
+        "body_radius_m": 4025190.25
+      }
+    },
+    {
+      "id": "vene_base_bird_song",
+      "title": "Verne Bird song",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "bird_song",
+          "type": "audio",
+          "asset": "darwin soundscape.mp3",
+          "volume": 0.287,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 10.4115,
+        "longitude": -140.223785,
+        "entry_radius_m": 3000.0,
+        "exit_radius_m": 3200.0,
+        "core_radius_m": 2900.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "verne_music_loop",
+      "title": "Verne Music loop",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "verne_music_loop",
+          "type": "audio",
+          "asset": "New Earth music.mp3",
+          "volume": 0.0801,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 10.41296,
+        "longitude": -140.224609,
+        "entry_radius_m": 2500.0,
+        "exit_radius_m": 2600.0,
+        "core_radius_m": 2450.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "inside_buildings_verne",
+      "title": "Inside buildings verne",
+      "enabled": true,
+      "entry_when": {
+        "all": [
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/Spycraft getting inside.mp3",
+          "volume": 0.1522,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.vene_base_bird_song.bird_song",
+          "volume": 0.0,
+          "transition_seconds": 3.0,
+          "priority": 50
+        },
+        {
+          "target_layer": "environment.verne_music_loop.verne_music_loop",
+          "volume": 0.0,
+          "transition_seconds": 3.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 10.41294,
+        "longitude": -140.224564,
+        "entry_radius_m": 2500.0,
+        "exit_radius_m": 2600.0,
+        "core_radius_m": 2450.0,
+        "body_radius_m": 615628.9375
+      },
+      "exit_when": {
+        "any": [
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "verne_overlook_wind",
+      "title": "Verne overlook wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "verne_overlook_wind",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.1133,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.vene_base_bird_song.bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 10.356224,
+        "longitude": -140.28035,
+        "entry_radius_m": 275.0,
+        "exit_radius_m": 280.0,
+        "core_radius_m": 120.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "close_station_bird_song",
+      "title": "Close station bird song",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "close_base_bird_song",
+          "type": "audio",
+          "asset": "darwin soundscape.mp3",
+          "volume": 0.2024,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.039284,
+        "longitude": 19.2953,
+        "entry_radius_m": 3500.0,
+        "exit_radius_m": 3600.0,
+        "core_radius_m": 3450.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "close_base_music_layer",
+      "title": "Close base music layer",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "New Earth music.mp3",
+          "volume": 0.0785,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.039284,
+        "longitude": 19.2953,
+        "entry_radius_m": 3500.0,
+        "exit_radius_m": 3600.0,
+        "core_radius_m": 3450.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "close_base_interior",
+      "title": "Close Base interior",
+      "enabled": true,
+      "entry_when": {
+        "all": [
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/Spycraft getting inside.mp3",
+          "volume": 0.2009,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.close_station_bird_song.close_base_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        },
+        {
+          "target_layer": "environment.close_base_music_layer.base",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.039284,
+        "longitude": 19.2953,
+        "entry_radius_m": 1000.0,
+        "exit_radius_m": 1100.0,
+        "core_radius_m": 0.0,
+        "body_radius_m": 615628.9375
+      },
+      "exit_when": {
+        "any": [
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "mount_darwin_peak_wind",
+      "title": "Mount darwin peak wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "mount_darwin_peak_wind",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.1329,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.close_station_bird_song.close_base_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.014519,
+        "longitude": 19.546843,
+        "entry_radius_m": 325.0,
+        "exit_radius_m": 355.0,
+        "core_radius_m": 175.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "close_peak_2_wind",
+      "title": "Close peak 2 wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.1027,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.close_station_bird_song.close_base_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.091339,
+        "longitude": 19.513624,
+        "entry_radius_m": 270.0,
+        "exit_radius_m": 290.0,
+        "core_radius_m": 150.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "bocara_bird_song",
+      "title": "Bocara bird song",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "bocara_bird_song",
+          "type": "audio",
+          "asset": "darwin soundscape.mp3",
+          "volume": 0.2356,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.33614,
+        "longitude": 22.621668,
+        "entry_radius_m": 3500.0,
+        "exit_radius_m": 3560.0,
+        "core_radius_m": 3450.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "bocara_music",
+      "title": "Bocara music",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "bocara_music_layer",
+          "type": "audio",
+          "asset": "New Earth music.mp3",
+          "volume": 0.0831,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.33614,
+        "longitude": 22.621668,
+        "entry_radius_m": 3500.0,
+        "exit_radius_m": 3560.0,
+        "core_radius_m": 3495.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "bocara_interior_sound",
+      "title": "Bocara interior sound",
+      "enabled": true,
+      "entry_when": {
+        "all": [
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/Spycraft getting inside.mp3",
+          "volume": 0.1692,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.bocara_music.bocara_music_layer",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        },
+        {
+          "target_layer": "environment.bocara_bird_song.bocara_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.33614,
+        "longitude": 22.621668,
+        "entry_radius_m": 1000.0,
+        "exit_radius_m": 1100.0,
+        "core_radius_m": 0.0,
+        "body_radius_m": 615628.9375
+      },
+      "exit_when": {
+        "any": [
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "bocara_peak_wind",
+      "title": "Bocara peak wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "bocara_peak_wind",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0965,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.bocara_bird_song.bocara_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 50
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.466824,
+        "longitude": 22.532705,
+        "entry_radius_m": 330.0,
+        "exit_radius_m": 350.0,
+        "core_radius_m": 150.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "new_aiabiko_glide_entry",
+      "title": "New Aiabiko glide entry",
+      "enabled": true,
+      "entry_when": {
+        "signal": "status.glide.entered"
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 0.0,
+      "layers": [
+        {
+          "id": "glide_arrival",
+          "type": "audio",
+          "asset": "Glide atmospheric entry sound effect.mp3",
+          "volume": 0.4486,
+          "loop": false,
+          "volume_transition_seconds": 0.0,
+          "stop_delay_seconds": 62.0
+        }
+      ],
+      "zone_type": "event",
+      "active_vehicles": [
+        "ship"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c"
+      },
+      "exit_when": {
+        "path": "world.flags2.glide_mode",
+        "op": "eq",
+        "value": false
+      }
+    },
+    {
+      "id": "high_flying_wind_new_aiabiko",
+      "title": "HIgh flying wind new aiabiko",
+      "enabled": true,
+      "entry_when": {
+        "signal": "journal.SupercruiseExit"
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "high_flying_wind_new_aiabiko",
+          "type": "audio",
+          "asset": "high flying wind.mp3",
+          "volume": 0.0559,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "min_altitude_m": 500.0,
+        "max_altitude_m": 10000.0
+      }
+    },
+    {
+      "id": "home_view_stella",
+      "title": "Home view stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "home_view_stella",
+          "type": "audio",
+          "asset": "singer DE.mp3",
+          "volume": 0.281,
+          "loop": true,
+          "volume_transition_seconds": 4.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "settlement": "Close Hydroponics Centre",
+        "latitude": 71.039261,
+        "longitude": 19.29524,
+        "entry_radius_m": 35.0,
+        "exit_radius_m": 36.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "home_view_middle_peak_wind",
+      "title": "Home view middle peak wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0589,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.close_station_bird_song.close_base_bird_song",
+          "volume": 0.0,
+          "transition_seconds": 4.0,
+          "priority": 0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.061279,
+        "longitude": 19.544199,
+        "entry_radius_m": 240.0,
+        "exit_radius_m": 245.0,
+        "core_radius_m": 195.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "home_view_peak_completed",
+      "title": "Home view peak completed",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer CD.mp3",
+          "volume": 0.0604,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 71.005096,
+        "longitude": 19.550615,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 31.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "belka_mountain_stella",
+      "title": "Belka mountain stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.1798,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.33614,
+        "longitude": 22.621622,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 31.0,
+        "core_radius_m": 20.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "belka_peak_completed",
+      "title": "Belka peak completed",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "belka_mountain_peak_completed",
+          "type": "audio",
+          "asset": "singer CD.mp3",
+          "volume": 0.0498,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12",
+        "body": "Col 359 Sector PN-Q c6-12 6 c",
+        "latitude": 34.466679,
+        "longitude": 22.532642,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 31.0,
+        "core_radius_m": 20.0,
+        "body_radius_m": 615628.9375
+      }
+    },
+    {
+      "id": "shai_hulud_stella",
+      "title": "Shai Hulud stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer AB.mp3",
+          "volume": 0.0393,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": 56.47398,
+        "longitude": 166.632889,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "shai_hulud_top_stone",
+      "title": "Shai Hulud top stone",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.1375,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": 56.274834,
+        "longitude": 166.106812,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "uruk_hai_wall_stella",
+      "title": "Uruk hai wall stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "uruk_hai_stella",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.1465,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": -34.693054,
+        "longitude": -117.52327,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "uruk_hai_peak",
+      "title": "Uruk Hai Peak",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer DE.mp3",
+          "volume": 0.1118,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b",
+        "latitude": -34.279224,
+        "longitude": -117.311577,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1032400.0000000001
+      }
+    },
+    {
+      "id": "planetary_glide_arrival",
+      "title": "Hip 87621BB glide",
+      "enabled": true,
+      "entry_when": {
+        "signal": "status.glide.entered"
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 0.0,
+      "layers": [
+        {
+          "id": "glide_arrival_hip_87621_bb",
+          "type": "audio",
+          "asset": "Glide atmospheric entry sound effect.mp3",
+          "volume": 0.4471,
+          "loop": false,
+          "volume_transition_seconds": 0.0,
+          "stop_delay_seconds": 62.0
+        }
+      ],
+      "zone_type": "event",
+      "active_vehicles": [
+        "ship"
+      ],
+      "location": {
+        "system": "HIP 87621",
+        "body": "HIP 87621 2 b b"
+      },
+      "exit_when": {
+        "path": "world.flags2.glide_mode",
+        "op": "eq",
+        "value": false
+      }
+    },
+    {
+      "id": "stomr_ice_world_ship",
+      "title": "Stomr Ice World ship",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "icy_storm_planet_sound",
+          "type": "audio",
+          "asset": "Storm_Wind_Ship_InteriorB.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        },
+        {
+          "id": "danger_storm_world_atmosphere",
+          "type": "visual",
+          "cue": "deep_danger",
+          "intensity": 1.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a",
+        "min_altitude_m": 0.0,
+        "max_altitude_m": 20000.0
+      }
+    },
+    {
+      "id": "ice_world_peak",
+      "title": "Ice World Peak",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "ice_world_peak",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.2587,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a",
+        "latitude": -46.114147,
+        "longitude": -64.55555,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 45.0,
+        "body_radius_m": 3242386.0
+      }
+    },
+    {
+      "id": "ocean_view_mountain_stella",
+      "title": "Ocean view mountain stella",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a",
+        "latitude": 26.160002,
+        "longitude": -87.574554,
+        "entry_radius_m": 60.0,
+        "exit_radius_m": 65.0,
+        "core_radius_m": 35.0,
+        "body_radius_m": 3242386.0
+      }
+    },
+    {
+      "id": "planetary_glide_arrival_2",
+      "title": "storm world glide",
+      "enabled": true,
+      "entry_when": {
+        "signal": "status.glide.entered"
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 0.0,
+      "layers": [
+        {
+          "id": "glide_arrival",
+          "type": "audio",
+          "asset": "Glide atmospheric entry sound effect.mp3",
+          "volume": 0.4547,
+          "loop": false,
+          "volume_transition_seconds": 0.0,
+          "stop_delay_seconds": 62.0
+        }
+      ],
+      "zone_type": "event",
+      "active_vehicles": [
+        "ship"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a"
+      },
+      "exit_when": {
+        "path": "world.flags2.glide_mode",
+        "op": "eq",
+        "value": false
+      }
+    },
+    {
+      "id": "storm_world_srv",
+      "title": "Storm world SRV",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Storm_Wind_SRVB_Interior.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "srv"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a"
+      }
+    },
+    {
+      "id": "storm_world_on_foot",
+      "title": "storm world on foot",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "storm_on_foot",
+          "type": "audio",
+          "asset": "Storm_Wind_ON_FOOT.mp3",
+          "volume": 0.7009,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a"
+      }
+    },
+    {
+      "id": "home_system",
+      "title": "Home system music",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "home_system",
+          "type": "audio",
+          "asset": "Home system.mp3",
+          "volume": 0.0725,
+          "loop": false,
+          "volume_transition_seconds": 5.0,
+          "start_delay_seconds": 15.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Col 359 Sector PN-Q c6-12"
+      },
+      "exit_when": {
+        "signal": "journal.Disembark"
+      }
+    },
+    {
+      "id": "real_wind_motion_layer_storm_planet",
+      "title": "real wind motion layer storm planet",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "wind",
+          "wind_from": 270.0,
+          "strength": 100.0,
+          "mode": "dynamic",
+          "interval_minutes": 5.0,
+          "duration_minutes": 3.0,
+          "changed_strength": 85.0,
+          "warning_asset": "landing window opens A.mp3",
+          "warning_volume": 0.55,
+          "priority": 50.0,
+          "type": "wind",
+          "normal_message": "Wind speeds currently to high for safe landing. Next landing window predicted in: {countdown}.",
+          "changed_message": "Wind speeds are currently lower. landing window is open — {countdown} remaining until window expected to end.",
+          "warning_vehicles": [
+            "ship",
+            "fighter"
+          ]
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a",
+        "max_altitude_m": 20000.0
+      }
+    },
+    {
+      "id": "emerald_welcome_a",
+      "title": "emerald welcome A",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "emerald_welcome",
+          "type": "audio",
+          "asset": "emerald sea reception A.mp3",
+          "volume": 0.3973,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a",
+        "min_altitude_m": 0.0,
+        "max_altitude_m": 200000.0
+      }
+    },
+    {
+      "id": "inside_on_storm_planet",
+      "title": "Inside on storm planet",
+      "enabled": true,
+      "entry_when": {
+        "all": [
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "inside_music_spy_craft",
+          "type": "audio",
+          "asset": "Mission 2/Spycraft getting inside.mp3",
+          "volume": 0.0921,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "layer_adjustments": [
+        {
+          "target_layer": "environment.storm_world_on_foot.storm_on_foot",
+          "volume": 0.0,
+          "transition_seconds": 2.0,
+          "priority": 0
+        },
+        {
+          "action": "pause_wind",
+          "target_layer": "environment.real_wind_motion_layer_storm_planet.wind"
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Col 359 Sector DZ-U b5-2",
+        "body": "Col 359 Sector DZ-U b5-2 B 3 a"
+      },
+      "exit_when": {
+        "any": [
+          {
+            "path": "world.flags2.on_foot_exterior",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.flags2.on_foot",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      }
+    }
+  ],
+  "navigators": [],
+  "solar_clocks": [],
+  "solar_sites": [],
+  "time_gates": [],
+  "time_events": [],
+  "scan_sets": [],
+  "visual_sequences": {},
+  "editor": {
+    "version": 1,
+    "layout": {
+      "nodes": {
+        "start": {
+          "x": 180,
+          "y": 180
+        },
+        "living_world": {
+          "x": 460,
+          "y": 180
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 - Reactive Cockpit Base",
+  "role": "base",
+  "captured_at": "2026-08-22T16:15:49",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

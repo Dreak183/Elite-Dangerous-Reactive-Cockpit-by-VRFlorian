@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 Reactive Cockpit - Stealth",
+  "role": "stealth",
+  "captured_at": "2026-08-17T13:23:52",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

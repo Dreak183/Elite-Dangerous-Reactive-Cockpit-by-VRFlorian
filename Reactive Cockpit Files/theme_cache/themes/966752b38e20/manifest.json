@@ -1,0 +1,12 @@
+{
+  "theme": "Nebula Hopper Anaconda - Reactive Cockpit Base",
+  "role": "base",
+  "captured_at": "2026-08-22T16:16:24",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

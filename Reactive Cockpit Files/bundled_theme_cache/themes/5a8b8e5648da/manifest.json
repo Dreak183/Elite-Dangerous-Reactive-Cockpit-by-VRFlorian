@@ -1,0 +1,12 @@
+{
+  "theme": "Nebula Hopper Anaconda reactive cockpit - Deep Danger mode",
+  "role": "package",
+  "captured_at": "2026-08-18T14:54:01",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

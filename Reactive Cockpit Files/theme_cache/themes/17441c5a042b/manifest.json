@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 - Reactive Cockpit super-cruise",
+  "role": "supercruise",
+  "captured_at": "2026-08-17T16:07:57",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

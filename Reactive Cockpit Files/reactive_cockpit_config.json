@@ -1,0 +1,27 @@
+{
+  "combat_cooldown_seconds": 15.0,
+  "wanted_entry_seconds": 15.0,
+  "glide_exit_cooldown_seconds": 3.0,
+  "supercruise_exit_cooldown_seconds": 3.0,
+  "docking_complete_cooldown_seconds": 3.0,
+  "critical_hull_threshold": 0.2,
+  "deep_danger_hull_threshold": 0.5,
+  "critical_canopy_threshold": 0.2,
+  "low_fuel_threshold": 0.2,
+  "disco_interval_seconds": 2.0,
+  "cockpit_assignments": [],
+  "auxiliary_cockpits": {
+    "fighter": {
+      "base": "Ship Launched Fighter - Reactive Cockpit Base",
+      "combat": "Ship Launched Fighter - Reactive Cockpit Combat"
+    },
+    "srv": {
+      "base": "SRV Reactive Cockpit Base"
+    }
+  },
+  "active_package_id": null,
+  "reactive_ship": null,
+  "theme_names": {},
+  "shipyard_file": "C:\\Users\\benja\\EDHM_UI\\Shipyard_v3.json",
+  "journal_dir": "C:\\Users\\benja\\Saved Games\\Frontier Developments\\Elite Dangerous"
+}

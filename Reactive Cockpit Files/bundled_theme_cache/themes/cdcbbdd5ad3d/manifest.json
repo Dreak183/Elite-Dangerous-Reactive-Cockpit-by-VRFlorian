@@ -1,0 +1,12 @@
+{
+  "theme": "VRFlo Reactive Cockpit - Scoop",
+  "role": "scoop",
+  "captured_at": "2026-08-16T13:05:10",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

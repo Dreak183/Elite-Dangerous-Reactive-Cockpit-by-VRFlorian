@@ -1,0 +1,5 @@
+{
+  "schema": "reactive-cockpit.launcher-state.v2",
+  "story_mode_enabled": false,
+  "selected_story_id": "living_world"
+}

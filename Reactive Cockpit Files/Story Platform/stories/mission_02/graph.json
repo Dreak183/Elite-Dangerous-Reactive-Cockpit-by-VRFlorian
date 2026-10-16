@@ -1,0 +1,4449 @@
+{
+  "schema": "platform.story-graph.v1",
+  "id": "Test mission 2",
+  "version": "1.1.0",
+  "title": "Mission 2 — The Secrets of Aiabiko",
+  "description": "",
+  "start": "start",
+  "variables": {
+    "mission2_scans_armed": false,
+    "mission2_mountain_success_recorded": false,
+    "mission2_canyon_success_recorded": false,
+    "mission2_bardins_vice_reached": false
+  },
+  "environments": [
+    {
+      "id": "bikomusic01",
+      "title": "Aiabiko atmosphere music",
+      "enabled": true,
+      "entry_when": {
+        "signal": "journal.SupercruiseExit"
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "aiabiko_music_vibe",
+          "type": "audio",
+          "asset": "aiabiko vibe music.mp3",
+          "volume": 0.1994,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "max_altitude_m": 100000.0
+      },
+      "exit_when": {
+        "any": [
+          {
+            "signal": "journal.SupercruiseEntry"
+          },
+          {
+            "signal": "journal.LeaveBody"
+          },
+          {
+            "signal": "journal.FSDJump"
+          },
+          {
+            "signal": "journal.CarrierJump"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wpta",
+      "title": "wispers top A",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "wisperers.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 1.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.67304,
+        "longitude": 68.620636,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 48.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "wpv",
+      "title": "Wisperers peak valley",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "wisperers.mp3",
+          "volume": 0.6543,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 1.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.663774,
+        "longitude": 68.614876,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 102.0,
+        "core_radius_m": 70.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "bplba",
+      "title": "Ba peak layer",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "ba_mountain_top_note",
+          "type": "audio",
+          "asset": "Ba.mp3",
+          "volume": 0.8943,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.663774,
+        "longitude": 68.614876,
+        "entry_radius_m": 300.0,
+        "exit_radius_m": 302.0,
+        "core_radius_m": 200.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "mska",
+      "title": "ka mountain sound",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "ba_mountain_sound",
+          "type": "audio",
+          "asset": "Ka.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.67304,
+        "longitude": 68.620636,
+        "entry_radius_m": 300.0,
+        "exit_radius_m": 302.0,
+        "core_radius_m": 200.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "mwbaka01",
+      "title": "Mountainwind baka",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "mountainwindbaka",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 1.0
+          }
+        }
+      ],
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.67304,
+        "longitude": 68.620636,
+        "entry_radius_m": 500.0,
+        "exit_radius_m": 505.0,
+        "core_radius_m": 150.0,
+        "body_radius_m": 1852000.0,
+        "max_altitude_m": 200.0
+      }
+    },
+    {
+      "id": "singab",
+      "title": "SingeAB",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "singer_ab",
+          "type": "audio",
+          "asset": "singer AB.mp3",
+          "volume": 0.0696,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.280355,
+        "longitude": 169.550842,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 21.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375,
+        "min_altitude_m": 0.0
+      }
+    },
+    {
+      "id": "sinbc",
+      "title": "Singer BC",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "singer_bc",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.0744,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.280029,
+        "longitude": 169.550766,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 22.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "singcd",
+      "title": "singer CD",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer CD.mp3",
+          "volume": 0.0775,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.279558,
+        "longitude": 169.550446,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 22.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "singde",
+      "title": "singerDE",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer DE.mp3",
+          "volume": 0.0712,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.276251,
+        "longitude": 169.549057,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 22.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "singerc",
+      "title": "singer 5 C",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer C.mp3",
+          "volume": 0.4842,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.274017,
+        "longitude": 169.546799,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 22.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "singb",
+      "title": "SingerB",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Singer B.mp3",
+          "volume": 0.5016,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.273819,
+        "longitude": 169.546936,
+        "entry_radius_m": 20.0,
+        "exit_radius_m": 22.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "bikocave1",
+      "title": "aiabiko cave",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "bikocave1",
+          "type": "audio",
+          "asset": "cave aiabiko.mp3",
+          "volume": 0.2372,
+          "loop": true,
+          "volume_transition_seconds": 3.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.279478,
+        "longitude": 169.55072,
+        "entry_radius_m": 150.0,
+        "exit_radius_m": 152.0,
+        "core_radius_m": 80.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "dtwind01",
+      "title": "dragon tail wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "nountanwind_dragon_tail",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.1435,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.64551,
+        "longitude": 68.608948,
+        "entry_radius_m": 1000.0,
+        "exit_radius_m": 1100.0,
+        "core_radius_m": 800.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "dragon_tail_valley_wind",
+      "title": "dragen tail entrance wind",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "dragentail_valley_wind",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0272,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.616852,
+        "longitude": 68.595444,
+        "entry_radius_m": 300.0,
+        "exit_radius_m": 305.0,
+        "core_radius_m": 150.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "wispers_flo_trust",
+      "title": "wispers after flo's trust",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "wisperstrust",
+          "type": "audio",
+          "asset": "wisperers.mp3",
+          "volume": 0.142,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.640877,
+        "longitude": 68.605957,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 52.0,
+        "core_radius_m": 35.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "parking_wind",
+      "title": "parking area wind BAKA",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0151,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.671959,
+        "longitude": 68.650284,
+        "entry_radius_m": 600.0,
+        "exit_radius_m": 602.0,
+        "core_radius_m": 400.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "sound_altar",
+      "title": "mountain foot shrine",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "altar",
+          "type": "audio",
+          "asset": "singer AB.mp3",
+          "volume": 0.0166,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.604822,
+        "longitude": 68.590164,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 32.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "remnantrock",
+      "title": "remnant rock aiabiko 9a",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer DE.mp3",
+          "volume": 0.0952,
+          "loop": true,
+          "volume_transition_seconds": 2.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.561588,
+        "longitude": 68.60453,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 32.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "remnamt_rock_scan_area",
+      "title": "remnant rock scan area",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_biko_ramnant_rock",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 1.0,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "requires_control": "control.scanner",
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.561543,
+        "longitude": 68.604546,
+        "entry_radius_m": 700.0,
+        "exit_radius_m": 720.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "low_wind_top_zone",
+      "title": "low wind top zone",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "low_wind_high",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0302,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.649921,
+        "longitude": 68.61087,
+        "entry_radius_m": 300.0,
+        "exit_radius_m": 305.0,
+        "core_radius_m": 0.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "flowercirc",
+      "title": "flower cicle",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "the_elders",
+          "type": "audio",
+          "asset": "wisperers.mp3",
+          "volume": 0.0302,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.271002,
+        "longitude": 169.545593,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 105.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "tenacious_rest",
+      "title": "Tenacious rest",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer CD.mp3",
+          "volume": 0.0124,
+          "loop": true,
+          "volume_transition_seconds": 4.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.616856,
+        "longitude": 68.595497,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 32.0,
+        "core_radius_m": 15.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "darkness_fall",
+      "title": "Darkness fall",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.0483,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.629684,
+        "longitude": 68.59903,
+        "entry_radius_m": 250.0,
+        "exit_radius_m": 255.0,
+        "core_radius_m": 200.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "mountain_security_zone_mesage",
+      "title": "Mountain security zone mesage",
+      "enabled": true,
+      "entry_when": {
+        "path": "world.time.gates.mountain_window.open",
+        "op": "eq",
+        "value": false
+      },
+      "rearm": "never",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "mountian_proximity_warning",
+          "type": "audio",
+          "asset": "Mission 2/we noticed you near the mounain at the wrong time.mp3",
+          "volume": 0.5695,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "time_gate": "mountain_window",
+      "time_gate_state": "closed",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.677385,
+        "longitude": 68.627121,
+        "entry_radius_m": 50000.0,
+        "exit_radius_m": 50005.0,
+        "core_radius_m": 49999.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "bayon_proximity_audio_warning_wron_time",
+      "title": "canyon proximity audio warning wron time",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "never",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/we notced you near the cave at the wrong time.mp3",
+          "volume": 0.5196,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "time_gate": "canyon_window",
+      "time_gate_state": "closed",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.280235,
+        "longitude": 169.550751,
+        "entry_radius_m": 50000.0,
+        "exit_radius_m": 50005.0,
+        "core_radius_m": 49999.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "new_environment",
+      "title": "New surface environment",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 0.2946,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.657679,
+        "longitude": 68.614159,
+        "entry_radius_m": 300.0,
+        "exit_radius_m": 305.0,
+        "core_radius_m": 250.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_canyon_01_big_singing_rocks",
+      "title": "Scanner field — Two Mysterious Big Singing Rocks",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 4.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0,
+            "momentum_step_percent": 4.0,
+            "momentum_limit_percent": 10.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.280235,
+        "longitude": 169.550751,
+        "entry_radius_m": 250.0,
+        "exit_radius_m": 255.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_canyon_02_kissing_rocks",
+      "title": "Scanner field — Two Kissing Big Singing Rocks",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.276321,
+        "longitude": 169.549011,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 105.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_canyon_03_percolating_rocks",
+      "title": "Scanner field — Two Percolating Rocks",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.273972,
+        "longitude": 169.546875,
+        "entry_radius_m": 70.0,
+        "exit_radius_m": 75.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_canyon_04_flower_circle",
+      "title": "Scanner field — Glowing Flower Circle",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.27104,
+        "longitude": 169.545639,
+        "entry_radius_m": 80.0,
+        "exit_radius_m": 85.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_canyon_05_broken_stone",
+      "title": "Scanner field — Broken Stone",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.267462,
+        "longitude": 169.544281,
+        "entry_radius_m": 80.0,
+        "exit_radius_m": 82.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_mountain_01_heroes_ledge",
+      "title": "Scanner field — The Hero's Ledge",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission2_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "zone_type": "detection",
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.677385,
+        "longitude": 68.627121,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "detect_mountain_02_kas_courage",
+      "title": "Scanner field — Ka's Courage",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission2_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "zone_type": "detection",
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.672895,
+        "longitude": 68.620476,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 105.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "detect_mountain_03_ba_ka_valley",
+      "title": "Scanner field — Ba Ka Valley",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.671549,
+        "longitude": 68.618378,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_mountain_04_bas_circle",
+      "title": "Scanner field — Ba's Circle",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.667028,
+        "longitude": 68.616051,
+        "entry_radius_m": 100.0,
+        "exit_radius_m": 105.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_mountain_05_whisperers_peak",
+      "title": "Scanner field — Whisperers Peak",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.1526,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0,
+            "momentum_step_percent": 4.0,
+            "momentum_limit_percent": 10.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "detection",
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.663794,
+        "longitude": 68.614876,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "detect_mountain_06_tenacious_rest",
+      "title": "Scanner field — Tenacious Rest",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission2_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "zone_type": "detection",
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.616856,
+        "longitude": 68.595497,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "detect_mountain_07_darkness_fall",
+      "title": "Scanner field — Darkness Fall",
+      "enabled": true,
+      "enabled_when": {
+        "variable": "mission2_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "zone_type": "detection",
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "immediate",
+      "exit_hold_seconds": 2.0,
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.629684,
+        "longitude": 68.59903,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      },
+      "layers": [
+        {
+          "id": "scanner_ping",
+          "type": "audio",
+          "asset": "12_scanner_ping.mp3",
+          "volume": 0.2,
+          "loop": false,
+          "volume_transition_seconds": 2.0,
+          "playback_mode": "scanner_pulse",
+          "scanner_pulse": {
+            "outer_gap_seconds": 5.0,
+            "core_gap_seconds": 0.0,
+            "exponent": 1.0
+          },
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "mountain_security_zone_positive_time",
+      "title": "mountain security zone positive time",
+      "enabled": true,
+      "entry_when": {
+        "path": "world.time.gates.mountain_window.open",
+        "op": "eq",
+        "value": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "security_message_mountain_positive",
+          "type": "audio",
+          "asset": "Timing is good - we see you go in - good luck.mp3",
+          "volume": 0.497,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "time_gate": "mountain_window",
+      "time_gate_state": "open",
+      "active_vehicles": [
+        "ship",
+        "fighter"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.663774,
+        "longitude": 68.614876,
+        "entry_radius_m": 50000.0,
+        "exit_radius_m": 50050.0,
+        "core_radius_m": 49999.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "canyon_security_message_positive_time",
+      "title": "Canyon security message positive time",
+      "enabled": true,
+      "entry_when": {
+        "all": [
+          {
+            "path": "world.time.gates.canyon_window.open",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission2_bardins_vice_reached",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "positive_canyon_approach_messaga",
+          "type": "audio",
+          "asset": "we see you canyon timing is good - be careful.mp3",
+          "volume": 0.5045,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "time_gate": "canyon_window",
+      "time_gate_state": "open",
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 16.280235,
+        "longitude": 169.550751,
+        "entry_radius_m": 50000.0,
+        "exit_radius_m": 50050.0,
+        "core_radius_m": 49999.0,
+        "body_radius_m": 1852000.0
+      }
+    },
+    {
+      "id": "mountain_crackl_tenacious_rest",
+      "title": "mountain crackl tenacious rest",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/mountain currents.mp3",
+          "volume": 0.3746,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.616322,
+        "longitude": 68.595245,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 55.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "darkness_fall_mountain_current",
+      "title": "Darkness fall mountain current",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/mountain currents.mp3",
+          "volume": 0.3595,
+          "loop": true,
+          "volume_transition_seconds": 4.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.629246,
+        "longitude": 68.59877,
+        "entry_radius_m": 40.0,
+        "exit_radius_m": 45.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "jumping_wispers",
+      "title": "jumping wispers",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "wisperers.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.669722,
+        "longitude": 68.617416,
+        "entry_radius_m": 30.0,
+        "exit_radius_m": 35.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "sample_sparkles",
+      "title": "sample sparkles",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "Mission 2/mountain currents.mp3",
+          "volume": 0.5347,
+          "loop": true,
+          "volume_transition_seconds": 4.0
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 3",
+        "settlement": "Dewan Cultivation Range",
+        "latitude": 5.04027,
+        "longitude": -70.27243,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 52.0,
+        "core_radius_m": 25.0,
+        "body_radius_m": 2204268.0
+      }
+    },
+    {
+      "id": "rock_slides_a_valley",
+      "title": "rock slides A valley",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "rock_slides_a_valley",
+          "type": "audio",
+          "asset": "Mission 2/Mount Zoor sparse rockfalls 01.mp3",
+          "volume": 1.0,
+          "loop": false,
+          "volume_transition_seconds": 2.0
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.624798,
+        "longitude": 68.597664,
+        "entry_radius_m": 50.0,
+        "exit_radius_m": 500.0,
+        "core_radius_m": 45.0,
+        "body_radius_m": 1850881.375
+      },
+      "exit_when": {
+        "always": true
+      }
+    },
+    {
+      "id": "new_environment_2",
+      "title": "New surface environment",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "singer BC.mp3",
+          "volume": 0.2022,
+          "loop": true,
+          "volume_transition_seconds": 4.0
+        }
+      ],
+      "zone_type": "surface",
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 23.682707,
+        "longitude": 68.651405,
+        "entry_radius_m": 40.0,
+        "exit_radius_m": 45.0,
+        "core_radius_m": 30.0,
+        "body_radius_m": 1850881.375
+      }
+    },
+    {
+      "id": "adorlan_rige",
+      "title": "adorlan rige",
+      "enabled": true,
+      "entry_when": {
+        "always": true
+      },
+      "rearm": "after_exit",
+      "exit_hold_seconds": 2.0,
+      "layers": [
+        {
+          "id": "base",
+          "type": "audio",
+          "asset": "mountan wind.mp3",
+          "volume": 1.0,
+          "loop": true,
+          "volume_transition_seconds": 5.0,
+          "depth_response": {
+            "curve": "linear",
+            "start_percent": 0.0,
+            "minimum": 0.0,
+            "exponent": 2.0
+          }
+        }
+      ],
+      "zone_type": "surface",
+      "active_vehicles": [
+        "on_foot",
+        "srv"
+      ],
+      "location": {
+        "system": "Aiabiko",
+        "body": "Aiabiko 9 a",
+        "latitude": 24.36282,
+        "longitude": 69.648277,
+        "entry_radius_m": 2000.0,
+        "exit_radius_m": 2200.0,
+        "core_radius_m": 500.0,
+        "body_radius_m": 1850881.375
+      }
+    }
+  ],
+  "nodes": {
+    "start": {
+      "kind": "start",
+      "title": "Start",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Sol."
+        }
+      ]
+    },
+    "aiabiko_9a_entered": {
+      "kind": "beat",
+      "title": "Aiabiko 9A Entered",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Choose an open survey area: Mount Zoor or Ayasai Canyon."
+        }
+      ]
+    },
+    "mountain_climb_area": {
+      "kind": "fork",
+      "title": "Mountain Climb Area",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Land near Mount Zoor and disembark."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "set_layer_volume",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "volume": 0.046,
+            "transition_seconds": 2.0
+          }
+        }
+      ]
+    },
+    "mountain_climb_area_exit": {
+      "kind": "beat",
+      "title": "Mountain Climb Area Exit",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take off and continue to Ayasai Canyon."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "clear_layer_volume_override",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "transition_seconds": 2.0
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/Mission 2 - Scanner data uplink - cockpit.mp3",
+            "volume": 0.125
+          }
+        }
+      ]
+    },
+    "underway_to_mission_activity_choice_now": {
+      "kind": "wait",
+      "title": "Underway To Mission Activity Choice Now",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Choose an open survey area: Mount Zoor or Ayasai Canyon."
+        }
+      ]
+    },
+    "aiabiko_locations_choices": {
+      "kind": "fork",
+      "title": "Aiabiko Locations Choices",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Choose an open survey area: Mount Zoor or Ayasai Canyon."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "clear_layer_volume_override",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "transition_seconds": 4.0
+          }
+        }
+      ]
+    },
+    "cave_arrival": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Use your scanner to locate the remaining anomalies in Ayasai Canyon."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "set_layer_volume",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "volume": 0.0,
+            "transition_seconds": 4.0
+          }
+        }
+      ],
+      "title": "Cave Arrival"
+    },
+    "waiting_on_take_off_from_cave": {
+      "kind": "fork",
+      "title": "Waiting On Take Off From Cave",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take off and continue to Mount Zoor."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/Mission 2 - Scanner data uplink - cockpit.mp3",
+            "volume": 0.155
+          }
+        }
+      ]
+    },
+    "enter_sol_mission_2_start": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Incoming transmission — press CTRL+C to answer."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "INcomming message press control C to accept Mision 2",
+            "asset": "00_incoming_call_loop.mp3",
+            "volume": 0.204,
+            "loop": true
+          }
+        }
+      ],
+      "title": "Enter Sol Mission 2 Start"
+    },
+    "wait_2": {
+      "kind": "wait",
+      "title": "Wait 2",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Sol."
+        }
+      ]
+    },
+    "call_acccpted_com_to_beacon_to_talk_secure": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Approach the Unregistered Comms Beacon near Europa, drop from supercruise and select the beacon."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "INcomming message press control C to accept Mision 2"
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Come to the beacon and lets talk.mp3",
+            "volume": 0.488
+          }
+        }
+      ],
+      "title": "Call Acccpted Com To Beacon To Talk Secure"
+    },
+    "can_i_count_on_you": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Press CTRL+A to accept the mission."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/opening - can I count on you .mp3",
+            "volume": 0.467
+          }
+        }
+      ],
+      "title": "Can I Count On You"
+    },
+    "beacon_arrival_wait": {
+      "kind": "wait",
+      "title": "Beacon Arrival Wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Hold position near the beacon."
+        }
+      ]
+    },
+    "mission_2_briefing": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Read the secure ops briefing copied to your clipboard, then travel to Aiabiko."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "mission 2 briefing.mp3",
+            "volume": 0.503
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "Commander,\n\nPlease use the secure linke below to read the detailed ops briefing for your mission. Read it carefully. We only have one chance at this!\n\nOpen: https://florianrooz.nl/aiabiko-9-a-mission-briefing/"
+          }
+        }
+      ],
+      "title": "Mission 2 Briefing"
+    },
+    "welcome_to_aiabiko_go_to_bards_vice": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Aiabiko 9 a."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/welcome to aiabiko.mp3",
+            "volume": 0.539
+          }
+        }
+      ],
+      "title": "Welcome To Aiabiko Go To Bards Vice"
+    },
+    "wait_for_welcome_aiabiko": {
+      "kind": "wait",
+      "title": "Wait For Welcome Aiabiko",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Stand by for further instructions."
+        }
+      ]
+    },
+    "on_route_to_bardins_vice": {
+      "kind": "beat",
+      "title": "On Route To Bardins Vice",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Approach Bardin's Vice and land on one of the hills next to the town. Don't land on the pad or contact the town. There must be no records of your visit!"
+        }
+      ]
+    },
+    "now_near_bardins_vice": {
+      "kind": "beat",
+      "title": "Now Near Bardins Vice",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Land on the hill overlooking Bardin’s Vice."
+        },
+        {
+          "type": "set",
+          "variable": "mission2_bardins_vice_reached",
+          "value": true
+        }
+      ]
+    },
+    "landed_near_bv": {
+      "kind": "fork",
+      "title": "Landed Near Bv",
+      "developer_next_edge": "landed_near_bv_to_dissembarked_at_bv",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Disembark and explore Bardin’s Vice on foot while you wait for instructions."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "set_layer_volume",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "volume": 0.046,
+            "transition_seconds": 2.0
+          }
+        }
+      ]
+    },
+    "landed_for_a_while": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "When the ship has landed on the pad, approach its cargo bay at the back to receive your advanced scanner."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "approach ship to get scanner.mp3",
+            "volume": 0.627
+          }
+        }
+      ],
+      "title": "Landed For A While"
+    },
+    "dissembarked_at_bv": {
+      "kind": "beat",
+      "title": "Dissembarked At Bv",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Disembark and approach Bardin’s Vice on foot."
+        }
+      ]
+    },
+    "git_scanner_from_ship": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "When the ship has landed on the pad, approach its cargo bay at the back to receive your advanced scanner."
+        },
+        {
+          "type": "set",
+          "variable": "mission2_scans_armed",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/scanner door plus thow.mp3",
+            "volume": 0.248
+          }
+        }
+      ],
+      "title": "Git Scanner From Ship"
+    },
+    "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon": {
+      "kind": "fork",
+      "title": "Choose Aiabiko solar briefing",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Check the operational windows and choose your next survey location."
+        }
+      ]
+    },
+    "wait_for_music_return": {
+      "kind": "wait",
+      "title": "Wait For Music Return",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Continue to Mount Zoor."
+        }
+      ]
+    },
+    "back_in_ship_after_disembark": {
+      "kind": "beat",
+      "title": "Back In Ship After Disembark",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take off and continue to Mount Zoor."
+        }
+      ]
+    },
+    "solar_briefing_mountain_dawn": {
+      "kind": "beat",
+      "title": "Mountain window — dawn",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "The window to enter and investigate Mount Zoor has just opened. Locate the mountain and make your approach."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/up to you Dawn at the mountain now.mp3",
+            "volume": 0.498
+          }
+        }
+      ]
+    },
+    "solar_briefing_mountain_late": {
+      "kind": "beat",
+      "title": "Mountain window — move quickly",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "The window to enter and investigate Mount Zoor is closing. Locate the mountain quickly and make your approach."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/It is up to you now - Mid day so Go fast.mp3",
+            "volume": 0.508
+          }
+        }
+      ]
+    },
+    "solar_briefing_canyon_open": {
+      "kind": "beat",
+      "title": "Canyon window open",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "The window to enter and investigate The Ayasai Canyon site is open. Locate the canyon and make your approach."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/Its up to you now - wait for dawn at mountain canyon is open now.mp3",
+            "volume": 0.505
+          }
+        }
+      ]
+    },
+    "solar_briefing_wait": {
+      "kind": "beat",
+      "title": "Prepare and wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "It’s currently the middle of night at Mount Zoor. Only a madman would attempt to ascend it in the dark. You will have to wait until Dawn. And it’s still day at the canyon. You must wait for the cover of night to enter it. While you wait... Aiabiko 9 a has tons of lush oasis with plant life. Scanning all 6 of its life forms will yield you several million credits."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/now its up to you Night at Mountain day at canyon so time to wait.mp3",
+            "volume": 0.495
+          }
+        }
+      ]
+    },
+    "does_the_secure_sample_container_have_a_high_security_rating_2_or_3": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Inspect the secure sample container. Press CTRL+A if its security level is 2 or 3."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/4 press ctrl A of the security badhe is lev 2 or 3.mp3",
+            "volume": 0.638
+          }
+        }
+      ]
+    },
+    "gather_all_the_other_samples_in_both_domes_if_there_are_any_lab_personal_stnn_them_and_take_their_security_credentials": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Secure both research domes and collect all accessible samples. Press CTRL+A when complete."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/5 pres ctrl a when you have both domes secured.mp3",
+            "volume": 0.688
+          }
+        }
+      ]
+    },
+    "we_must_turn_off_the_alarms_in_the_lab_there_is_a_door_into_a_hallway_take_it_at_the_end_there_well_a_room_with_stairs": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Follow the hallway and go up the stairs to the nursery and secure it. Press CTRL+A when you have the nursery secured."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/6 press ctrl A when nursury controlleed.mp3",
+            "volume": 0.699
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "spycraft music",
+            "asset": "Mission 2/Spycraft deeper inside.mp3",
+            "volume": 0.196,
+            "loop": true
+          }
+        }
+      ]
+    },
+    "to_the_rght_of_where_you_entered_the_nursery_should_be_door_to_a_restricted_lab_secure_it_press_contrl_a_when_you_have": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Go right from the stairs where you cam into the Nursery. Then secure Restricted Lab B. Press CTRL+A when you have this lab secured."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/7 lab B secured.mp3",
+            "volume": 0.623
+          }
+        }
+      ]
+    },
+    "take_the_door_to_your_right_it_should_lead_to_spe_stairs_down_and_another_long_hallway_at_the_end_of_which_should_be_the_third_secure_lab_press_control_a_when_you_have_it_secure": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take the door to the right from the lab, downstairs through the long hallwasy, and secure Restricted Lab C. Press CTRL+A when you have it secured."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/8 Lab c secured.mp3",
+            "volume": 0.562
+          }
+        }
+      ]
+    },
+    "great_move_straight_through_l_shaped_hallway_into_a_big_room_with_1_door_now_when_you_go_through_the_door_keep_low_and_follow_the_wall_on_your_left_side_around_the_next_corner_should_be_the_controls_for_the_alams_and_security_badges_shut_them_both_down": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Take the door opposite from where you entered the lab. Follow the L-shaped hallway, go through the door on the right side, keep left and disable the alarms and ID scanners. Press CTRL+A when you have them disabled."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/9 L shaped hallway and security shut down.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "ok_make_you_way_back_to_the_main_research_dome_where_you_first_entered_press_control_a_when_you_ve_secured_the_sample": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Confirm that you remember the route back to the research dome where the secure sample container is. Press CTRL+A when ready."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/10 press ctrp A if you remember the way back.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "great_work_commander_make_your_way_back_to_your_ship_get_back_into_orbit_and_set_a_course_for_earth_abraham_lincoln_station": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Run back to the secure sample container in the main research dome. Start the container-opening sequence, then press CTRL+A immediately."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/11 run back and ctrl A as soon as you started the canister opening sequence.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "another_left_nursery_halway_stair": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Run back to the power station, start the power-down sequence, then run back to the sample container, take the sample and exit the base before all the power shuts down. Then return to your ship."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/12 go shut down the power, then grab sample and back to your ship.mp3",
+            "volume": 0.503
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "Sample currents",
+            "asset": "Mission 2/mountain currents.mp3",
+            "volume": 0.086,
+            "loop": true
+          }
+        }
+      ]
+    },
+    "hallway_left_central_resarch_dome": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Set course for Sol and Abraham Lincoln station."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/13 great work, set a course for Sol and ab linc station.mp3",
+            "volume": 0.498
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "spycraft music"
+          }
+        }
+      ]
+    },
+    "outside_the_main_research_dome_area": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Enter and secure access to the primary research dome."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/3 press control a when secured access to dome 1.mp3",
+            "volume": 0.498
+          }
+        }
+      ]
+    },
+    "sol_song": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Continue to Sol and dock at Abraham Lincoln."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Sol song.mp3",
+            "volume": 0.224
+          }
+        }
+      ]
+    },
+    "all_aiabiko_scans_complete": {
+      "kind": "checkpoint",
+      "checkpoint_id": "mission2_all_scans_complete",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Return to your ship and wait in orbit for further instructions."
+        },
+        {
+          "type": "set",
+          "variable": "mission2_mountain_success_recorded",
+          "value": true
+        },
+        {
+          "type": "set",
+          "variable": "mission2_canyon_success_recorded",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/all complete wait in orbit.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "canyon_survey_complete": {
+      "kind": "checkpoint",
+      "checkpoint_id": "mission2_canyon_complete",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Complete the remaining survey scans on Mount Zoor."
+        },
+        {
+          "type": "set",
+          "variable": "mission2_canyon_success_recorded",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/first mission survey succes.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "mountain_survey_complete": {
+      "kind": "checkpoint",
+      "checkpoint_id": "Mission2_mountain_complete",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Complete the remaining survey scans in Ayasai Canyon."
+        },
+        {
+          "type": "set",
+          "variable": "mission2_mountain_success_recorded",
+          "value": true
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/first mission survey succes.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "on_foot_mountain_area": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Use your scanner to locate the remaining anomalies on Mount Zoor."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "set_layer_volume",
+            "layer": "environment.bikomusic01.aiabiko_music_vibe",
+            "volume": 0.049,
+            "transition_seconds": 4.0
+          }
+        }
+      ]
+    },
+    "wait_for_locations_choices_and_relevant_audio_messages": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Continue to Ayasai Canyon."
+        }
+      ]
+    },
+    "wait_for_odin": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Wait for Muni’s reply, this would be an excellent moment for a coffee or toilet break. Muni’s investigation will take about 5 minutes. Or if you want to continue right away initiate super cruise."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/wait fir Ravi or return to earth.mp3",
+            "volume": 0.23
+          }
+        }
+      ]
+    },
+    "fsd_plot_to_earth": {
+      "kind": "fork",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Wait for Muni’s reply, this would be an excellent moment for a coffee or toilet break. Muni’s investigation will take about 5 minutes. Or if you want to continue right away initiate super cruise."
+        }
+      ]
+    },
+    "wait_for_sol_finish": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Continue to Sol and dock at Abraham Lincoln."
+        }
+      ]
+    },
+    "glad_you_waited": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Travel to Aiabiko 3 and approach Dewan Cultivation Range while remaining unseen."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/1 we need you to head for Dewan Agro station.mp3",
+            "volume": 1.0
+          }
+        }
+      ]
+    },
+    "exit_super_cruise_at_aiabiko_3": {
+      "kind": "checkpoint",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Keep the range at a +/- 52 degree heading and land about 500 meters from the two main research domes. Use a Maverick Suit for this! Then switch to on-foot and approach the domes without being spotted."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/2 on supercruise exit at aiibiko 3.mp3",
+            "volume": 1.0
+          }
+        }
+      ],
+      "checkpoint_id": "EXIT_SUPER_CRUISE_AT_AIABIKO_3"
+    },
+    "wait_for_spycraft_mission": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Wait for Muni’s reply, this would be an excellent moment for a coffee or toilet break. Muni’s investigation will take about 5 minutes. Or if you want to continue right away initiate super cruise."
+        }
+      ]
+    },
+    "sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Sell your samples to the bartender at Abraham Lincoln. And use this secure link to file your missions report: https://florianrooz.nl/mission-02-report/"
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "dialogue",
+            "asset": "Mission 2/spycraft spatila/final message.mp3",
+            "volume": 0.306
+          }
+        },
+        {
+          "type": "emit",
+          "channel": "clipboard",
+          "payload": {
+            "text": "Please use this link to our secure mission reporting system: \n\nhttps://florianrooz.nl/mission-02-report/"
+          }
+        }
+      ]
+    },
+    "sold_samples_at_bar": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Complete the secure mission report using the copied link, then undock and exit the station like a boss."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "stop_layer",
+            "layer": "Sample currents"
+          }
+        }
+      ]
+    },
+    "finish_mission_2": {
+      "kind": "beat",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Mission complete."
+        }
+      ]
+    },
+    "wait_for_spy_craft_music": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Press CTRL+A when safely inside the primary research dome."
+        },
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "spycraft music",
+            "asset": "Mission 2/Spycraft getting inside.mp3",
+            "volume": 0.199,
+            "loop": true
+          }
+        }
+      ]
+    },
+    "wait_for_mesage": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Stand by for final instructions."
+        }
+      ]
+    },
+    "wait_for_ravi_succes_message_go_to_sol": {
+      "kind": "checkpoint",
+      "checkpoint_id": "WAIT_FOR_RAVI_SUCCES_MESSAGE_GO_TO_SOL",
+      "on_enter": [
+        {
+          "type": "next_step",
+          "text": "Remain aboard and await confirmation."
+        }
+      ]
+    },
+    "wait_for_action_music": {
+      "kind": "wait",
+      "on_enter": [
+        {
+          "type": "emit",
+          "channel": "audio",
+          "payload": {
+            "action": "play_layer",
+            "layer": "spycraft music",
+            "asset": "Mission 2/Midnight Protocol.mp3",
+            "volume": 0.197
+          }
+        }
+      ]
+    }
+  },
+  "edges": [
+    {
+      "id": "start_to_aiabiko_9a_entered",
+      "from": "underway_to_mission_activity_choice_now",
+      "to": "aiabiko_9a_entered",
+      "when": {
+        "signal": "journal.Liftoff"
+      }
+    },
+    {
+      "id": "aiabiko_9a_entered_to_mountain_climb_area",
+      "from": "aiabiko_locations_choices",
+      "to": "mountain_climb_area",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "eq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "eq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 23.67304,
+              "longitude": 68.620636,
+              "radius_m": 5080.0,
+              "body_radius_m": 1851000.0,
+              "max_altitude_m": 690.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mountain_climb_area_to_mountain_climb_area_exit",
+      "from": "on_foot_mountain_area",
+      "to": "mountain_climb_area_exit",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.Embark"
+          },
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 23.67304,
+              "longitude": 68.620636,
+              "radius_m": 3080.0,
+              "body_radius_m": 1851000.0,
+              "max_altitude_m": 690.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mountain_climb_area_direct_embark_fallback",
+      "from": "mountain_climb_area",
+      "to": "mountain_climb_area_exit",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.Embark"
+          },
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 23.67304,
+              "longitude": 68.620636,
+              "radius_m": 3080.0,
+              "body_radius_m": 1851000.0,
+              "max_altitude_m": 690.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "aiabiko_9a_entered_to_fork",
+      "from": "aiabiko_9a_entered",
+      "to": "aiabiko_locations_choices",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "fork_to_cave_arrival",
+      "from": "aiabiko_locations_choices",
+      "to": "cave_arrival",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 16.287083,
+              "longitude": 169.553436,
+              "radius_m": 2000.0,
+              "body_radius_m": 1852000.0,
+              "max_altitude_m": 500.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mountain_climb_area_exit_to_fork",
+      "from": "mountain_climb_area_exit",
+      "to": "wait_for_locations_choices_and_relevant_audio_messages",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.Liftoff"
+          },
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 23.67304,
+              "longitude": 68.620636,
+              "radius_m": 3080.0,
+              "body_radius_m": 1851000.0,
+              "max_altitude_m": 690.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "waiting_on_take_off_from_cave_to_aiabiko_locations_choices",
+      "from": "waiting_on_take_off_from_cave",
+      "to": "wait_for_music_return",
+      "when": {
+        "signal": "journal.Liftoff"
+      }
+    },
+    {
+      "id": "wait_2_to_enter_sol_mission_2_start",
+      "from": "wait_2",
+      "to": "enter_sol_mission_2_start",
+      "when": {
+        "elapsed_seconds": 15.0
+      }
+    },
+    {
+      "id": "start_to_wait_2",
+      "from": "start",
+      "to": "wait_2",
+      "when": {
+        "path": "world.location.system",
+        "op": "ieq",
+        "value": "Sol"
+      }
+    },
+    {
+      "id": "enter_sol_mission_2_start_to_call_acccpted_com_to_beacon_to_talk_secure",
+      "from": "enter_sol_mission_2_start",
+      "to": "call_acccpted_com_to_beacon_to_talk_secure",
+      "when": {
+        "signal": "control.answer"
+      }
+    },
+    {
+      "id": "call_acccpted_com_to_beacon_to_talk_secure_to_arrived_at_secure_beacon_wait",
+      "from": "call_acccpted_com_to_beacon_to_talk_secure",
+      "to": "beacon_arrival_wait",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.SupercruiseDestinationDrop"
+          },
+          {
+            "any": [
+              {
+                "path": "signal.data.Type",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              },
+              {
+                "path": "signal.data.Type_Localised",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              },
+              {
+                "path": "world.status.Destination.Name",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              },
+              {
+                "path": "world.status.Destination.Name_Localised",
+                "op": "ieq",
+                "value": "Unregistered Comms Beacon"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "beacon_arrival_wait_to_can_i_count_on_you",
+      "from": "beacon_arrival_wait",
+      "to": "can_i_count_on_you",
+      "when": {
+        "elapsed_seconds": 40.0
+      }
+    },
+    {
+      "id": "can_i_count_on_you_to_mission_2_briefing",
+      "from": "can_i_count_on_you",
+      "to": "mission_2_briefing",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "mission_2_briefing_to_wait_for_welcome_aiabiko",
+      "from": "mission_2_briefing",
+      "to": "wait_for_welcome_aiabiko",
+      "when": {
+        "path": "world.location.system",
+        "op": "ieq",
+        "value": "Aiabiko"
+      }
+    },
+    {
+      "id": "wait_for_welcome_aiabiko_to_welcome_to_aiabiko_go_to_bards_vice",
+      "from": "wait_for_welcome_aiabiko",
+      "to": "welcome_to_aiabiko_go_to_bards_vice",
+      "when": {
+        "elapsed_seconds": 15.0
+      }
+    },
+    {
+      "id": "welcome_to_aiabiko_go_to_bards_vice_to_close_to_bardins_vice",
+      "from": "welcome_to_aiabiko_go_to_bards_vice",
+      "to": "on_route_to_bardins_vice",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "eq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "eq",
+            "value": "Aiabiko 9 a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "on_route_to_bardins_vice_to_landed_near_bardins_vice",
+      "from": "on_route_to_bardins_vice",
+      "to": "now_near_bardins_vice",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 11.963606,
+              "longitude": 172.884628,
+              "radius_m": 7000.0,
+              "body_radius_m": 1852000.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "landed_near_bardins_vice_to_landed_near_bv",
+      "from": "now_near_bardins_vice",
+      "to": "landed_near_bv",
+      "when": {
+        "signal": "journal.Touchdown"
+      }
+    },
+    {
+      "id": "landed_near_bv_to_beat",
+      "from": "landed_near_bv",
+      "to": "landed_for_a_while",
+      "when": {
+        "elapsed_seconds": 120.0
+      }
+    },
+    {
+      "id": "landed_near_bv_to_dissembarked_at_bv",
+      "from": "landed_near_bv",
+      "to": "dissembarked_at_bv",
+      "when": {
+        "signal": "journal.Disembark"
+      }
+    },
+    {
+      "id": "dissembarked_at_bv_to_landed_for_a_while",
+      "from": "dissembarked_at_bv",
+      "to": "landed_for_a_while",
+      "when": {
+        "elapsed_seconds": 60.0
+      }
+    },
+    {
+      "id": "git_scanner_from_ship_to_git_scanner_from_ship",
+      "from": "landed_for_a_while",
+      "to": "git_scanner_from_ship",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 11.963906,
+              "longitude": 172.884628,
+              "radius_m": 20.0,
+              "body_radius_m": 1850881.375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "git_scanner_from_ship_to_waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "from": "git_scanner_from_ship",
+      "to": "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "when": {
+        "elapsed_seconds": 30.0
+      }
+    },
+    {
+      "id": "wait_for_music_return_to_aiabiko_locations_choices",
+      "from": "wait_for_music_return",
+      "to": "aiabiko_locations_choices",
+      "when": {
+        "elapsed_seconds": 60
+      }
+    },
+    {
+      "id": "cave_arrival_to_back_in_ship_after_disembark",
+      "from": "cave_arrival",
+      "to": "back_in_ship_after_disembark",
+      "when": {
+        "signal": "journal.Embark"
+      }
+    },
+    {
+      "id": "back_in_ship_after_disembark_to_waiting_on_take_off_from_cave",
+      "from": "back_in_ship_after_disembark",
+      "to": "waiting_on_take_off_from_cave",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "solar_choice_mountain_dawn",
+      "from": "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "to": "solar_briefing_mountain_dawn",
+      "priority": 40,
+      "when": {
+        "all": [
+          {
+            "path": "world.time.gates.mountain_window.open",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "world.time.sites.mount_zoor.local_hour",
+            "op": "lt",
+            "value": 4.8
+          }
+        ]
+      }
+    },
+    {
+      "id": "solar_choice_mountain_late",
+      "from": "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "to": "solar_briefing_mountain_late",
+      "priority": 30,
+      "when": {
+        "path": "world.time.gates.mountain_window.open",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "solar_choice_canyon_open",
+      "from": "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "to": "solar_briefing_canyon_open",
+      "priority": 20,
+      "when": {
+        "path": "world.time.gates.canyon_window.open",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "solar_choice_wait",
+      "from": "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon",
+      "to": "solar_briefing_wait",
+      "priority": -100,
+      "when": {
+        "all": [
+          {
+            "path": "world.time.gates.mountain_window.open",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "path": "world.time.gates.canyon_window.open",
+            "op": "eq",
+            "value": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "solar_briefing_mountain_dawn_to_underway",
+      "from": "solar_briefing_mountain_dawn",
+      "to": "underway_to_mission_activity_choice_now",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "solar_briefing_mountain_late_to_underway",
+      "from": "solar_briefing_mountain_late",
+      "to": "underway_to_mission_activity_choice_now",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "solar_briefing_canyon_open_to_underway",
+      "from": "solar_briefing_canyon_open",
+      "to": "underway_to_mission_activity_choice_now",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "solar_briefing_wait_to_underway",
+      "from": "solar_briefing_wait",
+      "to": "underway_to_mission_activity_choice_now",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "press_control_a_of_it_has_a_high_security_rating",
+      "from": "does_the_secure_sample_container_have_a_high_security_rating_2_or_3",
+      "to": "gather_all_the_other_samples_in_both_domes_if_there_are_any_lab_personal_stnn_them_and_take_their_security_credentials",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "press_control_a_when_you_secure_both_domes_and_all_the_samples_except_the_one_in_the_secure_pod",
+      "from": "gather_all_the_other_samples_in_both_domes_if_there_are_any_lab_personal_stnn_them_and_take_their_security_credentials",
+      "to": "we_must_turn_off_the_alarms_in_the_lab_there_is_a_door_into_a_hallway_take_it_at_the_end_there_well_a_room_with_stairs",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "press_control_a_once_you_ve_reached_the_nursery_and_secured_it",
+      "from": "we_must_turn_off_the_alarms_in_the_lab_there_is_a_door_into_a_hallway_take_it_at_the_end_there_well_a_room_with_stairs",
+      "to": "to_the_rght_of_where_you_entered_the_nursery_should_be_door_to_a_restricted_lab_secure_it_press_contrl_a_when_you_have",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "pressed_control_a_when_restricted_inner_lab_b_secured",
+      "from": "to_the_rght_of_where_you_entered_the_nursery_should_be_door_to_a_restricted_lab_secure_it_press_contrl_a_when_you_have",
+      "to": "take_the_door_to_your_right_it_should_lead_to_spe_stairs_down_and_another_long_hallway_at_the_end_of_which_should_be_the_third_secure_lab_press_control_a_when_you_have_it_secure",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "pressed_control_a_for_securing_lab_c",
+      "from": "take_the_door_to_your_right_it_should_lead_to_spe_stairs_down_and_another_long_hallway_at_the_end_of_which_should_be_the_third_secure_lab_press_control_a_when_you_have_it_secure",
+      "to": "great_move_straight_through_l_shaped_hallway_into_a_big_room_with_1_door_now_when_you_go_through_the_door_keep_low_and_follow_the_wall_on_your_left_side_around_the_next_corner_should_be_the_controls_for_the_alams_and_security_badges_shut_them_both_down",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "pressed_conrtol_a_for_shutting_of_security_system_succes",
+      "from": "great_move_straight_through_l_shaped_hallway_into_a_big_room_with_1_door_now_when_you_go_through_the_door_keep_low_and_follow_the_wall_on_your_left_side_around_the_next_corner_should_be_the_controls_for_the_alams_and_security_badges_shut_them_both_down",
+      "to": "ok_make_you_way_back_to_the_main_research_dome_where_you_first_entered_press_control_a_when_you_ve_secured_the_sample",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "there_is_only_one_door_there_move_through_then_keep_left_to_around_the_corrner_should_be_the_control_for_the_alarm_and_id_sht_it_off",
+      "from": "ok_make_you_way_back_to_the_main_research_dome_where_you_first_entered_press_control_a_when_you_ve_secured_the_sample",
+      "to": "great_work_commander_make_your_way_back_to_your_ship_get_back_into_orbit_and_set_a_course_for_earth_abraham_lincoln_station",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "around_the_corrner_should_be_the_control_for_the_alarm_and_id_sht_it_off_to_alarms_and_id_off",
+      "from": "great_work_commander_make_your_way_back_to_your_ship_get_back_into_orbit_and_set_a_course_for_earth_abraham_lincoln_station",
+      "to": "another_left_nursery_halway_stair",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "pressedn_control_a_when_you_re_inside_dome_1",
+      "from": "wait_for_spy_craft_music",
+      "to": "does_the_secure_sample_container_have_a_high_security_rating_2_or_3",
+      "when": {
+        "elapsed_seconds": 60.0
+      }
+    },
+    {
+      "id": "alarms_and_id_off_head_back_to_good_now_back_around_the_corner_to_the_secure_lab",
+      "from": "wait_for_action_music",
+      "to": "wait_for_ravi_succes_message_go_to_sol",
+      "when": {
+        "signal": "journal.Embark"
+      }
+    },
+    {
+      "id": "mountain_climb_area_to_all_aiabiko_scans_complete",
+      "from": "aiabiko_locations_choices",
+      "to": "all_aiabiko_scans_complete",
+      "when": {
+        "variable": "scan.mission2_aiabiko_anomalies.complete",
+        "op": "eq",
+        "value": true
+      },
+      "priority": 220
+    },
+    {
+      "id": "aiabiko_locations_choices_to_canyon_survey_complete",
+      "from": "aiabiko_locations_choices",
+      "to": "canyon_survey_complete",
+      "when": {
+        "all": [
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.canyon_01_big_singing_rocks.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.canyon_02_kissing_rocks.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.canyon_03_percolating_rocks.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.canyon_04_flower_circle.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.canyon_05_broken_stone.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission2_canyon_success_recorded",
+            "op": "ne",
+            "value": true
+          }
+        ]
+      },
+      "priority": 200
+    },
+    {
+      "id": "canyon_survey_complete_to_aiabiko_locations_choices",
+      "from": "canyon_survey_complete",
+      "to": "aiabiko_locations_choices",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "aiabiko_locations_choices_to_mission2_mountain_complete",
+      "from": "aiabiko_locations_choices",
+      "to": "mountain_survey_complete",
+      "when": {
+        "all": [
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_01_heroes_ledge.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_02_kas_courage.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_03_ba_ka_valley.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_04_bas_circle.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_05_whisperers_peak.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_06_tenacious_rest.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "scan.mission2_aiabiko_anomalies.mountain_07_darkness_fall.complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "variable": "mission2_mountain_success_recorded",
+            "op": "ne",
+            "value": true
+          }
+        ]
+      },
+      "priority": 200
+    },
+    {
+      "id": "mission2_mountain_complete_to_aiabiko_locations_choices",
+      "from": "mountain_survey_complete",
+      "to": "aiabiko_locations_choices",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "mountain_climb_area_to_on_foot_mountain_area",
+      "from": "mountain_climb_area",
+      "to": "on_foot_mountain_area",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 9 a"
+          },
+          {
+            "geofence": {
+              "latitude": 23.67304,
+              "longitude": 68.620636,
+              "radius_m": 5080.0,
+              "body_radius_m": 1851000.0,
+              "max_altitude_m": 690.0
+            }
+          },
+          {
+            "any": [
+              {
+                "signal": "journal.Disembark"
+              },
+              {
+                "path": "world.vehicle",
+                "op": "eq",
+                "value": "on_foot"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "wait_for_locations_choices_and_relevant_audio_messages_to_aiabiko_locations_choices",
+      "from": "wait_for_locations_choices_and_relevant_audio_messages",
+      "to": "aiabiko_locations_choices",
+      "when": {
+        "elapsed_seconds": 50.0
+      }
+    },
+    {
+      "id": "all_aiabiko_scans_complete_to_wait_for_odin",
+      "from": "all_aiabiko_scans_complete",
+      "to": "wait_for_odin",
+      "when": {
+        "elapsed_seconds": 200
+      }
+    },
+    {
+      "id": "fsd_plot_to_earth_to_sol_song",
+      "from": "fsd_plot_to_earth",
+      "to": "wait_for_spycraft_mission",
+      "when": {
+        "signal": "journal.StartJump"
+      }
+    },
+    {
+      "id": "wait_for_odin_to_fsd_plot_to_earth",
+      "from": "wait_for_odin",
+      "to": "fsd_plot_to_earth",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "wait_for_sol_finish_to_sol_song",
+      "from": "wait_for_sol_finish",
+      "to": "sol_song",
+      "when": {
+        "elapsed_seconds": 7
+      }
+    },
+    {
+      "id": "glad_you_waited_to_exit_super_cruise_at_aiabiko_3",
+      "from": "glad_you_waited",
+      "to": "exit_super_cruise_at_aiabiko_3",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.SupercruiseExit"
+          },
+          {
+            "path": "signal.data.StarSystem",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "signal.data.Body",
+            "op": "ieq",
+            "value": "Aiabiko 3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "exit_super_cruise_at_aiabiko_3_to_outside_the_main_research_dome_area",
+      "from": "exit_super_cruise_at_aiabiko_3",
+      "to": "outside_the_main_research_dome_area",
+      "when": {
+        "all": [
+          {
+            "path": "world.location.system",
+            "op": "ieq",
+            "value": "Aiabiko"
+          },
+          {
+            "path": "world.location.body",
+            "op": "ieq",
+            "value": "Aiabiko 3"
+          },
+          {
+            "path": "world.location.settlement",
+            "op": "ieq",
+            "value": "Dewan Cultivation Range"
+          },
+          {
+            "geofence": {
+              "latitude": 5.039594,
+              "longitude": -70.272995,
+              "radius_m": 250.0,
+              "body_radius_m": 2204268.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fsd_plot_to_earth_to_wait_for_spycraft_mission",
+      "from": "fsd_plot_to_earth",
+      "to": "wait_for_spycraft_mission",
+      "when": {
+        "elapsed_seconds": 350.0
+      }
+    },
+    {
+      "id": "wait_for_spycraft_mission_to_glad_you_waited",
+      "from": "wait_for_spycraft_mission",
+      "to": "glad_you_waited",
+      "when": {
+        "always": true
+      }
+    },
+    {
+      "id": "hallway_left_central_resarch_dome_to_wait_for_sol_finish",
+      "from": "hallway_left_central_resarch_dome",
+      "to": "wait_for_sol_finish",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.StartJump"
+          },
+          {
+            "path": "signal.data.JumpType",
+            "op": "ieq",
+            "value": "Hyperspace"
+          },
+          {
+            "path": "signal.data.StarSystem",
+            "op": "ieq",
+            "value": "Sol"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sol_song_to_beat",
+      "from": "sol_song",
+      "to": "wait_for_mesage",
+      "when": {
+        "signal": "journal.Docked"
+      }
+    },
+    {
+      "id": "sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship_to_beat",
+      "from": "sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship",
+      "to": "sold_samples_at_bar",
+      "when": {
+        "all": [
+          {
+            "signal": "journal.SellMicroResources"
+          },
+          {
+            "path": "signal.data.TotalCount",
+            "op": "gt",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "sold_samples_at_bar_to_beat",
+      "from": "sold_samples_at_bar",
+      "to": "finish_mission_2",
+      "when": {
+        "signal": "journal.Undocked"
+      }
+    },
+    {
+      "id": "wait_for_spy_craft_music_to_does_the_secure_sample_container_have_a_high_security_rating_2_or_3",
+      "from": "wait_for_spy_craft_music",
+      "to": "does_the_secure_sample_container_have_a_high_security_rating_2_or_3",
+      "when": {
+        "signal": "control.accept"
+      }
+    },
+    {
+      "id": "outside_the_main_research_dome_area_to_wait_for_spy_craft_music",
+      "from": "outside_the_main_research_dome_area",
+      "to": "wait_for_spy_craft_music",
+      "when": {
+        "elapsed_seconds": 66.0
+      }
+    },
+    {
+      "id": "wait_for_mesage_to_sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship",
+      "from": "wait_for_mesage",
+      "to": "sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship",
+      "when": {
+        "elapsed_seconds": 20.0
+      }
+    },
+    {
+      "id": "wait_for_ravi_succes_message_go_to_sol_to_hallway_left_central_resarch_dome",
+      "from": "wait_for_ravi_succes_message_go_to_sol",
+      "to": "hallway_left_central_resarch_dome",
+      "when": {
+        "elapsed_seconds": 20.0
+      }
+    },
+    {
+      "id": "another_left_nursery_halway_stair_to_wait_for_action_music",
+      "from": "another_left_nursery_halway_stair",
+      "to": "wait_for_action_music",
+      "when": {
+        "elapsed_seconds": 35.0
+      }
+    }
+  ],
+  "editor": {
+    "version": 1,
+    "layout": {
+      "nodes": {
+        "start": {
+          "x": 165.0,
+          "y": 129.0
+        },
+        "aiabiko_9a_entered": {
+          "x": 1020.0,
+          "y": 205.0
+        },
+        "mountain_climb_area": {
+          "x": 1355.0,
+          "y": 106.0
+        },
+        "mountain_climb_area_exit": {
+          "x": 1795.0,
+          "y": 257.0
+        },
+        "cave_arrival": {
+          "x": 1642.0,
+          "y": 383.0
+        },
+        "aiabiko_locations_choices": {
+          "x": 1058.0,
+          "y": 483.0
+        },
+        "waiting_on_take_off_from_cave": {
+          "x": 1679.0,
+          "y": 717.0
+        },
+        "enter_sol_mission_2_start": {
+          "x": 170.0,
+          "y": 395.0
+        },
+        "wait_2": {
+          "x": 171.0,
+          "y": 252.0
+        },
+        "call_acccpted_com_to_beacon_to_talk_secure": {
+          "x": 173.0,
+          "y": 528.0
+        },
+        "beacon_arrival_wait": {
+          "x": 179.0,
+          "y": 703.0
+        },
+        "can_i_count_on_you": {
+          "x": 448.0,
+          "y": 592.0
+        },
+        "mission_2_briefing": {
+          "x": 441.0,
+          "y": 417.0
+        },
+        "wait_for_welcome_aiabiko": {
+          "x": 442.0,
+          "y": 282.0
+        },
+        "welcome_to_aiabiko_go_to_bards_vice": {
+          "x": 465.0,
+          "y": 90.0
+        },
+        "on_route_to_bardins_vice": {
+          "x": 733.0,
+          "y": 248.0
+        },
+        "landed_near_bv": {
+          "x": 767.0,
+          "y": 611.0
+        },
+        "now_near_bardins_vice": {
+          "x": 754.0,
+          "y": 423.0
+        },
+        "landed_for_a_while": {
+          "x": 442.0,
+          "y": 723.0
+        },
+        "dissembarked_at_bv": {
+          "x": 847.0,
+          "y": 946.0
+        },
+        "git_scanner_from_ship": {
+          "x": 158.0,
+          "y": 964.0
+        },
+        "waited_have_scanner_time_of_day_dependant_message_about_mountain_or_canyon": {
+          "x": 537.0,
+          "y": 1106.0
+        },
+        "underway_to_mission_activity_choice_now": {
+          "x": 772.0,
+          "y": 87.0
+        },
+        "wait_for_music_return": {
+          "x": 1105.0,
+          "y": 747.0
+        },
+        "back_in_ship_after_disembark": {
+          "x": 1674.0,
+          "y": 542.0
+        },
+        "another_left_nursery_halway_stair": {
+          "x": 902.0,
+          "y": 2412.0
+        },
+        "hallway_left_central_resarch_dome": {
+          "x": 1170.0,
+          "y": 1698.0
+        },
+        "sol_song": {
+          "x": 1723.0,
+          "y": 1520.0
+        },
+        "solar_briefing_mountain_late": {
+          "x": 592.0,
+          "y": 1473.0
+        },
+        "solar_briefing_mountain_dawn": {
+          "x": 334.0,
+          "y": 1470.0
+        },
+        "all_aiabiko_scans_complete": {
+          "x": 1249.0,
+          "y": 1031.0
+        },
+        "canyon_survey_complete": {
+          "x": 1706.0,
+          "y": 876.0
+        },
+        "mountain_survey_complete": {
+          "x": 1665.0,
+          "y": 1034.0
+        },
+        "on_foot_mountain_area": {
+          "x": 1903.0,
+          "y": 85.0
+        },
+        "wait_for_locations_choices_and_relevant_audio_messages": {
+          "x": 1395.0,
+          "y": 254.0
+        },
+        "wait_for_odin": {
+          "x": 1296.0,
+          "y": 1202.0
+        },
+        "fsd_plot_to_earth": {
+          "x": 1082.0,
+          "y": 1345.0
+        },
+        "wait_for_sol_finish": {
+          "x": 1741.0,
+          "y": 1317.0
+        },
+        "solar_briefing_wait": {
+          "x": 161.0,
+          "y": 1330.0
+        },
+        "outside_the_main_research_dome_area": {
+          "x": 165.0,
+          "y": 1601.0
+        },
+        "does_the_secure_sample_container_have_a_high_security_rating_2_or_3": {
+          "x": 127.0,
+          "y": 1782.0
+        },
+        "gather_all_the_other_samples_in_both_domes_if_there_are_any_lab_personal_stnn_them_and_take_their_security_credentials": {
+          "x": 200.0,
+          "y": 1957.0
+        },
+        "we_must_turn_off_the_alarms_in_the_lab_there_is_a_door_into_a_hallway_take_it_at_the_end_there_well_a_room_with_stairs": {
+          "x": 232.0,
+          "y": 2115.0
+        },
+        "to_the_rght_of_where_you_entered_the_nursery_should_be_door_to_a_restricted_lab_secure_it_press_contrl_a_when_you_have": {
+          "x": 229.0,
+          "y": 2304.0
+        },
+        "take_the_door_to_your_right_it_should_lead_to_spe_stairs_down_and_another_long_hallway_at_the_end_of_which_should_be_the_third_secure_lab_press_control_a_when_you_have_it_secure": {
+          "x": 506.0,
+          "y": 2474.0
+        },
+        "great_move_straight_through_l_shaped_hallway_into_a_big_room_with_1_door_now_when_you_go_through_the_door_keep_low_and_follow_the_wall_on_your_left_side_around_the_next_corner_should_be_the_controls_for_the_alams_and_security_badges_shut_them_both_down": {
+          "x": 867.0,
+          "y": 1686.0
+        },
+        "ok_make_you_way_back_to_the_main_research_dome_where_you_first_entered_press_control_a_when_you_ve_secured_the_sample": {
+          "x": 852.0,
+          "y": 1887.0
+        },
+        "great_work_commander_make_your_way_back_to_your_ship_get_back_into_orbit_and_set_a_course_for_earth_abraham_lincoln_station": {
+          "x": 863.0,
+          "y": 2168.0
+        },
+        "glad_you_waited": {
+          "x": 545.0,
+          "y": 1600.0
+        },
+        "exit_super_cruise_at_aiabiko_3": {
+          "x": 538.0,
+          "y": 1754.0
+        },
+        "wait_for_spycraft_mission": {
+          "x": 857.0,
+          "y": 1493.0
+        },
+        "sell_your_samples_at_the_bar_the_barman_works_for_us_meanwhile_my_team_will_inspect_your_ship": {
+          "x": 1675.0,
+          "y": 1765.0
+        },
+        "sold_samples_at_bar": {
+          "x": 1684.0,
+          "y": 1983.0
+        },
+        "finish_mission_2": {
+          "x": 1480.0,
+          "y": 2143.0
+        },
+        "wait_for_spy_craft_music": {
+          "x": 505.0,
+          "y": 1928.0
+        },
+        "wait_for_mesage": {
+          "x": 1999.0,
+          "y": 1673.0
+        },
+        "wait_for_ravi_succes_message_go_to_sol": {
+          "x": 1140.0,
+          "y": 1507.0
+        },
+        "wait_for_action_music": {
+          "x": 1302.0,
+          "y": 2328.0
+        }
+      }
+    }
+  },
+  "navigators": [],
+  "solar_clocks": [
+    {
+      "id": "aiabiko_9a",
+      "title": "Aiabiko 9 a solar clock",
+      "system": "Aiabiko",
+      "body": "Aiabiko 9 a",
+      "solar_day_seconds": 333656.34481,
+      "direction": 1,
+      "anchor": {
+        "at_utc": "2026-09-05T04:00:00Z",
+        "longitude": 68.646286,
+        "local_hour": 6.0
+      }
+    }
+  ],
+  "solar_sites": [
+    {
+      "id": "mount_zoor",
+      "title": "Mount Zoor",
+      "clock": "aiabiko_9a",
+      "latitude": 23.676048,
+      "longitude": 68.646286
+    },
+    {
+      "id": "ayasai_canyon",
+      "title": "Ayasai Canyon",
+      "clock": "aiabiko_9a",
+      "latitude": 16.280235,
+      "longitude": 169.550751,
+      "anchor": {
+        "at_utc": "2026-09-06T19:53:38Z",
+        "longitude": 169.551559,
+        "local_hour": 0.0
+      }
+    },
+    {
+      "id": "bardins_vice",
+      "title": "Bardin's Vice",
+      "clock": "aiabiko_9a",
+      "latitude": 11.963906,
+      "longitude": 172.884628
+    }
+  ],
+  "time_gates": [
+    {
+      "id": "mountain_window",
+      "title": "Mount Zoor operational window",
+      "site": "mount_zoor",
+      "open_local_hour": 0.1,
+      "close_local_hour": 10.0
+    },
+    {
+      "id": "canyon_window",
+      "title": "Ayasai Canyon darkness window",
+      "site": "ayasai_canyon",
+      "open_local_hour": 12.0,
+      "close_local_hour": 0.0
+    }
+  ],
+  "time_events": [],
+  "scan_sets": [
+    {
+      "id": "mission2_aiabiko_anomalies",
+      "title": "Aiabiko anomaly survey",
+      "enabled_when": {
+        "variable": "mission2_scans_armed",
+        "op": "eq",
+        "value": true
+      },
+      "requires_control": "control.scanner",
+      "active_vehicles": [
+        "on_foot"
+      ],
+      "hold_seconds": 35.0,
+      "acquisition_asset": "on foot scanner pick up.mp3",
+      "acquisition_volume": 0.3,
+      "completion_asset": "On foot scan completed.mp3",
+      "completion_volume": 0.4,
+      "targets": [
+        {
+          "id": "canyon_01_big_singing_rocks",
+          "title": "Two Mysterious Big Singing Rocks",
+          "detection_zone": "detect_canyon_01_big_singing_rocks",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 16.280235,
+            "longitude": 169.550751,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "canyon_02_kissing_rocks",
+          "title": "Two Kissing Big Singing Rocks",
+          "detection_zone": "detect_canyon_02_kissing_rocks",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 16.276321,
+            "longitude": 169.549011,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "canyon_03_percolating_rocks",
+          "title": "Two Percolating Rocks",
+          "detection_zone": "detect_canyon_03_percolating_rocks",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 16.273972,
+            "longitude": 169.546875,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "canyon_04_flower_circle",
+          "title": "Glowing Flower Circle",
+          "detection_zone": "detect_canyon_04_flower_circle",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 16.27104,
+            "longitude": 169.545639,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "canyon_05_broken_stone",
+          "title": "Broken Stone",
+          "detection_zone": "detect_canyon_05_broken_stone",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 16.267462,
+            "longitude": 169.544281,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_01_heroes_ledge",
+          "title": "The Hero's Ledge",
+          "detection_zone": "detect_mountain_01_heroes_ledge",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.677385,
+            "longitude": 68.627121,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_02_kas_courage",
+          "title": "Ka's Courage",
+          "detection_zone": "detect_mountain_02_kas_courage",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.672895,
+            "longitude": 68.620476,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_03_ba_ka_valley",
+          "title": "Ba Ka Valley",
+          "detection_zone": "detect_mountain_03_ba_ka_valley",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.671549,
+            "longitude": 68.618378,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_04_bas_circle",
+          "title": "Ba's Circle",
+          "detection_zone": "detect_mountain_04_bas_circle",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.667028,
+            "longitude": 68.616051,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_05_whisperers_peak",
+          "title": "Whisperers Peak",
+          "detection_zone": "detect_mountain_05_whisperers_peak",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.663794,
+            "longitude": 68.614876,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_06_tenacious_rest",
+          "title": "Tenacious Rest",
+          "detection_zone": "detect_mountain_06_tenacious_rest",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.616856,
+            "longitude": 68.595497,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        },
+        {
+          "id": "mountain_07_darkness_fall",
+          "title": "Darkness Fall",
+          "detection_zone": "detect_mountain_07_darkness_fall",
+          "location": {
+            "system": "Aiabiko",
+            "body": "Aiabiko 9 a",
+            "latitude": 23.629684,
+            "longitude": 68.59903,
+            "core_radius_m": 25.0,
+            "body_radius_m": 1850881.375
+          }
+        }
+      ]
+    }
+  ]
+}

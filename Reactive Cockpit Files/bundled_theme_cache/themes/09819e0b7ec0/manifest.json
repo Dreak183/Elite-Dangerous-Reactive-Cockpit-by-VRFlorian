@@ -1,0 +1,12 @@
+{
+  "theme": "Kestrel (Heart eater) Reactive Cockpit - Imminent Destruction",
+  "role": "package",
+  "captured_at": "2026-08-19T16:08:21",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

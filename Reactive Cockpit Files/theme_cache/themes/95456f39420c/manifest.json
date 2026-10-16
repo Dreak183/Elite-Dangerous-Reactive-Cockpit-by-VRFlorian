@@ -1,0 +1,12 @@
+{
+  "theme": "Type 11 Reactive Cockpit - Imminent destruction",
+  "role": "critical",
+  "captured_at": "2026-08-17T12:58:46",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

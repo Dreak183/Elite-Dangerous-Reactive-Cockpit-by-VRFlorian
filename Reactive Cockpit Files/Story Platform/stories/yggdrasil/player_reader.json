@@ -1,0 +1,10 @@
+{
+  "schema": "platform.player-reader-profile.v1",
+  "graph_id": "yggdrasil",
+  "title": "Yggdrasil — Living World",
+  "default_clue": "Living World is active. No mission is currently selected.",
+  "node_clues": {
+    "start": "Living World is active. No mission is currently selected.",
+    "living_world": "Living World is active. No mission is currently selected."
+  }
+}

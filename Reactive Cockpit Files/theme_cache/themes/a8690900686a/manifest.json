@@ -1,0 +1,12 @@
+{
+  "theme": "Caspian Reactive Cockpit Deep danger",
+  "role": "package",
+  "captured_at": "2026-08-18T11:46:51",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

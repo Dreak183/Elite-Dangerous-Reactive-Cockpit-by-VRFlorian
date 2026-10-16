@@ -1,0 +1,12 @@
+{
+  "theme": "Python MKII - Reactive Cockpit Combat",
+  "role": "package",
+  "captured_at": "2026-08-18T10:35:29",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

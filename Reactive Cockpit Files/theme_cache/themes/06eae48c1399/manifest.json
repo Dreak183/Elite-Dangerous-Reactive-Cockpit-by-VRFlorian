@@ -1,0 +1,12 @@
+{
+  "theme": "VRFlo Reactive Cockpit - Combat",
+  "role": "combat",
+  "captured_at": "2026-08-19T12:22:21",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

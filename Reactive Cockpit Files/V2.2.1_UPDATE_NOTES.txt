@@ -1,0 +1,28 @@
+VRFLORIAN REACTIVE COCKPIT — VERSION 2.2.1 OPEN-TEST UPDATE
+==========================================================
+
+This is a small in-place update for V2.2.0.
+
+Changes
+-------
+- Fixes the Aiabiko atmosphere music remaining active after Elite stops
+  publishing planetary altitude/surface coordinates above the authored limit.
+- Installs Florian's final Mission 2 objective wording and audio-level tweaks.
+- Names Muni consistently in all three copies of the post-survey waiting clue.
+- Removes the obsolete Mission 2 completion-triumph playback.
+- Keeps Mission 2 progress compatible with V2.2.0.
+- Repairs the PowerShell updater's process-check parameter for future updates.
+
+Preserved by the updater
+------------------------
+- Mission progress and all Story Platform runtime state
+- Cockpit assignments and machine-specific configuration
+- Logs and user data
+- Story media
+
+Validation
+----------
+- Mission 2: valid — 59 nodes / 69 edges
+- Regression suite: 19 tests passed
+- Runtime audit: 12/12 survey targets completed; no failed presentation
+  commands and no missing-media events

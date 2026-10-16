@@ -1,0 +1,12 @@
+{
+  "theme": "Ship Launched Fighter - Reactive Cockpit Combat",
+  "role": "aux_fighter_combat",
+  "captured_at": "2026-08-22T16:18:22",
+  "files": [
+    "Advanced.ini",
+    "Startup-Profile.ini",
+    "SuitHud.ini",
+    "XML-Profile.ini",
+    "ThemeSettings.json"
+  ]
+}

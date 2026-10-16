@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform.story-graph.v1",
+  "title": "Reactive Cockpit Story Graph",
+  "type": "object",
+  "required": ["schema", "id", "version", "title", "start", "nodes", "edges"],
+  "properties": {
+    "schema": {"const": "platform.story-graph.v1"},
+    "id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "start": {"type": "string", "minLength": 1},
+    "recovery_when": {"type": "object", "description": "Optional global predicate that rolls the graph back to its latest checkpoint."},
+    "variables": {"type": "object"},
+    "editor": {
+      "type": "object",
+      "description": "Optional authoring metadata ignored by the runtime.",
+      "properties": {
+        "version": {"type": "integer", "minimum": 1},
+        "layout": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "required": ["x", "y"],
+                "properties": {
+                  "x": {"type": "number"},
+                  "y": {"type": "number"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "environments": {
+      "type": "array",
+      "description": "Independent reactive environments running beside story flow.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "layers"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "zone_type": {"enum": ["surface", "event", "detection"]},
+          "enabled": {"type": "boolean"},
+          "active_vehicles": {
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": {"enum": ["on_foot", "srv", "ship", "fighter"]}
+          },
+          "rearm": {"enum": ["after_exit", "immediate", "never"]},
+          "requires_control": {"type": "string", "pattern": "^control\\."},
+          "time_gate": {"type": "string", "minLength": 1},
+          "time_gate_state": {"enum": ["open", "closed"]},
+          "exit_hold_seconds": {"type": "number", "minimum": 0},
+          "enabled_when": {"type": "object"},
+          "entry_when": {"type": "object"},
+          "exit_when": {"type": "object"},
+          "location": {
+            "type": "object",
+            "properties": {
+              "system": {"type": "string", "minLength": 1},
+              "body": {"type": "string", "minLength": 1},
+              "station": {"type": "string", "minLength": 1},
+              "settlement": {"type": "string", "minLength": 1},
+              "latitude": {"type": "number", "minimum": -90, "maximum": 90},
+              "longitude": {"type": "number", "minimum": -180, "maximum": 180},
+              "entry_radius_m": {"type": "number", "exclusiveMinimum": 0},
+              "exit_radius_m": {"type": "number", "exclusiveMinimum": 0},
+              "core_radius_m": {"type": "number", "minimum": 0},
+              "body_radius_m": {"type": "number", "exclusiveMinimum": 0},
+              "min_altitude_m": {"type": "number"},
+              "max_altitude_m": {"type": "number"}
+            }
+          },
+          "layers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "type"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "type": {"enum": ["audio", "visual"]},
+                "asset": {"type": "string", "minLength": 1},
+                "cue": {"type": "string", "minLength": 1},
+                "volume": {"type": "number", "minimum": 0, "maximum": 1},
+                "intensity": {"type": "number", "minimum": 0, "maximum": 1},
+                "loop": {"type": "boolean"},
+                "playback_mode": {"enum": ["continuous", "scanner_pulse"]},
+                "scanner_pulse": {
+                  "type": "object",
+                  "properties": {
+                    "outer_gap_seconds": {"type": "number", "minimum": 0},
+                    "core_gap_seconds": {"type": "number", "minimum": 0},
+                    "exponent": {"type": "number", "exclusiveMinimum": 0},
+                    "momentum_step_percent": {"type": "number", "minimum": 0, "maximum": 25},
+                    "momentum_limit_percent": {"type": "number", "minimum": 0, "maximum": 25}
+                  }
+                },
+                "start_delay_seconds": {"type": "number", "minimum": 0},
+                "stop_delay_seconds": {"type": "number", "minimum": 0},
+                "volume_transition_seconds": {"type": "number", "minimum": 0},
+                "depth_response": {
+                  "type": "object",
+                  "properties": {
+                    "curve": {"enum": ["constant", "linear", "exponential"]},
+                    "start_percent": {"type": "number", "minimum": 0, "exclusiveMaximum": 100},
+                    "minimum": {"type": "number", "minimum": 0, "maximum": 1},
+                    "exponent": {"type": "number", "exclusiveMinimum": 0},
+                    "silent_before_start": {"type": "boolean"}
+                  }
+                }
+              }
+            }
+          },
+          "layer_adjustments": {
+            "type": "array",
+            "description": "Durable named-layer mix rules active for this environment lifecycle.",
+            "items": {
+              "type": "object",
+              "required": ["target_layer", "volume"],
+              "properties": {
+                "target_layer": {"type": "string", "pattern": "^environment\\.[^.]+\\.[^.]+$"},
+                "volume": {"type": "number", "minimum": 0, "maximum": 1},
+                "transition_seconds": {"type": "number", "minimum": 0},
+                "priority": {"type": "integer"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "navigators": {
+      "type": "array",
+      "description": "Generic distance-ping and hold-to-acquire coordinate guidance.",
+      "items": {
+        "type": "object",
+        "required": ["id", "active_when", "ping_asset", "targets"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "title": {"type": "string"},
+          "active_when": {"type": "object"},
+          "toggle_signal": {"type": "string"},
+          "enabled_on_activate": {"type": "boolean"},
+          "ping_asset": {"type": "string", "minLength": 1},
+          "acquisition_asset": {"type": "string"},
+          "outer_range_m": {"type": "number", "exclusiveMinimum": 0},
+          "trigger_radius_m": {"type": "number", "exclusiveMinimum": 0},
+          "hold_radius_m": {"type": "number", "exclusiveMinimum": 0},
+          "targets": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "required": ["id", "complete_when", "location"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "title": {"type": "string"},
+                "complete_when": {"type": "object"},
+                "location": {
+                  "type": "object", "required": ["latitude", "longitude", "body_radius_m"],
+                  "properties": {
+                    "system": {"type": "string"}, "body": {"type": "string"},
+                    "latitude": {"type": "number"}, "longitude": {"type": "number"},
+                    "body_radius_m": {"type": "number", "exclusiveMinimum": 0}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "solar_clocks": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "solar_day_seconds", "anchor"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+          "system": {"type": "string"}, "body": {"type": "string"},
+          "solar_day_seconds": {"type": "number", "exclusiveMinimum": 0},
+          "direction": {"enum": [-1, 1]},
+          "anchor": {"type": "object", "required": ["at_utc", "longitude", "local_hour"]}
+        }
+      }
+    },
+    "solar_sites": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "clock", "latitude", "longitude"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+          "clock": {"type": "string", "minLength": 1},
+          "latitude": {"type": "number", "minimum": -90, "maximum": 90},
+          "longitude": {"type": "number", "minimum": -180, "maximum": 180},
+          "anchor": {"type": "object", "required": ["at_utc", "longitude", "local_hour"]}
+        }
+      }
+    },
+    "time_gates": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "site", "open_local_hour", "close_local_hour"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+          "site": {"type": "string", "minLength": 1},
+          "open_local_hour": {"type": "number", "minimum": 0, "exclusiveMaximum": 24},
+          "close_local_hour": {"type": "number", "minimum": 0, "exclusiveMaximum": 24}
+        }
+      }
+    },
+    "time_events": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "gate", "boundary", "effects"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+          "gate": {"type": "string", "minLength": 1}, "boundary": {"enum": ["open", "close"]},
+          "repeat": {"enum": ["once_per_story", "once_per_mission", "once_per_cycle", "every_crossing"]},
+          "delay_seconds": {"type": "number", "minimum": 0}, "catch_up": {"type": "boolean"},
+          "valid_while": {"enum": ["open", "closed"]}, "enabled_when": {"type": "object"},
+          "effects": {"type": "array", "minItems": 1, "items": {"type": "object"}}
+        }
+      }
+    },
+    "scan_sets": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["id", "acquisition_asset", "completion_asset", "targets"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+          "enabled_when": {"type": "object"}, "requires_control": {"type": "string", "pattern": "^control\\."},
+          "active_vehicles": {"type": "array"}, "hold_seconds": {"type": "number", "exclusiveMinimum": 0},
+          "acquisition_asset": {"type": "string", "minLength": 1},
+          "completion_asset": {"type": "string", "minLength": 1},
+          "targets": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "required": ["id", "detection_zone", "location"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1}, "title": {"type": "string"},
+                "detection_zone": {"type": "string", "minLength": 1},
+                "location": {"type": "object", "required": ["latitude", "longitude", "core_radius_m", "body_radius_m"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind"],
+        "properties": {
+          "kind": {"enum": ["start", "wait", "beat", "choice", "checkpoint", "fork", "join", "end"]},
+          "checkpoint_id": {"type": "string"},
+          "join_from": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+          "join_count": {"type": "integer", "minimum": 2},
+          "on_enter": {"type": "array", "items": {"type": "object", "required": ["type"]}}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "when"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "from": {"type": "string"},
+          "to": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+          "priority": {"type": "integer"},
+          "when": {
+            "type": "object",
+            "description": "Declarative condition: always, signal, elapsed_seconds, geofence, path, variable, all, any or not."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1145,6 +1145,19 @@ def journal_files(journal_dir: Path) -> list[Path]:
     return sorted(files, key=lambda p: p.stat().st_mtime)
 
 
+def repair_event_targets(e: dict) -> tuple[bool, bool]:
+    """Return (repairs_hull, repairs_canopy) for legacy 'Item' and Odyssey 'Items' list."""
+    raw_items: list = []
+    if e.get("Item") is not None:
+        raw_items.append(e.get("Item"))
+    if isinstance(e.get("Items"), list):
+        raw_items.extend(e.get("Items"))
+    tokens = [normalized(x) for x in raw_items if x is not None]
+    repairs_hull = any(t in ("all", "hull", "hullhealth", "ship", "integrity") for t in tokens)
+    repairs_canopy = any(t == "all" or "cockpit" in t or "canopy" in t for t in tokens)
+    return repairs_hull, repairs_canopy
+
+
 def read_lines(path: Path) -> list[str]:
     try:
         return path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -1212,10 +1225,10 @@ def reconstruct_current_ship(journal_dir: Path) -> ShipState:
                 state.canopy_health = 1.0
 
             elif ev == "Repair":
-                item = normalized(e.get("Item"))
-                if item in ("all", "hull"):
+                repairs_hull, repairs_canopy = repair_event_targets(e)
+                if repairs_hull:
                     state.hull_health = 1.0
-                if item == "all" or "cockpit" in item or "canopy" in item:
+                if repairs_canopy:
                     state.canopy_health = 1.0
 
             elif ev == "AfmuRepairs":
@@ -2708,12 +2721,12 @@ class Runtime:
             return
 
         if ev == "Repair":
-            item = normalized(e.get("Item"))
+            repairs_hull, repairs_canopy = repair_event_targets(e)
 
-            if item in ("all", "hull"):
+            if repairs_hull:
                 self.ship.hull_health = 1.0
 
-            if item == "all" or "cockpit" in item or "canopy" in item:
+            if repairs_canopy:
                 self.ship.canopy_health = 1.0
                 self.canopy_breached = False
             return
@@ -3479,6 +3492,13 @@ def selftest():
     # configuration or contaminate a clean distribution build.
     global _CONFIG_WRITES_ENABLED
     _CONFIG_WRITES_ENABLED = False
+
+    # Repair events: legacy singular "Item" and Odyssey "Items" list.
+    assert repair_event_targets({"event":"Repair","Items":["Hull","Wear"]})==(True,False)
+    assert repair_event_targets({"event":"Repair","Items":["$int_cockpit_size4_class1_name;"]})==(False,True)
+    assert repair_event_targets({"event":"Repair","Item":"All"})==(True,True)
+    assert repair_event_targets({"event":"Repair"})==(False,False)
+
     cfg=json.loads(json.dumps(DEFAULT_CONFIG))
 
     hotkey = DiscoHotkey()

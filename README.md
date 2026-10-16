@@ -1,0 +1,2 @@
+# Elite-Dangerous---Reactive-Cockpit-by-VRFlorian
+A Development Repository by CMDR Dreak Noor, to contribute to the original florianRooz/VRFlorian-Reactive-Cockpit-Story-Mode-on project. A Elite Dangerous "mod", using EDHM to deliver reactive and dynamic cockpit interactions by game state like color changes and my more. Also adding a optional story mode, delivering rich story driven gameplay in ED
